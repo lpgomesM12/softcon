@@ -1,0 +1,17 @@
+ENDERECO:
+rails g scaffold endereco desc_endereco:string desc_cep:string bairro:references
+
+CONDOMINIO:
+rails g scaffold condominio nome_condominio:string data_cancelamento:datetime email:string endereco:references
+
+APARTAMENTO:
+rails g scaffold apartamento numr_apartamento:string numr_bloco:string condominio:references	
+
+FUNCAO:
+rails g scaffold funcao desc_funcao:string
+
+TIPORESERVA:
+rails g scaffold tiporeserva desc_tiporeserva:string
+
+TIPORESERVACONDOMINIO:
+rails g scaffold tiporeservacondominio tiporeserva:references condominio:references

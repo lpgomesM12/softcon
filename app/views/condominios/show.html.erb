@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome condominio:</strong>
+  <%= @condominio.nome_condominio %>
+</p>
+
+<p>
+  <strong>Data cancelamento:</strong>
+  <%= @condominio.data_cancelamento %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @condominio.email %>
+</p>
+
+<p>
+  <strong>Endereco:</strong>
+  <%= @condominio.endereco %>
+</p>
+
+<%= link_to 'Edit', edit_condominio_path(@condominio) %> |
+<%= link_to 'Back', condominios_path %>

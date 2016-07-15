@@ -1,0 +1,21 @@
+<%= form_for(@funcao) do |f| %>
+  <% if @funcao.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@funcao.errors.count, "error") %> prohibited this funcao from being saved:</h2>
+
+      <ul>
+      <% @funcao.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :desc_funcao %><br>
+    <%= f.text_field :desc_funcao %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

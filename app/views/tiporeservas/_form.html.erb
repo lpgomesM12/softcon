@@ -1,0 +1,21 @@
+<%= form_for(@tiporeserva) do |f| %>
+  <% if @tiporeserva.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tiporeserva.errors.count, "error") %> prohibited this tiporeserva from being saved:</h2>
+
+      <ul>
+      <% @tiporeserva.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :desc_tiporeserva %><br>
+    <%= f.text_field :desc_tiporeserva %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

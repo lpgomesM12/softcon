@@ -1,0 +1,25 @@
+<%= form_for(@tiporeservacondominio) do |f| %>
+  <% if @tiporeservacondominio.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tiporeservacondominio.errors.count, "error") %> prohibited this tiporeservacondominio from being saved:</h2>
+
+      <ul>
+      <% @tiporeservacondominio.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :tiporeserva_id %><br>
+    <%= f.text_field :tiporeserva_id %>
+  </div>
+  <div class="field">
+    <%= f.label :condominio_id %><br>
+    <%= f.text_field :condominio_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

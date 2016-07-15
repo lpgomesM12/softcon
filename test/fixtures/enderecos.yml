@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  desc_endereco: MyString
+  desc_cep: MyString
+  bairro_id: 
+
+two:
+  desc_endereco: MyString
+  desc_cep: MyString
+  bairro_id: 

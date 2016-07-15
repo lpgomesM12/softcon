@@ -1,0 +1,34 @@
+<%= form_for(@condominio) do |f| %>
+  <% if @condominio.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@condominio.errors.count, "error") %> prohibited this condominio from being saved:</h2>
+
+      <ul>
+      <% @condominio.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="box-body">
+  <div class="field">
+    <%= f.label :nome_condominio %><br>
+    <%= f.text_field :nome_condominio %>
+  </div>
+  <div class="field">
+    <%= f.label :data_cancelamento %><br>
+    <%= f.datetime_select :data_cancelamento %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :endereco_id %><br>
+    <%= f.text_field :endereco_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

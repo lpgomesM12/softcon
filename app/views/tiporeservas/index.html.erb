@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Tiporeservas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Desc tiporeserva</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tiporeservas.each do |tiporeserva| %>
+      <tr>
+        <td><%= tiporeserva.desc_tiporeserva %></td>
+        <td><%= link_to 'Show', tiporeserva %></td>
+        <td><%= link_to 'Edit', edit_tiporeserva_path(tiporeserva) %></td>
+        <td><%= link_to 'Destroy', tiporeserva, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tiporeserva', new_tiporeserva_path %>

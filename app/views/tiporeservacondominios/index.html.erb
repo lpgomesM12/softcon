@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Tiporeservacondominios</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tiporeserva</th>
+      <th>Condominio</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tiporeservacondominios.each do |tiporeservacondominio| %>
+      <tr>
+        <td><%= tiporeservacondominio.tiporeserva %></td>
+        <td><%= tiporeservacondominio.condominio %></td>
+        <td><%= link_to 'Show', tiporeservacondominio %></td>
+        <td><%= link_to 'Edit', edit_tiporeservacondominio_path(tiporeservacondominio) %></td>
+        <td><%= link_to 'Destroy', tiporeservacondominio, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tiporeservacondominio', new_tiporeservacondominio_path %>

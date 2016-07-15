@@ -1,0 +1,363 @@
+<head>
+    <meta charset="utf-8">
+    <title>Softcon Tecnologia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Controle de acesso e cadastro moradores, biometria, síndico">
+    <meta name="keywords" content="Síndico,Softcon,biometria,condomínio,controle de acesso,softcon tecnologia,tecnologia,condomínios">
+    <meta name="author" content="">
+    <!-- ===== CSS START ==== -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+    <link href="/assets/site/animate.css" rel="stylesheet">
+    <link href="/assets/site/decorator.css" rel="stylesheet">
+    <link href="/assets/site/icons-decorator.css" rel="stylesheet">
+    <link href="/assets/site/theme.css" rel="stylesheet">
+    <!-- ===== CSS END ==== icons-ttf.css -->
+</head>
+<body class="home">
+    <!-- Wrapper Start -->
+    <div class="wrapper clearfix">
+
+        <div class="top-bar">
+            <!-- Topbar Start -->
+
+            <div class="inner clearfix">
+                <a href="index.aspx" class="logo">Softcon<span>Tecnologia</span></a>
+                <a href="#" class="menu-action res-open">+</a>
+                <ul class="list-inline">
+                    <!-- Main Menu Start -->
+                    <li><a href="templates/about.html">Quem Somos</a></li>
+                    <li><a href="templates/servico.html">Serviços</a></li>
+                    <li><a href="templates/contact.html">Contato</a></li>
+                    <li class="active">
+
+                     <li><%= link_to "Entrar", user_session_path, class: "border-blue btn form_"%></li>
+                </ul>
+                <!-- Main Menu End -->
+            </div>
+        </div>
+        <!-- Topbar End -->
+
+        <!-- Section One Start -->
+        <div class="section transparent push-down">
+
+            <div class="inner first">
+
+                <div class="promo">
+                    <!-- Intro Start -->
+                    <span class="block"><span class="small-desc">O nosso modelo de negócio foi desenvolvido pensando em você!</span></span>
+                    <span class="block"><span class="big-desc">Temos as melhores soluções, seja nosso parceiro! Confira o nosso portifólio.</span></span>
+                    <a class="btn download" href="#">Download</a>
+
+                </div>
+                <!-- Intro End -->
+
+            </div>
+        </div>
+
+        <!-- Section One End -->
+
+        <!-- Section Two Start -->
+        <div class="section position">
+
+            <div class="inner services">
+
+                <h1>Nossos Serviços</h1>
+
+                <ul class="media-grid-wide">
+                    <li class="m-first">
+                        <div class="content">
+                            <p>
+                                <a href="templates/servico.html" class="btn-circle btn-border border-yellow "><i class="bi_calculator"></i></a>
+                            </p>
+
+                            <h2>Consultoria</h2>
+                            <p>
+                                Diferencie seu trabalho dos administradores sem estrutura, que utilizam softwares “de prateleira” 
+                                ou com versões gratuitas que não lhes dão suporte ou treinamento e ficam impossibilitados de se 
+                                adaptarem as suas necessidades.  Para o sistema “SINDICO” damos assessoria, treinamento, manutenção 
+                                e possibilidade de expansão do sistema conforme a necessidade do administrador. Agende uma visita para melhor esclarecimento.
+                            </p>
+                        </div>
+                    </li>
+                    <!-- " -->
+                    <li class="m-second">
+                        <div class="content">
+                            <p>
+                                <a href="templates/servico.html" class="btn-circle btn-border border-blue-sky"><i class="bi_left_indent"></i></a>
+                            </p>
+
+                            <h2>Sistema integrado</h2>
+                            <p>
+                                Cadastro de Moradres;<br />
+                                Reservas de Churrasqueira, Salão de Festas, Espaço Gourmet, Quadra;<br />
+                                Cadastro de Multas e Advertências;<br />
+                                Controle de Acesso de Prestadores e Visitantes;<br />
+                                Contas a pagar;<br />
+                                Patrimônio;<br />
+                                Agendamento de Mudança;<br />
+                                Cadastro de Veículos e Garagens;<br />
+                            </p>
+                        </div>
+                    </li>
+
+                    <li class="m-third">
+                        <div class="content">
+                            <p>
+                                <a href="templates/servico.html" class="btn-circle btn-border border-redish "><i class="bi_bug"></i></a>
+                            </p>
+
+                            <h2>Automação</h2>
+                            <p>
+                                A motivação mais relevante da Softcon está em proporcionar comodidade e prazer aos seus clientes. Desse sonho nasceu o principal produto da empresa, o SINDICO. Trata-se de um sistema de software capaz de automatizar as tarefas cotidianas de um condomínio.
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <!-- Section Two End -->
+
+        <!-- Section Three Start -->
+        <div class="section transparent">
+            <div class="inner subscribe">
+                <form class="subscrib-form hidden">
+                    <input name="email" placeholder="Novidades Softcon (Email)" />
+                    <button type="submit" class="subscribe-btn">Inscrever-me</button>
+                </form>
+            </div>
+        </div>
+        <!-- Section Three End -->
+
+        <!-- Section Four Start -->
+        <div class="section">
+            <div class="inner blog">
+
+                <div class="b1">
+                    <div class="inner">
+                        <h2>Destaques Softcon</h2>
+                        <ul class="media-grid-wide media-blog">
+                            <li class="f1">
+                                <a class="blog-thumb" href="#">
+                                    <%= image_tag ("/assets/media/blog/1-bio.jpg")%>
+                                <div class="blog-data">
+                                    <p><a class="blog-title" href="#">O que é Biometria?</a></p>
+                                    <p class="blog-info">1 day ago - In: <a href="#">Activity</a></p>
+                                    <p class="blog-desc">
+                                        A Wikpédia diz que Biometria "é o estudo estatístico das características físicas ou 
+                                        comportamentais dos seres vivos"... <strong><a href="templates/servico.html">Saiba mais</a></strong>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="f2">
+                                <a class="blog-thumb" href="#">
+                                    <%= image_tag ("/assets/media/blog/1-seg.jpg")%>
+                                    </a>
+                                <div class="blog-data">
+                                    <p><a class="blog-title" href="#">Controle de Acesso</a></p>
+                                    <p class="blog-info">1 day ago - In: <a href="#">Activity</a></p>
+                                    <p class="blog-desc">
+                                        A Softcon é especialista em controle de acesso. Conosco seu condomínio está seguro.
+                                        Solicite a visita de um de nossos colaboradores. <strong><a href="templates/contact.html">Solicitar Visita</a></strong>
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+
+                <div class="b2">
+                    <div class="inner">
+                        <h2>Vídeo Institucional</h2>
+
+                        <iframe class="youtube hidden" width="100%" height="249" src="//www.youtube.com/embed/YXnjy5YlDwk?list=PLRZGcLwZhwQBVSymagUpJQvEnjQxis1uB" frameborder="0" allowfullscreen></iframe>
+                        <div class="yt-subscribe f1">
+                            <script src="https://apis.google.com/js/platform.js"></script>
+                            <div class="g-ytsubscribe" data-channelid="UCsqbLAsf0sk9qE8RlSfpaxw" data-layout="full" data-count="default"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Section Four End -->
+
+        <!-- Section Five Start -->
+        <div class="section">
+            <div class="inner portfolio">
+                <h1>Cases de Sucesso</h1>
+                <ul class="media-grid">
+                    <li><a href="#"><span>BORGES LANDEIRO GOYAZES</span><img src="/assets/media/portfolio/01-blg.jpg" /></a></li>
+                    <li><a href="#"><span>BORGES LANDEIRO DUNAS</span><img src="/assets/media/portfolio/02-bld.jpg" /></a></li>
+                    <li><a href="#"><span>RESIDENCIAL MARFIM</span><img src="/assets/media/portfolio/04-cm.jpg" /></a></li>
+                    <li><a href="#"><span>RESIDENCIAL ÂMBAR</span><img src="/assets/media/portfolio/03-ca.jpg" /></a></li>
+                    <li><a href="#"><span>VARANDAS DA PRAÇA</span><img src="/assets/media/portfolio/10-vdp.jpg" /></a></li>
+                    <li><a href="#"><span>DIAMOND LIFE STYLE</span><img src="/assets/media/portfolio/06-dls.jpg" /></a></li>
+                    <li><a href="#"><span>RESIDENCIAL LIVRE BURITIS</span><img src="/assets/media/portfolio/07-lb.jpg" /></a></li>
+                    <li><a href="#"><span>RESIDENCIAL VIVAZ</span><img src="/assets/media/portfolio/08-vi.jpg" /></a></li>
+                    <li><a href="#"><span>GRAN TOWER RESIDENCE</span><img src="/assets/media/portfolio/09-gtr.jpg" /></a></li>
+                    <li><a href="#"><span>RESIDENCIAL TOPÁZIO</span><img src="/assets/media/portfolio/05-ct.jpg" /></a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- Section Five End -->
+
+
+        <!-- Section Six (Footer) Start -->
+        <div class="section footer">
+            <div class="inner clearfix">
+
+                <div class="row">
+                    <!-- Row Start -->
+
+                    <div class="block4">
+                        <!-- Block One Start -->
+
+                        <div class="_inner">
+                            <h2>Mapa do Site:</h2>
+                            <ul class="links">
+                                <li><a href="index.aspx">Página Principal</a></li>
+                                <li><a href="templates/about.html">Quem Somos</a></li>
+                                <li><a href="templates/servico.html">Serviços</a></li>
+                                <li><a href="templates/contact.html">Contato</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <!-- Block One End -->
+
+                    <div class="block4">
+                        <!-- Block Two Start -->
+
+                        <div class="_inner _padder">
+                            <h2>Quem Somos:</h2>
+                            <p>
+                                Somos uma empresa de gestão de tecnologia voltada principalmente para automação de conjuntos habitacionais. 
+                                Cuidamos de todos os aspectos formais da ação de automação das tarefas de condomínios. Nossas soluções
+                                mapeiam desde o controle de fluxo numa portaria até processos gerenciais mais específicos, como gestão de contas.
+                                <span><a href="templates/about.html">Saiba mais</a></span>
+                            </p>
+                        </div>
+
+                    </div>
+                    <!-- Block Two End -->
+
+                    <div class="block4">
+                        <!-- Block Three Start -->
+
+                        <div class="_inner">
+                            <h2>Principais Fornecedores:</h2>
+                            <ul class="media-grid">
+                                <li><a href="#">
+                                    <img src="/assets/media/1-aut.jpg" /></a></li>
+                                <li><a href="#">
+                                    <img src="/assets/media/2-gs.jpg" /></a></li>
+                                <li><a href="#">
+                                    <img src="/assets/media/3-hdl.jpg" /></a></li>
+                                <li><a href="#">
+                                    <img src="/assets/media/4-hr.jpg" /></a></li>
+                                <li><a href="#">
+                                    <img src="/assets/media/5-ib.jpg" /></a></li>
+                                <li><a href="#">
+                                    <img src="/assets/media/1-aut.jpg" /></a></li>
+                                <li><a href="#">
+                                    <img src="/assets/media/2-gs.jpg" /></a></li>
+                                <li><a href="#">
+                                    <img src="/assets/media/3-hdl.jpg" /></a></li>
+                                <li><a href="#">
+                                    <img src="/assets/media/4-hr.jpg" /></a></li>
+                                <li><a href="#">
+                                    <img src="/assets/media//5-ib.jpg" /></a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <!-- Block Three end -->
+
+                </div>
+                               <!-- Row End -->
+                <div class="copy">
+                    <span class="made">Desenvolvido pela <a href="index.aspx">Softcon Tecnologia</a></span>
+
+                    <!-- Social Footer Start -->
+                    <ul class="list list-inline social">
+
+                        <li class="first"><a href="https://www.facebook.com/welingtonsoftcon" title="Facebook" data-placement="top" target="_blank"><i class="so24_facebook"></i></a></li>
+                        <li><a href="https://twitter.com/_uloga" title="Twitter" data-placement="top" target="_blank"><i class="so24_twitter"></i></a></li>
+                        <li><a href="https://plus.google.com/u/0/+AlanMuseljic/posts" title="Google+" data-placement="top" target="_blank"><i class="so24_google_plus"></i></a></li>
+                        <li><a href="http://instagram.com/softconcondominio" title="Instagram" data-placement="top"><i class="so24_instagram" target="_blank"></i></a></li>
+                        <li><a href="" title="Linkedin" data-placement="top"><i class="so24_linked_in"></i></a></li>
+                        <li><a href="" title="Pinterest" data-placement="top"><i class=" so24_pinterest"></i></a></li>
+
+                    </ul>
+                    <!-- Social Footer End -->
+
+                </div>
+            </div>
+        </div>
+        <!-- Section Six (Footer) End -->
+        <!-- Simple One  Modal Start (CSS do login) -->
+
+        <div class="modal-form hide">
+
+            <!-- This is a static example of modal built directly into html content -->
+
+            <div class="modal-header">
+                <h2 class="modal-title">Administração</h2>
+            </div>
+
+            <div class="modal-content">
+
+                <form class="form-basic" runat=server>
+
+                    <fieldset>
+                        <label>Usuário</label>
+                        <input placeholder="Usuário ou Email" type="text">
+                        <span class="help-info">Entre com o nome de usuário ou email</span>
+
+                        <label>Senha</label>
+                        <input placeholder="Senha" type="password">
+                        <span class="help-info">Entre com sua senha</span>
+                                        
+                    </fieldset>
+
+                </form>
+
+            </div>
+        </div>
+        <!-- Simple Form Modal End (CSS do login) -->
+
+
+    </div>
+    <!-- Wrapper End -->
+
+    <!-- ==================
+        JAVASCRIPT START 
+    ======================= -->
+
+    <script src="/assets/site/jquery.js"></script>
+    <script src="/assets/site/dc.tips.js"></script>
+    <script src="/assets/site/theme.js"></script>
+    <script src="/assets/site/dc.modal.js"></script>
+
+]
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+            //form modal using reverse hide
+            $('.form_').dcModal(
+                {
+                    effect: "up",
+                    hide: 'reverse',
+                    style: { width: 380 }
+                }
+            );
+
+        });
+    </script>
+    <!-- finish javascript do login -->
+    <!-- ==================
+         JAVASCRIPT END
+    ======================= -->
+</body>

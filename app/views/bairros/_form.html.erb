@@ -1,0 +1,47 @@
+ <%= form_for(@bairro) do |f| %>
+  <% if @bairro.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bairro.errors.count, "error") %> prohibited this bairro from being saved:</h2>
+
+      <ul>
+      <% @bairro.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="box-body">
+   <div class="row mar-bot40">
+     <div class="col-lg-5" >
+      <%= f.label :nome_bairro %><br>
+      <%= f.text_field :nome_bairro, :class => 'form-control' %>
+    </div>
+   </div>   
+   <div class="row mar-bot40">
+     <div class="col-lg-3" >
+       <%= f.label :cidade_id %><br>
+       <%= f.text_field :cidade_id, :class => 'form-control' %>
+     </div>
+   </div>
+    <br>   
+   </div>
+
+  </div><!-- /.box -->
+  <div class="row mar-bot40">
+    <div class="col-lg-8" > 
+       <div class="btn-group">
+         <button type="submit" value="Submit" class="btn btn-primary btn-sm">
+          <span class="glyphicon glyphicon-floppy-disk"></span> Salvar
+         </button>
+         <%= link_to bairros_path, :class => "btn btn-default btn-sm" do %>
+            <span class="glyphicon glyphicon-arrow-left"></span> Voltar
+          <% end %>
+        </div>
+      </div>
+  </div>
+
+</section>
+
+<% end %>

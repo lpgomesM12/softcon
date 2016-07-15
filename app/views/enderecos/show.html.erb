@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Desc endereco:</strong>
+  <%= @endereco.desc_endereco %>
+</p>
+
+<p>
+  <strong>Desc cep:</strong>
+  <%= @endereco.desc_cep %>
+</p>
+
+<p>
+  <strong>Bairro:</strong>
+  <%= @endereco.bairro %>
+</p>
+
+<%= link_to 'Edit', edit_endereco_path(@endereco) %> |
+<%= link_to 'Back', enderecos_path %>

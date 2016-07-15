@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome_condominio: MyString
+  data_cancelamento: 2016-07-15 14:57:39
+  email: MyString
+  endereco_id: 
+
+two:
+  nome_condominio: MyString
+  data_cancelamento: 2016-07-15 14:57:39
+  email: MyString
+  endereco_id: 
