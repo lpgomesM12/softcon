@@ -39,7 +39,7 @@ set :deploy_to, '/home/deploy/softcon'
 # set :keep_releases, 5
 
 
-set :linked_files, %w{config/database.yml}
+set :linked_files, %w{config/database.yml config/secrets.yml}
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
 namespace :deploy do
