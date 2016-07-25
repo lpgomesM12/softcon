@@ -1,13 +1,12 @@
 # config valid only for current version of Capistrano
 lock '3.5.0'
 
-
 set :application, 'softcon'
-set :repo_url, 'git@github.com:lpgomesM12/sofcon.git'
+set :repo_url, 'git@github.com:lpgomesM12/softcon.git'
 
 set :passenger_restart_with_touch, true
 
-set :deploy_to, '/home/deploy/sofcon'
+set :deploy_to, '/home/deploy/softcon'
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
@@ -54,6 +53,4 @@ namespace :deploy do
 
   after :publishing, 'deploy:restart'
   after :finishing, 'deploy:cleanup'
-end
-
 end
