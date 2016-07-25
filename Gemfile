@@ -33,7 +33,8 @@ group :development do
   gem 'capistrano', '~> 3.5'
   gem 'capistrano-bundler', '~> 1.1', '>= 1.1.4'
   gem 'capistrano-rbenv', '~> 2.0', '>= 2.0.4'
-  
+  gem 'capistrano-passenger'
+
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
