@@ -1,0 +1,121 @@
+<%= form_for(@reserva) do |f| %>
+  <% if @reserva.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@reserva.errors.count, "error") %> prohibited this reserva from being saved:</h2>
+
+      <ul>
+      <% @reserva.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="box-body">
+
+<div class="row">
+  <div class="col-lg-6">
+    <%= f.label :Unidade %><br>
+    <%= f.select :apartamento_id, options_from_collection_for_select(Apartamento.all, 'id', 'nome'), {:include_blank => true}, {:class => 'form-control' }%>
+  </div>
+</div>
+
+<div class="row">
+<div class="col-lg-3">
+  <%= f.label :Data_Evento %><br>
+   <div class="input-group">
+      <%= f.text_field :data_reserva, :class => 'form-control' %>
+      <span class="input-group-btn">
+        <button class="btn btn-success" type="button" onclick="buscaTipoReservaDisponivel();">Buscar</button>
+      </span>
+   </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-6">
+     <%= f.label :Local_reserva %><br>
+     <%= f.select :tiporeserva_id, [],{}, {:class => 'form-control' }%>
+   </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-6">
+    <%= f.label :nome_solicitante %><br>
+    <%= f.text_field :nome_solicitante, :class => 'form-control' %>
+  </div>
+</div>
+
+ <div class="row">
+  <div class="col-lg-6">
+    <%= f.label :email_solicitante %><br>
+    <%= f.text_field :email_solicitante, :class => 'form-control' %>
+  </div>
+ </div>
+
+ <div class="row">
+  <div class="col-lg-2">
+    <%= f.label :hora_inicio %><br>
+    <%= f.text_field :hora_inicio, :class => 'form-control' %>
+  </div>
+  <div class="col-lg-2">
+    <%= f.label :hora_fim %><br>
+    <%= f.text_field :hora_fim, :class => 'form-control' %>
+  </div>
+</div>
+
+<%= f.hidden_field :condominio_id, :value => current_user.condominio_id %>
+<%= f.hidden_field :user_inclusao, :value => current_user.id %>
+<%= f.hidden_field :flag_autorizado, :value => false %>
+
+</div>
+</div><!-- /.box -->
+  <div class="row mar-bot40">
+    <div class="col-lg-8" >
+       <div class="btn-group">
+         <button type="submit" value="Submit" class="btn btn-primary btn-sm">
+          <span class="glyphicon glyphicon-floppy-disk"></span> Salvar
+         </button>
+         <%= link_to reservas_path, :class => "btn btn-default btn-sm" do %>
+            <span class="glyphicon glyphicon-arrow-left"></span> Voltar
+          <% end %>
+        </div>
+      </div>
+  </div>
+</section>
+
+<% end %>
+
+
+<script type="text/javascript">
+
+  jQuery(function($){
+    $("#reserva_data_reserva").mask("99/99/9999");
+    $("#reserva_hora_inicio").mask("99:99");
+    $("#reserva_hora_fim").mask("99:99");
+  });
+
+  function buscaTipoReservaDisponivel(){
+    $.ajax({
+      url: '<%= buscaTipoReservaDisponivel_path %>',
+      data : {
+        data : $("#reserva_data_reserva").val()
+      },
+      success: function(data){
+        $('#reserva_tiporeserva_id').empty();
+        $('#reserva_tiporeserva_id').html('<option>Carregando...</option>');
+        $('#reserva_tiporeserva_id').attr('disabled', 'disabled');
+        var options = "";
+        for (var i in data) {
+          var item = data[i];
+          options += "<option value='"+item.id+"'>"+item.desc_tiporeserva+"</option>"
+        };
+
+        $('#reserva_tiporeserva_id').html(options);
+        $('#reserva_tiporeserva_id').removeAttr('disabled');
+      }
+    })
+
+  }
+
+</script>

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Moradors</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Apartamento</th>
+      <th>Pessoa</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @moradors.each do |morador| %>
+      <tr>
+        <td><%= morador.apartamento %></td>
+        <td><%= morador.pessoa %></td>
+        <td><%= link_to 'Show', morador %></td>
+        <td><%= link_to 'Edit', edit_morador_path(morador) %></td>
+        <td><%= link_to 'Destroy', morador, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Morador', new_morador_path %>

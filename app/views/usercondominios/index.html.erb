@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Usercondominios</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Funcao</th>
+      <th>Condominio</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @usercondominios.each do |usercondominio| %>
+      <tr>
+        <td><%= usercondominio.user %></td>
+        <td><%= usercondominio.funcao %></td>
+        <td><%= usercondominio.condominio %></td>
+        <td><%= link_to 'Show', usercondominio %></td>
+        <td><%= link_to 'Edit', edit_usercondominio_path(usercondominio) %></td>
+        <td><%= link_to 'Destroy', usercondominio, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Usercondominio', new_usercondominio_path %>

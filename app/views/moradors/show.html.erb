@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Apartamento:</strong>
+  <%= @morador.apartamento %>
+</p>
+
+<p>
+  <strong>Pessoa:</strong>
+  <%= @morador.pessoa %>
+</p>
+
+<%= link_to 'Edit', edit_morador_path(@morador) %> |
+<%= link_to 'Back', moradors_path %>

@@ -12,23 +12,122 @@
   <% end %>
 
 <div class="box-body">
-  <div class="field">
+  <div class="row">
+   <div class="col-lg-5">
     <%= f.label :nome_condominio %><br>
-    <%= f.text_field :nome_condominio %>
+    <%= f.text_field :nome_condominio, :class => 'form-control' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :data_cancelamento %><br>
-    <%= f.datetime_select :data_cancelamento %>
-  </div>
-  <div class="field">
+  <div class="row">
+   <div class="col-lg-5">
     <%= f.label :email %><br>
-    <%= f.text_field :email %>
+    <%= f.text_field :email, :class => 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :endereco_id %><br>
-    <%= f.text_field :endereco_id %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+
+<%= f.fields_for :endereco do |enderecos| %>
+          <div class="row mar-bot40">
+           <div class="col-lg-12">
+               <%= enderecos.label :Endereco %><br>
+               <%= enderecos.text_field :desc_endereco, :class => 'form-control' %>
+             </div>
+          </div>
+          <br>
+       <br>
+       <div class="row mar-bot40">
+         <%=  fields_for :estados do |esta| %>
+             <div class="col-lg-6">
+               <%= esta.label :Estado %><br>
+               <%= esta.select :estado_id, options_from_collection_for_select(Estado.all, 'id', 'nome_estado',@estado), {:include_blank => true}, {:onchange => 'changeState(this)', :class => 'form-control' }%>
+             </div>
+         <%end%>
+         <%if @cidade %>
+               <div class="col-lg-6">
+                 <%= enderecos.label :Cidade %>
+                 <%= enderecos.select :cidade_id, options_from_collection_for_select(@cidade, 'id', 'nome_cidade',@cidade_setada),{}, :class => 'form-control'%>
+               </div>
+         <%else%>
+         <div class="col-lg-6">
+                 <%= enderecos.label :Cidade %><br>
+                 <%= enderecos.select :cidade_id, [], {}, {:onchange => 'changeBairro(this)', :class => 'form-control'}%>
+         </div>
+          <%end%>
+        </div>
+
+        <div class="row">
+          <%if @bairro %>
+              <div class="col-lg-6">
+                <%= enderecos.label :Bairro %>
+                <%= enderecos.select :bairro_id, options_from_collection_for_select(@bairro, 'id', 'nome_bairro',@bairro_setado),{}, :class => 'form-control'%>
+              </div>
+        <%else%>
+
+        <div class="col-lg-6">
+                <%= enderecos.label :Bairro %><br>
+                <%= enderecos.select :bairro_id, [], {}, :class => 'form-control'%>
+        </div>
+         <%end%>
+        </div>
+    <%end%>
+   </div>
+  </div><!-- /.box -->
+
+  <div class="row mar-bot40">
+    <div class="col-lg-8" >
+       <div class="btn-group">
+         <button type="submit" value="Submit" class="btn btn-primary btn-sm">
+          <span class="glyphicon glyphicon-floppy-disk"></span> Salvar
+         </button>
+         <%= link_to condominios_path, :class => "btn btn-default btn-sm" do %>
+            <span class="glyphicon glyphicon-arrow-left"></span> Voltar
+          <% end %>
+        </div>
+      </div>
   </div>
+</section>
+
 <% end %>
+
+<script type="text/javascript">
+
+    function changeState(state){
+        $.ajax({
+          url: '<%= listarCidade_path %>',
+          data : {id : state.value},
+          success: function(data){
+            $('#condominio_endereco_attributes_cidade_id').empty();
+            $('#condominio_endereco_attributes_cidade_id').html('<option>Carregando...</option>');
+            $('#condominio_endereco_attributes_cidade_id').attr('disabled', 'disabled');
+            var options = "";
+            for (var i in data) {
+              var item = data[i];
+              options += "<option value='"+item.id+"'>"+item.nome+"</option>"
+            };
+
+            $('#condominio_endereco_attributes_cidade_id').html(options);
+            $('#condominio_endereco_attributes_cidade_id').removeAttr('disabled');
+          }
+        })
+      }
+
+      function changeBairro(bairro){
+       $.ajax({
+         url: '<%= listarBairro_path %>',
+         data : {id : bairro.value},
+         success: function(data){
+           $('#condominio_endereco_attributes_bairro_id').empty();
+           $('#condominio_endereco_attributes_bairro_id').html('<option>Carregando...</option>');
+           $('#condominio_endereco_attributes_bairro_id').attr('disabled', 'disabled');
+           var options = "";
+           for (var i in data) {
+             var item = data[i];
+             options += "<option value='"+item.id+"'>"+item.nome+"</option>"
+           };
+
+           $('#condominio_endereco_attributes_bairro_id').html(options);
+           $('#condominio_endereco_attributes_bairro_id').removeAttr('disabled');
+         }
+       })
+     }
+
+</script>

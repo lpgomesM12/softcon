@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Grupopermissaousers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Grupopermissao</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @grupopermissaousers.each do |grupopermissaouser| %>
+      <tr>
+        <td><%= grupopermissaouser.user %></td>
+        <td><%= grupopermissaouser.grupopermissao %></td>
+        <td><%= link_to 'Show', grupopermissaouser %></td>
+        <td><%= link_to 'Edit', edit_grupopermissaouser_path(grupopermissaouser) %></td>
+        <td><%= link_to 'Destroy', grupopermissaouser, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Grupopermissaouser', new_grupopermissaouser_path %>

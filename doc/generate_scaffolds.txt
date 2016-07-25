@@ -5,7 +5,7 @@ CONDOMINIO:
 rails g scaffold condominio nome_condominio:string data_cancelamento:datetime email:string endereco:references
 
 APARTAMENTO:
-rails g scaffold apartamento numr_apartamento:string numr_bloco:string condominio:references	
+rails g scaffold apartamento numr_apartamento:string numr_bloco:string condominio:references
 
 FUNCAO:
 rails g scaffold funcao desc_funcao:string
@@ -15,3 +15,15 @@ rails g scaffold tiporeserva desc_tiporeserva:string
 
 TIPORESERVACONDOMINIO:
 rails g scaffold tiporeservacondominio tiporeserva:references condominio:references
+
+PESSOA:
+rails g scaffold pessoa nome_pessoa:string desc_fone:string cpf:string rg:string
+
+MODADOR:
+rails g scaffold morador apartamento:references pessoa:references
+
+USERCONDOMINIO:
+rails g scaffold usercondominio user:references funcao:references condominio:references
+
+RESERVA:
+rails g scaffold reserva data_reserva:datetime hora_inicio:integer hora_fim:integer tiporeserva:references data_cancelamento:datetime apartamento:references valr_reserva:decimal flag_autorizado:boolean nome_solicitante:string email_solicitante:string condominio:references data_autorizacao:datetime

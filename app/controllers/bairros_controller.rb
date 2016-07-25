@@ -21,6 +21,12 @@ class BairrosController < ApplicationController
   def edit
   end
 
+  def get_bairros
+    bairros = Bairro.where(cidade_id: params[:id]).order('nome_bairro ASC')
+    bairros_json = bairros.map {|item| {:id => item.id, :nome => item.nome_bairro}}
+    render :json => bairros_json
+  end
+
   # POST /bairros
   # POST /bairros.json
   def create

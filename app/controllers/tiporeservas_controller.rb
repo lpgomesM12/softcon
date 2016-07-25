@@ -1,6 +1,20 @@
 class TiporeservasController < ApplicationController
   before_action :set_tiporeserva, only: [:show, :edit, :update, :destroy]
 
+  def busca_disponivel
+     @tiporeserva = Tiporeserva.joins(:reserva).where(reservas: {data_reserva: params[:data].to_datetime.to_s(:db), condominio_id: current_user.condominio_id})
+
+    if @tiporeserva.empty?
+      reservacondominio = Tiporeservacondominio.all
+    else
+        reservacondominio = Tiporeservacondominio.where('tiporeserva_id NOT IN (?) AND condominio_id = ?', @tiporeserva.map{ |e| e.id}, current_user.condominio_id)
+    end
+
+    reservas_json = reservacondominio.map {|item| {:id => item.tiporeserva.id, :desc_tiporeserva => item.tiporeserva.desc_tiporeserva}}
+    render :json => reservas_json
+
+  end
+
   # GET /tiporeservas
   # GET /tiporeservas.json
   def index

@@ -1,6 +1,17 @@
 class CondominiosController < ApplicationController
   before_action :set_condominio, only: [:show, :edit, :update, :destroy]
 
+
+  def muda_condominio
+     @user = User.find(current_user.id)
+     @user.condominio_id = params[:condominio]
+     if @user.save
+        render :json => true
+      else
+        render :json => false
+     end
+  end
+
   # GET /condominios
   # GET /condominios.json
   def index
@@ -15,10 +26,21 @@ class CondominiosController < ApplicationController
   # GET /condominios/new
   def new
     @condominio = Condominio.new
+    @condominio.build_endereco
   end
 
   # GET /condominios/1/edit
   def edit
+
+    @estado = @condominio.endereco.cidade.estado.id
+
+    @cidade = Cidade.where(estado_id: @estado)
+    @cidade_setada = @condominio.endereco.cidade.id
+
+
+    @bairro = Bairro.where(id: @condominio.endereco.bairro_id)
+    @bairro_setado = @condominio.endereco.bairro_id
+
   end
 
   # POST /condominios
@@ -69,6 +91,6 @@ class CondominiosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def condominio_params
-      params.require(:condominio).permit(:nome_condominio, :data_cancelamento, :email, :endereco_id)
+      params.require(:condominio).permit(:nome_condominio, :data_cancelamento, :email, endereco_attributes: [ :id, :desc_endereco, :desc_cep, :cidade_id, :bairro_id])
     end
 end

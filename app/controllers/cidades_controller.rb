@@ -21,6 +21,12 @@ class CidadesController < ApplicationController
   def edit
   end
 
+  def get_cities
+    cidades = Cidade.where(estado_id: params[:id]).order('nome_cidade ASC')
+    cidades_json = cidades.map {|item| {:id => item.id, :nome => item.nome_cidade}}
+    render :json => cidades_json
+  end
+  
   # POST /cidades
   # POST /cidades.json
   def create

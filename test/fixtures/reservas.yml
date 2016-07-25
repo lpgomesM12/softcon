@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  data_reserva: 2016-07-17 15:23:25
+  hora_inicio: 1
+  hora_fim: 1
+  tiporeserva_id: 
+  data_cancelamento: 2016-07-17 15:23:25
+  apartamento_id: 
+  valr_reserva: 9.99
+  flag_autorizado: false
+  nome_solicitante: MyString
+  email_solicitante: MyString
+  condominio_id: 
+  data_autorizacao: 2016-07-17 15:23:25
+
+two:
+  data_reserva: 2016-07-17 15:23:25
+  hora_inicio: 1
+  hora_fim: 1
+  tiporeserva_id: 
+  data_cancelamento: 2016-07-17 15:23:25
+  apartamento_id: 
+  valr_reserva: 9.99
+  flag_autorizado: false
+  nome_solicitante: MyString
+  email_solicitante: MyString
+  condominio_id: 
+  data_autorizacao: 2016-07-17 15:23:25

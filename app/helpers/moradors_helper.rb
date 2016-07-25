@@ -1,0 +1,2 @@
+module MoradorsHelper
+end

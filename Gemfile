@@ -21,16 +21,22 @@ gem "cocoon"
 gem 'morrisjs-rails'
 gem 'raphael-rails'
 
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 end
 
 group :development do
+
+  gem 'capistrano', '~> 3.5'
+  gem 'capistrano-bundler', '~> 1.1', '>= 1.1.4'
+  gem 'capistrano-rbenv', '~> 2.0', '>= 2.0.4'
+  
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
-

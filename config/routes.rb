@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  resources :grupopermissaousers
+  resources :grupopermissaos
+  get 'relatorio/reserva'
+
+  resources :reservas
+  resources :usercondominios
+  resources :moradors
+  resources :pessoas
   resources :tiporeservacondominios
   resources :tiporeservas
   resources :funcaos
@@ -15,6 +23,18 @@ Rails.application.routes.draw do
 
   root 'static_pages#home'
 
+
+ match '/listarCidade', to: 'cidades#get_cities', via: 'get'
+ match '/listarBairro', to: 'bairros#get_bairros', via: 'get'
+ match '/aprovarReserva', to: 'reservas#aprovar_reserva', via: 'get'
+ match '/negarReserva', to: 'reservas#negar_reserva', via: 'get'
+ match '/buscaTipoReservaDisponivel', to: 'tiporeservas#busca_disponivel', via: 'get'
+ match '/listaPermissoes', to: 'grupopermissaousers#busca_permissoes', via: 'get'
+ match '/mudaCondominio', to: 'condominios#muda_condominio', via: 'get'
+
+
+
+
+
+
 end
-
-

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome_pessoa: MyString
+  desc_fone: MyString
+  cpf: MyString
+  rg: MyString
+
+two:
+  nome_pessoa: MyString
+  desc_fone: MyString
+  cpf: MyString
+  rg: MyString

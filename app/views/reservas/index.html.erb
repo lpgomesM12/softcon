@@ -1,0 +1,154 @@
+<!-- Main content -->
+<section class="content">
+   <!-- Small boxes (Stat box) -->
+      <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Reservas</h3>
+             </div><!-- /.box-header -->
+     <div class="box-body table-responsive no-padding">
+         <table class="table table-hover">
+           <thead>
+             <tr>
+               <th>Data reserva</th>
+               <th>H. Inicio</th>
+               <th>H. Fim</th>
+               <th>Local reserva</th>
+               <th>Solicitante</th>
+               <th colspan="3"></th>
+             </tr>
+           </thead>
+
+           <tbody>
+               <% @reservas.each do |reserva| %>
+               <tr>
+                 <td><%= reserva.data_reserva.blank? ? '' : reserva.data_reserva.strftime("%d/%m/%Y")%></td>
+                 <td><%= reserva.hora_inicio %></td>
+                 <td><%= reserva.hora_fim %></td>
+                 <td><%= reserva.tiporeserva.desc_tiporeserva %></td>
+                 <td><%= reserva.nome_solicitante %></td>
+
+               <td align='right'>
+                 <div class="btn-group">
+                     <%= link_to reserva, class: "btn btn-primary btn-sm" do %>
+                       <span class="glyphicon glyphicon-list-alt"></span> Exibir
+                     <% end %>
+               <%if current_user.tem_permissao(1)%>
+
+                     <button type="button"  onclick="modalAprovar(<%=reserva.id%>)" class="btn btn-success btn-sm">
+                       <span class="glyphicon glyphicon-ok"></span> Aprovar
+                     </button>
+
+                     <button type="button"  onclick="modalNegar(<%=reserva.id%>)" class="btn btn-danger btn-sm">
+                       <span class="glyphicon glyphicon-remove"></span> Negar
+                     </button>
+                 <%end%>
+                 </div>
+                 </td>
+               </tr>
+             <% end %>
+           </tbody>
+         </table>
+       </div>
+     </div><!-- /.box -->
+          <%= link_to new_reserva_path, class: "btn btn-default btn-sm" do %>
+                 <span class="glyphicon glyphicon-file"></span>Novo
+         <% end %>
+ </section>
+
+ <div class="modal fade" id="myModalAprovar" role="dialog">
+     <div class="modal-dialog modal-sm">
+       <div class="modal-content">
+         <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal">&times;</button>
+           <h4 class="modal-title">Aviso</h4>
+         </div>
+         <div class="modal-body">
+           <input type="hidden" name="idreservaaprova" id="idreservaaprova" >
+           <p>Deseja realmente aprovar essa solicitação.</p>
+         </div>
+         <div class="modal-footer">
+
+           <button type="button" onclick="aprovarReserva()" class="btn btn-success">Sim</button>
+           <button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
+
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+
+
+ <div class="modal fade" id="myModalNegar" role="dialog">
+     <div class="modal-dialog modal-sm">
+       <div class="modal-content">
+         <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal">&times;</button>
+           <h4 class="modal-title">Negar</h4>
+         </div>
+         <div class="modal-body">
+           <input type="hidden" name="idreservanegar" id="idreservanegar" >
+
+           <div class="row">
+             <div class="col-lg-12">
+              <label for=""></label>
+            <textarea rows="3" class="form-control" placeholder="Informe o motivo pelo qual deseja negar a solicitação." name="motivo" id="motivo"></textarea>
+           </div>
+         </div>
+         <div class="modal-footer">
+
+           <button type="button" onclick="negaReserva()" class="btn btn-danger">Negar</button>
+           <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+
+ <script type="text/javascript">
+
+   function modalAprovar(id){
+     $("#myModalAprovar").modal('show');
+     $("#idreservaaprova").val(id);
+
+   };
+
+   function modalNegar(id){
+     $("#myModalNegar").modal('show');
+     $("#idreservanegar").val(id);
+
+   };
+
+   function aprovarReserva(){
+         var  id = $("#idreservaaprova").val();
+         $.ajax({
+           url: '<%= aprovarReserva_path %>',
+           data : {id : id},
+           success: function(data){
+
+             if(data){
+               location.reload();
+             };
+           }
+         })
+       }
+
+       function negaReserva(){
+             var  id = $("#idreservanegar").val();
+             var motivo = $("#motivo").val();
+
+             $.ajax({
+               url: '<%= negarReserva_path %>',
+               data : {
+                 id : id,
+                 motivo : motivo
+               },
+               success: function(data){
+
+                 if(data){
+                   location.reload();
+                 };
+               }
+             })
+           }
+ </script>

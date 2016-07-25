@@ -1,0 +1,29 @@
+<%= form_for(@usercondominio) do |f| %>
+  <% if @usercondominio.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@usercondominio.errors.count, "error") %> prohibited this usercondominio from being saved:</h2>
+
+      <ul>
+      <% @usercondominio.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.text_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :funcao_id %><br>
+    <%= f.text_field :funcao_id %>
+  </div>
+  <div class="field">
+    <%= f.label :condominio_id %><br>
+    <%= f.text_field :condominio_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

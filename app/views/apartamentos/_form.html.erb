@@ -11,19 +11,38 @@
     </div>
   <% end %>
 
-  <div class="field">
+<div class="box-body">
+  <div class="row">
+    <div class="col-lg-3">
     <%= f.label :numr_apartamento %><br>
-    <%= f.text_field :numr_apartamento %>
+    <%= f.text_field :numr_apartamento, :class => 'form-control' %>
+   </div>
   </div>
-  <div class="field">
+  <div class="row">
+   <div class="col-lg-3">
     <%= f.label :numr_bloco %><br>
-    <%= f.text_field :numr_bloco %>
+    <%= f.text_field :numr_bloco, :class => 'form-control' %>
+   </div>
   </div>
-  <div class="field">
-    <%= f.label :condominio_id %><br>
-    <%= f.text_field :condominio_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+
+  <%= f.hidden_field :condominio_id, :value => current_user.condominio_id %>
+
+</div>
+</div><!-- /.box -->
+
+<div class="row mar-bot40">
+ <div class="col-lg-8" >
+    <div class="btn-group">
+      <button type="submit" value="Submit" class="btn btn-primary btn-sm">
+       <span class="glyphicon glyphicon-floppy-disk"></span> Salvar
+      </button>
+      <%= link_to apartamentos_path, :class => "btn btn-default btn-sm" do %>
+         <span class="glyphicon glyphicon-arrow-left"></span> Voltar
+       <% end %>
+     </div>
+   </div>
+</div>
+</section>
+
 <% end %>

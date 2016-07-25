@@ -1,0 +1,25 @@
+<%= form_for(@morador) do |f| %>
+  <% if @morador.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@morador.errors.count, "error") %> prohibited this morador from being saved:</h2>
+
+      <ul>
+      <% @morador.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :apartamento_id %><br>
+    <%= f.text_field :apartamento_id %>
+  </div>
+  <div class="field">
+    <%= f.label :pessoa_id %><br>
+    <%= f.text_field :pessoa_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
