@@ -9,6 +9,7 @@ class ReservasController < ApplicationController
      @reserva.user_autorizacao = current_user.id
 
      if @reserva.save
+        Email.welcome_email(@reserva).deliver_now
         render :json => true
       else
         render :json => false

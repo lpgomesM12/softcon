@@ -14,15 +14,15 @@
 <div class="box-body">
   <div class="row">
    <div class="col-lg-5">
-    <%= f.label :nome_condominio %><br>
-    <%= f.text_field :nome_condominio, :class => 'form-control' %>
+     <%= f.label :nome_condominio %><br>
+     <%= f.text_field :nome_condominio, :class => 'form-control' %>
     </div>
   </div>
   <div class="row">
-   <div class="col-lg-5">
-    <%= f.label :email %><br>
-    <%= f.text_field :email, :class => 'form-control' %>
-  </div>
+    <div class="col-lg-5">
+      <%= f.label :email %><br>
+      <%= f.text_field :email, :class => 'form-control' %>
+    </div>
   </div>
 
 <%= f.fields_for :endereco do |enderecos| %>

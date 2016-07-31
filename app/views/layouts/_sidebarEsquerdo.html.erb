@@ -38,6 +38,7 @@
                  <ul class="treeview-menu">
                     <li> <%= link_to  condominios_path do %><i class="fa fa-circle-o"></i><span>Condominios</span><% end %></li>
                     <li> <%= link_to  apartamentos_path do %><i class="fa fa-circle-o"></i><span>Apartamentos</span><% end %></li>
+                    <li> <%= link_to  moradors_path do %><i class="fa fa-circle-o"></i><span>Moradores</span><% end %></li>
                     <li> <%= link_to  tiporeservas_path do %><i class="fa fa-circle-o"></i><span>Local Reserva</span><% end %></li>
                     <li> <%= link_to  bairros_path do %><i class="fa fa-circle-o"></i><span>Bairros</span><% end %></li>
                  </ul>
@@ -80,7 +81,13 @@
             </li>
            <%# end %>
 
-         <li class="header">Usuário</li>
+         <li class="header">Usuários</li>
+          <li>
+             <%= link_to  new_user_registration_path do %>
+             <i class="fa fa-user-plus"></i>
+                <span>Novo Usuário</span>
+                <% end %>
+          </li>
           <li>
              <%= link_to   do %>
                   <i class="fa fa-user"></i>

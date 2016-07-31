@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   belongs_to :pessoa
   belongs_to :condominio
 
+  attr_accessor :grupopermissao_id
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -13,5 +14,15 @@ class User < ActiveRecord::Base
        @grupopermissao =  Grupopermissaouser.where(grupopermissao_id: grupo , user_id: self.id)
        @grupopermissao.empty? ? false : true
  end
+
+
+ # def grupopermissao_id
+ #   @grupopermissao_id
+ # end
+
+ # setter
+ # def grupopermissao_id=(val)
+ #   @grupopermissao_id = val
+ # end
 
 end

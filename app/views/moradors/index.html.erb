@@ -1,29 +1,61 @@
-<p id="notice"><%= notice %></p>
+<section class="content-header">
+    <h1>
+      <!--Mensagens aqui-->
+      <%if notice %>
+       <!-- <div class="alert alert-success alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4>  <i class="icon fa fa-check"></i>Mensagem</h4>
+          <%#= notice %>
+      </div> -->
+      <%end%>
+    <!--<small></small>-->
+    </h1>
+</section>
 
-<h1>Listing Moradors</h1>
+ <!-- Main content -->
+ <section class="content">
+    <!-- Small boxes (Stat box) -->
+       <div class="box box-primary">
+             <div class="box-header with-border">
+               <h3 class="box-title">Moradores</h3>
+              </div><!-- /.box-header -->
+      <div class="box-body table-responsive no-padding">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Ap</th>
+                <th>Bloco</th>
+                <th colspan="3"></th>
+              </tr>
+            </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Apartamento</th>
-      <th>Pessoa</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @moradors.each do |morador| %>
-      <tr>
-        <td><%= morador.apartamento %></td>
-        <td><%= morador.pessoa %></td>
-        <td><%= link_to 'Show', morador %></td>
-        <td><%= link_to 'Edit', edit_morador_path(morador) %></td>
-        <td><%= link_to 'Destroy', morador, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Morador', new_morador_path %>
+            <tbody>
+                <% @moradors.each do |morador| %>
+                <tr>
+                  <td><%= morador.pessoa.nome_pessoa %></td>
+                  <td><%= morador.apartamento.numr_apartamento %></td>
+                  <td><%= morador.apartamento.numr_bloco %></td>
+                <td align='right'>
+                  <div class="btn-group">
+                      <%= link_to morador, class: "btn btn-default btn-sm" do %>
+                        <span class="glyphicon glyphicon-list-alt text-success"></span> Exibir
+                      <% end %>
+                      <%= link_to edit_morador_path(morador), class: "btn btn-default btn-sm" do %>
+                        <span class="glyphicon glyphicon-pencil text-primary"></span> Editar
+                      <% end %>
+                     <%= link_to morador, method: :delete, data: { confirm: 'Deseja excluir o registro?' }, class: "btn btn-default btn-sm" do %>
+                        <span class="glyphicon glyphicon-trash text-danger"></span> Excluir
+                      <% end %>
+                  </div>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div><!-- /.box -->
+           <%= link_to new_morador_path, class: "btn btn-default btn-sm" do %>
+                  <span class="glyphicon glyphicon-file"></span>Novo
+          <% end %>
+  </section>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160722163602) do
+ActiveRecord::Schema.define(version: 20160731141742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,10 +87,8 @@ ActiveRecord::Schema.define(version: 20160722163602) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.integer  "grupopermissao_id"
-    t.integer  "condominio_id"
   end
 
-  add_index "grupopermissaos", ["condominio_id"], name: "index_grupopermissaos_on_condominio_id", using: :btree
   add_index "grupopermissaos", ["grupopermissao_id"], name: "index_grupopermissaos_on_grupopermissao_id", using: :btree
 
   create_table "grupopermissaousers", force: :cascade do |t|
@@ -112,9 +110,11 @@ ActiveRecord::Schema.define(version: 20160722163602) do
     t.integer  "integer"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.integer  "condominio_id"
   end
 
   add_index "moradors", ["apartamento_id"], name: "index_moradors_on_apartamento_id", using: :btree
+  add_index "moradors", ["condominio_id"], name: "index_moradors_on_condominio_id", using: :btree
   add_index "moradors", ["integer"], name: "index_moradors_on_integer", using: :btree
   add_index "moradors", ["pessoa_id"], name: "index_moradors_on_pessoa_id", using: :btree
   add_index "moradors", ["user_inclusao"], name: "index_moradors_on_user_inclusao", using: :btree
@@ -214,12 +214,12 @@ ActiveRecord::Schema.define(version: 20160722163602) do
   add_foreign_key "condominios", "enderecos"
   add_foreign_key "enderecos", "bairros"
   add_foreign_key "enderecos", "cidades"
-  add_foreign_key "grupopermissaos", "condominios"
   add_foreign_key "grupopermissaos", "grupopermissaos"
   add_foreign_key "grupopermissaousers", "condominios"
   add_foreign_key "grupopermissaousers", "grupopermissaos"
   add_foreign_key "grupopermissaousers", "users"
   add_foreign_key "moradors", "apartamentos"
+  add_foreign_key "moradors", "condominios"
   add_foreign_key "moradors", "pessoas"
   add_foreign_key "reservas", "apartamentos"
   add_foreign_key "reservas", "condominios"

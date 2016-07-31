@@ -1,6 +1,11 @@
 class MoradorsController < ApplicationController
   before_action :set_morador, only: [:show, :edit, :update, :destroy]
 
+
+  def busca_morador
+     @moradors = Pessoa.search(params[:term],current_user.condominio_id)
+  end
+
   # GET /moradors
   # GET /moradors.json
   def index
@@ -15,6 +20,7 @@ class MoradorsController < ApplicationController
   # GET /moradors/new
   def new
     @morador = Morador.new
+    @morador.build_pessoa
   end
 
   # GET /moradors/1/edit
@@ -24,7 +30,12 @@ class MoradorsController < ApplicationController
   # POST /moradors
   # POST /moradors.json
   def create
-    @morador = Morador.new(morador_params)
+
+   if  morador_params[:pessoa_id] != ""
+        @morador = Morador.new(morador_params)
+      else
+        @morador = Morador.new(morador_params_netested)
+   end
 
     respond_to do |format|
       if @morador.save
@@ -69,6 +80,10 @@ class MoradorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def morador_params
-      params.require(:morador).permit(:apartamento_id, :pessoa_id, :user_inclusao)
+      params.require(:morador).permit(:apartamento_id, :pessoa_id, :user_inclusao, :pessoa_id)
+    end
+
+    def morador_params_netested
+      params.require(:morador).permit(:apartamento_id, :pessoa_id, :user_inclusao, pessoa_attributes: [:id, :nome_pessoa, :desc_fone, :cpf, :rg])
     end
 end

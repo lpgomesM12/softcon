@@ -1,6 +1,20 @@
 class PessoasController < ApplicationController
   before_action :set_pessoa, only: [:show, :edit, :update, :destroy]
 
+  def valida_pessoa
+   @pessoa = Pessoa.where(cpf: params[:cpf])
+
+  json_pessoa = @pessoa.map { |item| {:id => item.id,
+                                        :nome => item.nome_pessoa,
+                                        :desc_fone =>  item.desc_fone,
+                                        :cpf => item.cpf,
+                                        :rg => item.rg}}
+
+   render :json => json_pessoa
+
+
+  end
+
   # GET /pessoas
   # GET /pessoas.json
   def index

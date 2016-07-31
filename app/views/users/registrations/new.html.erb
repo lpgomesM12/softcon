@@ -1,29 +1,114 @@
-<h2>Sign up</h2>
-
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+<section class="content">
+      <!-- Small boxes (Stat box) -->
+    <div class="box box-primary">
+      <div class="box-header with-border"
+        <h3 class="box-title">Novo Usuário</h3>
+          </div><!-- /.box-header -->
 
-  <div class="field">
-    <%= f.label :password %>
+  <div class="box-body">
+
+
+<div class="row">
+    <div class="col-lg-6">
+           <label>Morador</label>
+              <input type="text" class="form-control" id="nomemorador" name="nomemorador" placeholder="Pesquise por um morador">
+              <input type="hidden" name="pessoa_id"  id="pessoa_id">
+    </div>
+</div>
+
+<div class="row">
+   <div class="col-lg-5">
+       <%= f.label :email %><br />
+       <%= f.email_field :email, :class => 'form-control' %>
+    </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-5">
+    <%= f.label :Senha %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%= f.password_field :password, autocomplete: "off", :class =>'form-control' %>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+<div class="row">
+  <div class="col-lg-5">
+    <%= f.label :confirmar_senha %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control'%>
   </div>
+</div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+
+<%if current_user.tem_permissao(1)%>
+  <div class="row">
+     <div class="col-lg-5">
+         <label>Permissão</label><br>
+        <%= f.select :grupopermissao_id, options_from_collection_for_select(Grupopermissao.all, 'id', 'nome'), {:include_blank => true}, {:onchange => 'seta_permissao(this)', :class => 'form-control' }%>
+         <input type="hidden" name="grupopermissao"  id="grupopermissao">
+     </div>
   </div>
+ <%else%>
+   <div class="row">
+      <div class="col-lg-5">
+          <label>Permissão</label><br>
+         <%= f.select :grupopermissao_id, options_from_collection_for_select(Grupopermissao.where.not(id: 1), 'id', 'nome'), {:include_blank => true}, {:onchange => 'seta_permissao(this)', :class => 'form-control' }%>
+          <input type="hidden" name="grupopermissao"  id="grupopermissao">
+      </div>
+   </div>
+ <%end%>
+
+
+<% if user_signed_in?%>
+   <%= f.hidden_field :condominio_id, :value => current_user.condominio_id  %>
+    <input type="hidden" name="condominio_id"  id="condominio_id" value="<%=current_user.condominio_id%>">
+<%end%>
+</div>
+</div><!-- /.box -->
+
+<div class="row mar-bot40">
+ <div class="col-lg-8" >
+    <div class="btn-group">
+      <button type="submit" value="Submit" class="btn btn-primary btn-sm">
+       <span class="glyphicon glyphicon-floppy-disk"></span> Salvar
+      </button>
+      <%= link_to root_path, :class => "btn btn-default btn-sm" do %>
+         <span class="glyphicon glyphicon-arrow-left"></span> Voltar
+       <% end %>
+     </div>
+   </div>
+</div>
+</section>
+
 <% end %>
 
-<%= render "users/shared/links" %>
+<script type="text/javascript">
+
+$(document).ready(function() {
+     $('#nomemorador').autocomplete({
+     source: '/buscamorador',
+     dataType: 'json',
+     minLength: 0,
+     change: function(event, ui) {
+     if (!ui.item) {
+       $('#nomemorador').val('');
+     }
+  },
+  select: function(event, ui) {
+      if (ui.item) {
+            $("#pessoa_id").val(ui.item.id);
+         }
+       }
+   });
+});
+
+
+function seta_permissao(id){
+   $("#grupopermissao").val(id.value);
+};
+
+</script>
