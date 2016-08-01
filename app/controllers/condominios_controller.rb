@@ -33,10 +33,8 @@ class CondominiosController < ApplicationController
   def edit
 
     @estado = @condominio.endereco.cidade.estado.id
-
     @cidade = Cidade.where(estado_id: @estado)
     @cidade_setada = @condominio.endereco.cidade.id
-
 
     @bairro = Bairro.where(id: @condominio.endereco.bairro_id)
     @bairro_setado = @condominio.endereco.bairro_id
@@ -50,6 +48,11 @@ class CondominiosController < ApplicationController
 
     respond_to do |format|
       if @condominio.save
+
+        if current_user.id == 1
+           Grupopermissaouser.create(:user_id => 1, :grupopermissao_id => 1, :condominio_id => @condominio.id)
+        end
+
         format.html { redirect_to @condominio, notice: 'Condominio was successfully created.' }
         format.json { render :show, status: :created, location: @condominio }
       else
