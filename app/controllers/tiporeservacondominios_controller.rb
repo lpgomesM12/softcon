@@ -4,7 +4,7 @@ class TiporeservacondominiosController < ApplicationController
   # GET /tiporeservacondominios
   # GET /tiporeservacondominios.json
   def index
-    @tiporeservacondominios = Tiporeservacondominio.all
+    @tiporeservacondominios = Tiporeservacondominio.where()
   end
 
   # GET /tiporeservacondominios/1

@@ -9,7 +9,7 @@ class MoradorsController < ApplicationController
   # GET /moradors
   # GET /moradors.json
   def index
-    @moradors = Morador.all
+    @moradors = Morador.where(condominio_id: current_user.condominio_id)
   end
 
   # GET /moradors/1

@@ -17,7 +17,7 @@
   <div class="col-lg-6">
     <%= f.label :Unidade %><br>
      <%if current_user.tem_permissao(2)%>
-      <%= f.select :apartamento_id, options_from_collection_for_select(Apartamento.all, 'id', 'nome'), {:include_blank => true}, {:class => 'form-control' }%>
+      <%= f.select :apartamento_id, options_from_collection_for_select(Apartamento.where(condominio_id: current_user.condominio_id), 'id', 'nome'), {:include_blank => true}, {:class => 'form-control' }%>
       <%else%>
         <%= f.select :apartamento_id, options_from_collection_for_select(Apartamento.apartamento_morador(current_user.pessoa_id), 'id', 'nome'), {:include_blank => true}, {:class => 'form-control' }%>
      <%end%>
