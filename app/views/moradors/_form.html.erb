@@ -51,8 +51,9 @@
 
 <%end%>
 
-<%= f.hidden_field :pessoa_id %>
-<%= f.hidden_field :condominio_id, :value=> current_user.condominio_id%>
+ <%= f.hidden_field :pessoa_id %>
+ <%= f.hidden_field :user_inclusao, :value=>current_user.id%>
+ <%= f.hidden_field :condominio_id, :value=> current_user.condominio_id%>
 
 <div class="row">
       <div class="col-lg-6">
