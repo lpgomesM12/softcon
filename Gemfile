@@ -20,8 +20,6 @@ gem 'devise'
 gem "cocoon"
 gem 'morrisjs-rails'
 gem 'raphael-rails'
-gem 'wkhtmltopdf-binary'
-gem 'wicked_pdf'
 
 
 group :development, :test do
