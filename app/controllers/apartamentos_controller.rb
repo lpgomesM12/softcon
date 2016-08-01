@@ -4,7 +4,7 @@ class ApartamentosController < ApplicationController
   # GET /apartamentos
   # GET /apartamentos.json
   def index
-    @apartamentos = Apartamento.all
+    @apartamentos = Apartamento.where(condominio_id: current_user.condominio_id)
   end
 
   # GET /apartamentos/1
