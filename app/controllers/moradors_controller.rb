@@ -39,7 +39,7 @@ class MoradorsController < ApplicationController
 
     respond_to do |format|
       if @morador.save
-        format.html { redirect_to @morador, notice: 'Morador was successfully created.' }
+        format.html { redirect_to @morador, notice: 'Cadastro realizado com sucesso!.' }
         format.json { render :show, status: :created, location: @morador }
       else
         format.html { render :new }
@@ -53,7 +53,7 @@ class MoradorsController < ApplicationController
   def update
     respond_to do |format|
       if @morador.update(morador_params)
-        format.html { redirect_to @morador, notice: 'Morador was successfully updated.' }
+        format.html { redirect_to @morador, notice: 'Cadastro alterado com sucesso!.' }
         format.json { render :show, status: :ok, location: @morador }
       else
         format.html { render :edit }
@@ -67,7 +67,7 @@ class MoradorsController < ApplicationController
   def destroy
     @morador.destroy
     respond_to do |format|
-      format.html { redirect_to moradors_url, notice: 'Morador was successfully destroyed.' }
+      format.html { redirect_to moradors_url, notice: 'Registro excluído com sucesso!.' }
       format.json { head :no_content }
     end
   end

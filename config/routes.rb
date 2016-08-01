@@ -32,8 +32,8 @@ Rails.application.routes.draw do
  match '/mudaCondominio', to: 'condominios#muda_condominio', via: 'get'
  match '/validaPessoa', to: 'pessoas#valida_pessoa', via: 'get'
  get 'buscamorador' => 'moradors#busca_morador'
-
-
+ get 'relatorio/reservas'
+ get "/articles", to: "relatorio#index", as: :articles
 
 
 end

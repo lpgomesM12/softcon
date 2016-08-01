@@ -33,7 +33,7 @@
               <% @condominios.each do |condominio| %>
                 <tr>
                   <td><%= condominio.nome_condominio %></td>
-                  <td><%= condominio.endereco.bairro.cidade.nome_cidade %></td>
+                  <td><%= condominio.endereco.cidade.nome_cidade %></td>
                 <td align='right'>
                   <div class="btn-group">
                       <%= link_to condominio, class: "btn btn-default btn-sm" do %>

@@ -29,21 +29,21 @@
           <%#@orcamentoempresa = Orcamentoempresa.busca(current_user.empresa_id).order(created_at: :desc)%>
           <%#if current_user.empresa_id == 1%>
 
-          <%#if current_user.tem_permissao(3)%>
-           <li class="treeview">
-                 <a href="">
-                   <i class="fa fa-edit"></i> <span>Cadastros</span>
-                   <i class="fa fa-angle-left pull-right"></i>
-                 </a>
-                 <ul class="treeview-menu">
-                    <li> <%= link_to  condominios_path do %><i class="fa fa-circle-o"></i><span>Condominios</span><% end %></li>
-                    <li> <%= link_to  apartamentos_path do %><i class="fa fa-circle-o"></i><span>Apartamentos</span><% end %></li>
-                    <li> <%= link_to  moradors_path do %><i class="fa fa-circle-o"></i><span>Moradores</span><% end %></li>
-                    <li> <%= link_to  tiporeservas_path do %><i class="fa fa-circle-o"></i><span>Local Reserva</span><% end %></li>
-                    <li> <%= link_to  bairros_path do %><i class="fa fa-circle-o"></i><span>Bairros</span><% end %></li>
-                 </ul>
-               </li>
-           <%#end%>
+          <%unless current_user.tem_permissao(4)%>
+             <li class="treeview">
+                   <a href="">
+                     <i class="fa fa-edit"></i> <span>Cadastros</span>
+                     <i class="fa fa-angle-left pull-right"></i>
+                   </a>
+                   <ul class="treeview-menu">
+                      <li> <%= link_to  condominios_path do %><i class="fa fa-circle-o"></i><span>Condominios</span><% end %></li>
+                      <li> <%= link_to  apartamentos_path do %><i class="fa fa-circle-o"></i><span>Apartamentos</span><% end %></li>
+                      <li> <%= link_to  moradors_path do %><i class="fa fa-circle-o"></i><span>Moradores</span><% end %></li>
+                      <li> <%= link_to  tiporeservas_path do %><i class="fa fa-circle-o"></i><span>Local Reserva</span><% end %></li>
+                      <li> <%= link_to  bairros_path do %><i class="fa fa-circle-o"></i><span>Bairros</span><% end %></li>
+                   </ul>
+                 </li>
+           <%end%>
           <li>
              <%= link_to  reservas_path do %>
              <i class="fa fa-calendar-o"></i>
@@ -51,6 +51,7 @@
                 <% end %>
           </li>
 
+    <%unless current_user.tem_permissao(4)%>
           <li class="treeview">
             <a href="#">
               <i class="fa fa-pie-chart"></i>
@@ -58,29 +59,19 @@
               <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-               <li> <%= link_to  relatorio_reserva_path do %><i class="fa fa-circle-o"></i><span>Reservas</span><% end %></li>
+               <li> <%= link_to  relatorio_reservas_path do %><i class="fa fa-circle-o"></i><span>Reservas</span><% end %></li>
             </ul>
           </li>
+     <%end%>
 
+    <%unless current_user.tem_permissao(4)%>
         <li class="header">FINANCEIRO</li>
-          <%#else%>
-
-          <!--Menus para empresa começa aqui-->
-            <!-- <li>
-             <%#= link_to  orcamentoempresas_path do %>
-                  <small class="label pull-right bg-red"><%#=@orcamentoempresa.length%></small>
-                  <i class="fa fa-bars"></i>
-                   <span> Pedidos Orçamentos </span>
-                <%# end %>
-            </li> -->
             <li>
              <%= link_to   do %>
                   <i class="fa fa-bars"></i>
                    <span> Contas</span>
                 <% end %>
             </li>
-           <%# end %>
-
          <li class="header">Usuários</li>
           <li>
              <%= link_to  new_user_registration_path do %>
@@ -88,6 +79,7 @@
                 <span>Novo Usuário</span>
                 <% end %>
           </li>
+      <%end%>
           <li>
              <%= link_to   do %>
                   <i class="fa fa-user"></i>

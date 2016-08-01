@@ -1,0 +1,38 @@
+<!-- Main content -->
+<section class="content">
+   <!-- Small boxes (Stat box) -->
+      <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Reservas</h3>
+             </div><!-- /.box-header -->
+     <div class="box-body table-responsive no-padding">
+         <table class="table table-hover">
+           <thead>
+             <tr>
+               <th>Data reserva</th>
+               <th>H. Inicio</th>
+               <th>H. Fim</th>
+               <th>Local reserva</th>
+               <th>Solicitante</th>
+               <th colspan="3"></th>
+             </tr>
+           </thead>
+
+           <tbody>
+               <% @reservas.each do |reserva| %>
+               <tr>
+                 <td><%= reserva.data_reserva.blank? ? '' : reserva.data_reserva.strftime("%d/%m/%Y")%></td>
+                 <td><%= reserva.hora_inicio %></td>
+                 <td><%= reserva.hora_fim %></td>
+                 <td><%= reserva.tiporeserva.desc_tiporeserva %></td>
+                 <td><%= reserva.nome_solicitante %></td>
+               </tr>
+             <% end %>
+           </tbody>
+         </table>
+       </div>
+     </div><!-- /.box -->
+          <%= link_to new_reserva_path, class: "btn btn-default btn-sm" do %>
+                 <span class="glyphicon glyphicon-file"></span>Novo
+         <% end %>
+ </section>

@@ -50,7 +50,9 @@
 </div>
 
 <%end%>
-<%= f.hidden_field :pessoa_id  %>
+
+<%= f.hidden_field :pessoa_id %>
+<%= f.hidden_field :condominio_id, :value=> current_user.condominio_id%>
 
 <div class="row">
       <div class="col-lg-6">
@@ -90,19 +92,21 @@ function validaPessoa(){
 
       for (var i in data) {
         var item = data[i];
-
         $("#morador_pessoa_attributes_nome_pessoa").val(item.nome);
         $("#morador_pessoa_attributes_cpf").val(item.cpf);
         $("#morador_pessoa_attributes_rg").val(item.rg);
         $("#morador_pessoa_attributes_desc_fone").val(item.rg);
         $("#morador_pessoa_id").val(item.id);
         $('#morador_apartamento_id').removeAttr('disabled');
-
          return;
-
       };
 
-
+      $("#morador_pessoa_attributes_nome_pessoa").removeAttr('disabled');
+      $("#morador_pessoa_attributes_cpf").removeAttr('disabled');
+      $("#morador_pessoa_attributes_rg").removeAttr('disabled');
+      $("#morador_pessoa_attributes_desc_fone").removeAttr('disabled');
+      $("#morador_pessoa_id").removeAttr('disabled');
+      $("#morador_apartamento_id").removeAttr('disabled');
     }
   })
 

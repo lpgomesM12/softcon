@@ -28,7 +28,7 @@ class ApartamentosController < ApplicationController
 
     respond_to do |format|
       if @apartamento.save
-        format.html { redirect_to @apartamento, notice: 'Apartamento was successfully created.' }
+        format.html { redirect_to @apartamento, notice: 'Cadastro realizado com sucesso!.' }
         format.json { render :show, status: :created, location: @apartamento }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class ApartamentosController < ApplicationController
   def update
     respond_to do |format|
       if @apartamento.update(apartamento_params)
-        format.html { redirect_to @apartamento, notice: 'Apartamento was successfully updated.' }
+        format.html { redirect_to @apartamento, notice: 'Alteração realizada com sucesso!.' }
         format.json { render :show, status: :ok, location: @apartamento }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class ApartamentosController < ApplicationController
   def destroy
     @apartamento.destroy
     respond_to do |format|
-      format.html { redirect_to apartamentos_url, notice: 'Apartamento was successfully destroyed.' }
+      format.html { redirect_to apartamentos_url, notice: 'Registro deletado com sucesso!.' }
       format.json { head :no_content }
     end
   end
