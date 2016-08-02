@@ -18,7 +18,7 @@ class TiporeservasController < ApplicationController
   # GET /tiporeservas
   # GET /tiporeservas.json
   def index
-    @tiporeservas = Tiporeserva.all
+    @tiporeservas = Tiporeserva.where(condominio_id: current_user.condominio_id)
   end
 
   # GET /tiporeservas/1
@@ -42,7 +42,7 @@ class TiporeservasController < ApplicationController
 
     respond_to do |format|
       if @tiporeserva.save
-        format.html { redirect_to @tiporeserva, notice: 'Tiporeserva was successfully created.' }
+        format.html { redirect_to @tiporeserva, notice: 'Registro incluído com suecesso!.' }
         format.json { render :show, status: :created, location: @tiporeserva }
       else
         format.html { render :new }
@@ -56,7 +56,7 @@ class TiporeservasController < ApplicationController
   def update
     respond_to do |format|
       if @tiporeserva.update(tiporeserva_params)
-        format.html { redirect_to @tiporeserva, notice: 'Tiporeserva was successfully updated.' }
+        format.html { redirect_to @tiporeserva, notice: 'Registro alterado com sucesso!' }
         format.json { render :show, status: :ok, location: @tiporeserva }
       else
         format.html { render :edit }
@@ -70,7 +70,7 @@ class TiporeservasController < ApplicationController
   def destroy
     @tiporeserva.destroy
     respond_to do |format|
-      format.html { redirect_to tiporeservas_url, notice: 'Tiporeserva was successfully destroyed.' }
+      format.html { redirect_to tiporeservas_url, notice: 'Registro excluído com sucesso!.' }
       format.json { head :no_content }
     end
   end
@@ -83,6 +83,6 @@ class TiporeservasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tiporeserva_params
-      params.require(:tiporeserva).permit(:desc_tiporeserva)
+      params.require(:tiporeserva).permit(:desc_tiporeserva, :condominio_id)
     end
 end

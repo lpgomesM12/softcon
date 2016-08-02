@@ -19,7 +19,9 @@
    </div>
  </div>
 
- <% end %>
+  <%= f.hidden_field :condominio_id, :value => current_user.condominio_id %>
+
+
 </div>
 </div><!-- /.box -->
 
@@ -36,3 +38,5 @@
    </div>
 </div>
 </section>
+
+ <% end %>

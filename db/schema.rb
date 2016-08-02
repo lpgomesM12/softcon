@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160731141742) do
+ActiveRecord::Schema.define(version: 20160802113726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -172,7 +172,10 @@ ActiveRecord::Schema.define(version: 20160731141742) do
     t.string   "desc_tiporeserva"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.integer  "condominio_id"
   end
+
+  add_index "tiporeservas", ["condominio_id"], name: "index_tiporeservas_on_condominio_id", using: :btree
 
   create_table "usercondominios", force: :cascade do |t|
     t.integer  "user_id"
@@ -226,6 +229,7 @@ ActiveRecord::Schema.define(version: 20160731141742) do
   add_foreign_key "reservas", "tiporeservas"
   add_foreign_key "tiporeservacondominios", "condominios"
   add_foreign_key "tiporeservacondominios", "tiporeservas"
+  add_foreign_key "tiporeservas", "condominios"
   add_foreign_key "usercondominios", "condominios"
   add_foreign_key "usercondominios", "funcaos"
   add_foreign_key "usercondominios", "users"

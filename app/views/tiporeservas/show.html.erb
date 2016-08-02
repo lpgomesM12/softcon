@@ -1,8 +1,8 @@
 <section class="content-header">
-    <h6>
       <!--Mensagens aqui-->
-    <p id="notice"><%= notice %></p>
-    </h6>
+    <%if notice%>
+      <div class="alert alert-success" role="alert"><%= notice %></div>
+     <%end%>
 </section>
 
 <!-- Main content -->
