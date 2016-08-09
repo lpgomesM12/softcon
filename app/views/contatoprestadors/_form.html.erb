@@ -1,0 +1,29 @@
+<%= form_for(@contatoprestador) do |f| %>
+  <% if @contatoprestador.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@contatoprestador.errors.count, "error") %> prohibited this contatoprestador from being saved:</h2>
+
+      <ul>
+      <% @contatoprestador.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :desc_tipocontado %><br>
+    <%= f.text_field :desc_tipocontado %>
+  </div>
+  <div class="field">
+    <%= f.label :desc_contato %><br>
+    <%= f.text_field :desc_contato %>
+  </div>
+  <div class="field">
+    <%= f.label :prestador_id %><br>
+    <%= f.text_field :prestador_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

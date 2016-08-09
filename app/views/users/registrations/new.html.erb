@@ -14,7 +14,7 @@
 <div class="row">
     <div class="col-lg-5">
            <label>Morador</label>
-              <input type="text" class="form-control" id="nomemorador" name="nomemorador" placeholder="Pesquise por um morador">
+              <input type="text" class="form-control" id="nomemorador" name="nomemorador" placeholder="Pesquise pelo NOME ou pelo CPF do morador">
               <input type="hidden" name="pessoa_id"  id="pessoa_id">
     </div>
 </div>
@@ -105,6 +105,25 @@ $(document).ready(function() {
    });
 });
 
+$(document).ready(function() {
+     $('#cpfmorador').autocomplete({
+     source: '/buscamoradorcpf',
+     dataType: 'json',
+     minLength: 4,
+     change: function(event, ui) {
+     if (!ui.item) {
+       $('#cpfmorador').val('');
+     }
+  },
+  select: function(event, ui) {
+      if (ui.item) {
+            $("#pessoa_id").val(ui.item.id);
+            $('#cpfmorador').val('');
+            $("#cpfmorador").val(ui.item.cpf);
+         }
+       }
+   });
+});
 
 function seta_permissao(id){
    $("#grupopermissao").val(id.value);

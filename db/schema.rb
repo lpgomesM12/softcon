@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160802113726) do
+ActiveRecord::Schema.define(version: 20160809133526) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,12 @@ ActiveRecord::Schema.define(version: 20160802113726) do
 
   add_index "bairros", ["cidade_id"], name: "index_bairros_on_cidade_id", using: :btree
 
+  create_table "categoriaprestadors", force: :cascade do |t|
+    t.string   "nome_categoria"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
   create_table "cidades", force: :cascade do |t|
     t.string   "nome_cidade"
     t.boolean  "flag_ativo"
@@ -55,6 +61,32 @@ ActiveRecord::Schema.define(version: 20160802113726) do
   end
 
   add_index "condominios", ["endereco_id"], name: "index_condominios_on_endereco_id", using: :btree
+
+  create_table "contabanks", force: :cascade do |t|
+    t.string   "numr_agencia"
+    t.string   "numr_conta"
+    t.string   "nome_banco"
+    t.string   "situacao"
+    t.integer  "condominio_id"
+    t.integer  "user_inclusao"
+    t.integer  "integer"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "contabanks", ["condominio_id"], name: "index_contabanks_on_condominio_id", using: :btree
+  add_index "contabanks", ["integer"], name: "index_contabanks_on_integer", using: :btree
+  add_index "contabanks", ["user_inclusao"], name: "index_contabanks_on_user_inclusao", using: :btree
+
+  create_table "contatoprestadors", force: :cascade do |t|
+    t.string   "desc_tipocontado"
+    t.string   "desc_contato"
+    t.integer  "prestador_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "contatoprestadors", ["prestador_id"], name: "index_contatoprestadors_on_prestador_id", using: :btree
 
   create_table "enderecos", force: :cascade do |t|
     t.string   "desc_endereco"
@@ -128,6 +160,24 @@ ActiveRecord::Schema.define(version: 20160802113726) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "prestadors", force: :cascade do |t|
+    t.string   "desc_cpfcnpj"
+    t.string   "nome_prestador"
+    t.string   "nome_responsavel"
+    t.string   "observacao"
+    t.integer  "categoriaprestador_id"
+    t.integer  "condominio_id"
+    t.integer  "user_inclusao"
+    t.integer  "integer"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "prestadors", ["categoriaprestador_id"], name: "index_prestadors_on_categoriaprestador_id", using: :btree
+  add_index "prestadors", ["condominio_id"], name: "index_prestadors_on_condominio_id", using: :btree
+  add_index "prestadors", ["integer"], name: "index_prestadors_on_integer", using: :btree
+  add_index "prestadors", ["user_inclusao"], name: "index_prestadors_on_user_inclusao", using: :btree
+
   create_table "reservas", force: :cascade do |t|
     t.datetime "data_reserva"
     t.string   "hora_inicio"
@@ -177,6 +227,14 @@ ActiveRecord::Schema.define(version: 20160802113726) do
 
   add_index "tiporeservas", ["condominio_id"], name: "index_tiporeservas_on_condominio_id", using: :btree
 
+  create_table "titulos", force: :cascade do |t|
+    t.string   "desc_titulo"
+    t.string   "numr_tipolancamento"
+    t.datetime "data_cancelamento"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
   create_table "usercondominios", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "funcao_id"
@@ -215,6 +273,8 @@ ActiveRecord::Schema.define(version: 20160802113726) do
   add_foreign_key "bairros", "cidades"
   add_foreign_key "cidades", "estados"
   add_foreign_key "condominios", "enderecos"
+  add_foreign_key "contabanks", "condominios"
+  add_foreign_key "contatoprestadors", "prestadors"
   add_foreign_key "enderecos", "bairros"
   add_foreign_key "enderecos", "cidades"
   add_foreign_key "grupopermissaos", "grupopermissaos"
@@ -224,6 +284,8 @@ ActiveRecord::Schema.define(version: 20160802113726) do
   add_foreign_key "moradors", "apartamentos"
   add_foreign_key "moradors", "condominios"
   add_foreign_key "moradors", "pessoas"
+  add_foreign_key "prestadors", "categoriaprestadors"
+  add_foreign_key "prestadors", "condominios"
   add_foreign_key "reservas", "apartamentos"
   add_foreign_key "reservas", "condominios"
   add_foreign_key "reservas", "tiporeservas"

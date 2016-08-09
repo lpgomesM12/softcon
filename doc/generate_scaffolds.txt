@@ -27,3 +27,18 @@ rails g scaffold usercondominio user:references funcao:references condominio:ref
 
 RESERVA:
 rails g scaffold reserva data_reserva:datetime hora_inicio:integer hora_fim:integer tiporeserva:references data_cancelamento:datetime apartamento:references valr_reserva:decimal flag_autorizado:boolean nome_solicitante:string email_solicitante:string condominio:references data_autorizacao:datetime
+
+CONTA:
+rails g scaffold contabanck numr_agencia:string numr_conta:string nome_banco:string situacao:string condominio:references
+
+CATEGORIAPRESTADOR:
+rails g scaffold categoriaprestador nome_categoria:string
+
+PRESTADOR:
+rails g scaffold prestador desc_cpfcnpj:string nome_prestador:string nome_responsavel:string observacao:string categoriaprestador:references condominio:references
+
+CONTATOPRESTADOR:
+rails g scaffold contatoprestador desc_tipocontado:string desc_contato:string prestador:references
+
+TITULO:
+rails g scaffold titulo desc_titulo:string numr_tipolancamento:string data_cancelamento:string

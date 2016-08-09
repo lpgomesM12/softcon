@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  desc_cpfcnpj: MyString
+  nome_prestador: MyString
+  nome_responsavel: MyString
+  observacao: MyString
+  categoriaprestador_id: 
+  condominio_id: 
+
+two:
+  desc_cpfcnpj: MyString
+  nome_prestador: MyString
+  nome_responsavel: MyString
+  observacao: MyString
+  categoriaprestador_id: 
+  condominio_id: 

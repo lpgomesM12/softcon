@@ -1,0 +1,29 @@
+<%= form_for(@titulo) do |f| %>
+  <% if @titulo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@titulo.errors.count, "error") %> prohibited this titulo from being saved:</h2>
+
+      <ul>
+      <% @titulo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :desc_titulo %><br>
+    <%= f.text_field :desc_titulo %>
+  </div>
+  <div class="field">
+    <%= f.label :numr_tipolancamento %><br>
+    <%= f.text_field :numr_tipolancamento %>
+  </div>
+  <div class="field">
+    <%= f.label :data_cancelamento %><br>
+    <%= f.datetime_select :data_cancelamento %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

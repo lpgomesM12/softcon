@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Contatoprestadors</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Desc tipocontado</th>
+      <th>Desc contato</th>
+      <th>Prestador</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contatoprestadors.each do |contatoprestador| %>
+      <tr>
+        <td><%= contatoprestador.desc_tipocontado %></td>
+        <td><%= contatoprestador.desc_contato %></td>
+        <td><%= contatoprestador.prestador %></td>
+        <td><%= link_to 'Show', contatoprestador %></td>
+        <td><%= link_to 'Edit', edit_contatoprestador_path(contatoprestador) %></td>
+        <td><%= link_to 'Destroy', contatoprestador, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Contatoprestador', new_contatoprestador_path %>

@@ -40,6 +40,7 @@
                       <li> <%= link_to  apartamentos_path do %><i class="fa fa-circle-o"></i><span>Apartamentos</span><% end %></li>
                       <li> <%= link_to  moradors_path do %><i class="fa fa-circle-o"></i><span>Moradores</span><% end %></li>
                       <li> <%= link_to  tiporeservas_path do %><i class="fa fa-circle-o"></i><span>Local Reserva</span><% end %></li>
+                      <li> <%= link_to  prestadors_path do %><i class="fa fa-circle-o"></i><span>Prestadores</span><% end %></li>
                       <li> <%= link_to  bairros_path do %><i class="fa fa-circle-o"></i><span>Bairros</span><% end %></li>
                    </ul>
                  </li>
@@ -67,7 +68,7 @@
     <%unless current_user.tem_permissao(4)%>
         <li class="header">FINANCEIRO</li>
             <li>
-             <%= link_to   do %>
+             <%= link_to  contabanks_path do %>
                   <i class="fa fa-bars"></i>
                    <span> Contas</span>
                 <% end %>
@@ -81,16 +82,15 @@
           </li>
       <%end%>
           <li>
-             <%= link_to   do %>
+             <%= link_to  edit_user_registration_path do %>
                   <i class="fa fa-user"></i>
-                   <span> Dados Usuário</span>
+                   <span>Editar Usuário</span>
                 <% end %>
           </li>
           </ul>
         </section>
         <!-- /.sidebar -->
       </aside>
-
 
 <style media="screen">
   a:link

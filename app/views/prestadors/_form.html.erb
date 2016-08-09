@@ -1,0 +1,77 @@
+<%= form_for(@prestador) do |f| %>
+  <% if @prestador.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@prestador.errors.count, "error") %> prohibited this prestador from being saved:</h2>
+
+      <ul>
+      <% @prestador.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="box-body">
+  <div class="row">
+   <div class="col-lg-5">
+     <label>CPF/CNPJ</label><br>
+     <%= f.text_field :desc_cpfcnpj, :class => "form-control" %>
+   </div>
+   <div class="col-lg-5">
+      <%= f.label :nome_prestador %><br>
+      <%= f.text_field :nome_prestador, :class => "form-control" %>
+    </div>
+ </div>
+
+<div class="row">
+  <div class="col-lg-5">
+    <%= f.label :nome_responsavel %><br>
+    <%= f.text_field :nome_responsavel, :class => "form-control" %>
+  </div>
+  <div class="col-lg-5">
+    <label>Categoria</label><br>
+    <%= f.select :categoriaprestador_id, options_from_collection_for_select(Categoriaprestador.all, 'id', 'nome_categoria',@estado), {:include_blank => true}, {:onchange => 'changeState(this)', :class => 'form-control' }%>
+  </div>
+</div>
+ <div class="row">
+  <div class="col-lg-10">
+    <label>Observação</label><br>
+    <%= f.text_area :observacao, :class => "form-control" %>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-lg-2">
+    <h4>Contatos</h4>
+  </div>
+ </div>
+<div id="contatoprestadors">
+  <%= f.fields_for :contatoprestadors do |item| %>
+     <%= render 'contatoprestador_fields', :f => item %>
+   <% end %>
+    <div class='links'>
+    <br>
+      <%= link_to_add_association 'Adicionar novo contato', f, :contatoprestadors, :class => "btn btn-default btn-xs" %>
+    </div>
+</div>
+
+<%= f.hidden_field :user_inclusao, :value=>current_user.id%>
+<%= f.hidden_field :condominio_id, :value=> current_user.condominio_id%>
+</div>
+</div><!-- /.box -->
+
+<div class="row mar-bot40">
+ <div class="col-lg-8" >
+    <div class="btn-group">
+      <button type="submit" value="Submit" class="btn btn-primary btn-sm">
+       <span class="glyphicon glyphicon-floppy-disk"></span> Salvar
+      </button>
+      <%= link_to prestadors_path, :class => "btn btn-default btn-sm" do %>
+         <span class="glyphicon glyphicon-arrow-left"></span> Voltar
+       <% end %>
+     </div>
+   </div>
+</div>
+</section>
+<% end %>

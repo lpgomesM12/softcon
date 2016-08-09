@@ -5,12 +5,12 @@ class TiporeservasController < ApplicationController
      @tiporeserva = Tiporeserva.joins(:reserva).where(reservas: {data_reserva: params[:data].to_datetime.to_s(:db), condominio_id: current_user.condominio_id})
 
     if @tiporeserva.empty?
-      reservacondominio = Tiporeservacondominio.all
+      tiporeserva = Tiporeserva.where(condominio_id: current_user.condominio_id)
     else
-        reservacondominio = Tiporeservacondominio.where('tiporeserva_id NOT IN (?) AND condominio_id = ?', @tiporeserva.map{ |e| e.id}, current_user.condominio_id)
+      tiporeserva = Tiporeserva.where('id NOT IN (?) AND condominio_id = ?', @tiporeserva.map{ |e| e.id}, current_user.condominio_id)
     end
 
-    reservas_json = reservacondominio.map {|item| {:id => item.tiporeserva.id, :desc_tiporeserva => item.tiporeserva.desc_tiporeserva}}
+    reservas_json = tiporeserva.map {|item| {:id => item.id, :desc_tiporeserva => item.desc_tiporeserva}}
     render :json => reservas_json
 
   end

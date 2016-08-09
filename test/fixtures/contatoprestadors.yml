@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  desc_tipocontado: MyString
+  desc_contato: MyString
+  prestador_id: 
+
+two:
+  desc_tipocontado: MyString
+  desc_contato: MyString
+  prestador_id: 

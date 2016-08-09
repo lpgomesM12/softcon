@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Desc titulo:</strong>
+  <%= @titulo.desc_titulo %>
+</p>
+
+<p>
+  <strong>Numr tipolancamento:</strong>
+  <%= @titulo.numr_tipolancamento %>
+</p>
+
+<p>
+  <strong>Data cancelamento:</strong>
+  <%= @titulo.data_cancelamento %>
+</p>
+
+<%= link_to 'Edit', edit_titulo_path(@titulo) %> |
+<%= link_to 'Back', titulos_path %>

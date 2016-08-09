@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  desc_titulo: MyString
+  numr_tipolancamento: MyString
+  data_cancelamento: 2016-08-09 10:35:26
+
+two:
+  desc_titulo: MyString
+  numr_tipolancamento: MyString
+  data_cancelamento: 2016-08-09 10:35:26

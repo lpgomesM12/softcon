@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  numr_agencia: MyString
+  nome_conta: MyString
+  nome_banco: MyString
+  situacao: MyString
+  condominio_id: 
+
+two:
+  numr_agencia: MyString
+  nome_conta: MyString
+  nome_banco: MyString
+  situacao: MyString
+  condominio_id: 

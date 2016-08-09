@@ -30,7 +30,6 @@ class ReservasController < ApplicationController
      end
   end
 
-
   # GET /reservas
   # GET /reservas.json
   def index
