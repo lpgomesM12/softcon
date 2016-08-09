@@ -40,26 +40,17 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
 
-  config.action_mailer.default_url_options = { host: 'localhost:3000' }
-      config.action_mailer.delivery_method = :smtp
-      config.action_mailer.smtp_settings = {
-        address:              'smtp.gmail.com',
-        port:                  25,
-        domain:               'localhost',
-        user_name:            'grupolpgomes@gmail.com',
-        password:             'modelo12',
-        authentication:       'plain',
-        enable_starttls_auto: true
-      }
- # config.action_mailer.delivery_method = :smtp
- #  ActionMailer::Base.smtp_settings = {
- #    :user_name => 'softconsuporte@hotmail.com',
- #    :password => 'bcoambar10',
- #    :domain => 'softcontecnologia.com.br',
- #    :address => 'smtp.sendgrid.net',
- #    :port => 587,
- #    :authentication => :plain,
- #    :enable_starttls_auto => true
- #  }
+  # config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  #     config.action_mailer.delivery_method = :smtp
+  #     config.action_mailer.smtp_settings = {
+  #       address:              'smtp.gmail.com',
+  #       port:                  25,
+  #       domain:               'localhost',
+  #       user_name:            'grupolpgomes@gmail.com',
+  #       password:             'modelo12',
+  #       authentication:       'plain',
+  #       enable_starttls_auto: true
+  #     }
+
 
 end
