@@ -14,7 +14,7 @@ gem 'execjs'
 gem 'pg', '~> 0.15'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'devise'
-gem "cocoon"
+#gem "cocoon"
 gem 'morrisjs-rails'
 gem 'raphael-rails'
 

@@ -32,4 +32,3 @@
 //= require plugins/datatables/jquery.dataTables.min
 //= require plugins/datatables/dataTables.bootstrap.min
 //= require morris
-//= require cocoon
