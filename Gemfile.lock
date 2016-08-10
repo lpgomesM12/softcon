@@ -217,7 +217,7 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   spring
   therubyracer
-  uglifier (~> 3.0, >= 3.0.1)
+  uglifier
   web-console (~> 2.0)
 
 BUNDLED WITH
