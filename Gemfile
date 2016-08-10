@@ -2,13 +2,13 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.5'
 gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+gem 'uglifier', '~> 3.0', '>= 3.0.1'
 
 gem 'pg', '~> 0.15'
 gem 'bootstrap-sass', '~> 3.3.6'
@@ -18,6 +18,10 @@ gem 'morrisjs-rails'
 gem 'raphael-rails'
 
 gem 'rails-i18n', '~> 4.0', '>= 4.0.8'
+
+group :production do
+      gem 'therubyracer'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
