@@ -1,6 +1,11 @@
 class PrestadorsController < ApplicationController
   before_action :set_prestador, only: [:show, :edit, :update, :destroy]
 
+
+  def busca_prestador
+     @prestaores = Prestador.search(params[:term])
+  end
+
   # GET /prestadors
   # GET /prestadors.json
   def index

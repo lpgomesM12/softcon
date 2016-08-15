@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   belongs_to :pessoa
   belongs_to :condominio
+  has_one :grupopermissaouser
 
   attr_accessor :grupopermissao_id
 

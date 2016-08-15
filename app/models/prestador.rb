@@ -8,4 +8,10 @@ class Prestador < ActiveRecord::Base
 
   TIPOCONTATO = %w[Celular Email]
 
+
+  def self.search(term)
+    where("lower(nome_prestador)like ?", "%#{term.downcase}%")
+  end
+
+
 end

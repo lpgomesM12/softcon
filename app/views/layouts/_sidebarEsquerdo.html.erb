@@ -68,6 +68,12 @@
     <%unless current_user.tem_permissao(4)%>
         <li class="header">FINANCEIRO</li>
             <li>
+             <%= link_to  dividas_path do %>
+                  <i class="fa fa-usd"></i>
+                   <span> Despesas</span>
+                <% end %>
+            </li>
+            <li>
              <%= link_to  contabanks_path do %>
                   <i class="fa fa-bars"></i>
                    <span> Contas</span>
@@ -75,7 +81,7 @@
             </li>
          <li class="header">Usuários</li>
           <li>
-             <%= link_to  new_user_registration_path do %>
+             <%= link_to  usuarios_index_path do %>
              <i class="fa fa-user-plus"></i>
                 <span>Novo Usuário</span>
                 <% end %>

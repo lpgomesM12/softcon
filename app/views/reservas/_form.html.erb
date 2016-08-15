@@ -100,6 +100,9 @@
   });
 
   function buscaTipoReservaDisponivel(){
+
+    if ($("#reserva_data_reserva").val().indexOf('_') != -1) {return};
+
     $.ajax({
       url: '<%= buscaTipoReservaDisponivel_path %>',
       data : {
@@ -119,7 +122,10 @@
         $('#reserva_tiporeserva_id').removeAttr('disabled');
       }
     })
-
   }
+
+  $("#reserva_data_reserva").blur(function() {
+        buscaTipoReservaDisponivel();
+  });
 
 </script>

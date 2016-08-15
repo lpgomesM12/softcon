@@ -42,3 +42,6 @@ rails g scaffold contatoprestador desc_tipocontado:string desc_contato:string pr
 
 TITULO:
 rails g scaffold titulo desc_titulo:string numr_tipolancamento:string data_cancelamento:string
+
+DIVIDAS:
+rails g scaffold divida numr_tipodivida:integer numr_cheque:integer data_vencimento:datetime valr_divida:decimal desc_observacao:string numg_tipopagamento:integer data_cadastro:datetime desc_docprincipal:string data_cancelamento:datetime data_pagamento:datetime valr_pagamento:decimal valr_multa:decimal valr_juro:decimal numr_notafiscal:integer numr_parcela:integer desc_caminhocheque:integer flag_ordinaria:boolean flag_despesafixa:boolean condominio:references contabanck:references prestador:references

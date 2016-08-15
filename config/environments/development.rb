@@ -36,21 +36,24 @@ Rails.application.configure do
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
 
+
   # Raises error for missing translations
-  # config.action_view.raise_on_missing_translations = true
+  config.action_view.raise_on_missing_translations = true
+
+  config.active_record.dump_schema_after_migration = false
 
 
-  # config.action_mailer.default_url_options = { host: 'localhost:3000' }
-  #     config.action_mailer.delivery_method = :smtp
-  #     config.action_mailer.smtp_settings = {
-  #       address:              'smtp.gmail.com',
-  #       port:                  25,
-  #       domain:               'localhost',
-  #       user_name:            'grupolpgomes@gmail.com',
-  #       password:             'modelo12',
-  #       authentication:       'plain',
-  #       enable_starttls_auto: true
-  #     }
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+      config.action_mailer.delivery_method = :smtp
+      config.action_mailer.smtp_settings = {
+        address:              'smtp.live.com',
+        port:                  587,
+        domain:               'localhost',
+        user_name:            'softconcomercial@hotmail.com',
+        password:             'wcaetano654321',
+        authentication:       'plain',
 
+        enable_starttls_auto: true
+      }
 
 end

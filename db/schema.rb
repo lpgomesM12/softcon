@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160809133526) do
+ActiveRecord::Schema.define(version: 20160812132353) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,42 @@ ActiveRecord::Schema.define(version: 20160809133526) do
   end
 
   add_index "contatoprestadors", ["prestador_id"], name: "index_contatoprestadors_on_prestador_id", using: :btree
+
+  create_table "dividas", force: :cascade do |t|
+    t.integer  "numr_tipodivida"
+    t.integer  "numr_cheque"
+    t.datetime "data_vencimento"
+    t.decimal  "valr_divida"
+    t.string   "desc_observacao"
+    t.integer  "numg_tipopagamento"
+    t.datetime "data_cadastro"
+    t.string   "desc_docprincipal"
+    t.datetime "data_cancelamento"
+    t.datetime "data_pagamento"
+    t.decimal  "valr_pagamento"
+    t.decimal  "valr_multa"
+    t.decimal  "valr_juro"
+    t.integer  "numr_notafiscal"
+    t.integer  "numr_parcela"
+    t.integer  "desc_caminhocheque"
+    t.boolean  "flag_ordinaria"
+    t.boolean  "flag_despesafixa"
+    t.integer  "condominio_id"
+    t.integer  "contabank_id"
+    t.integer  "prestador_id"
+    t.integer  "user_inclusao"
+    t.integer  "integer"
+    t.integer  "user_exclusao"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "dividas", ["condominio_id"], name: "index_dividas_on_condominio_id", using: :btree
+  add_index "dividas", ["contabank_id"], name: "index_dividas_on_contabank_id", using: :btree
+  add_index "dividas", ["integer"], name: "index_dividas_on_integer", using: :btree
+  add_index "dividas", ["prestador_id"], name: "index_dividas_on_prestador_id", using: :btree
+  add_index "dividas", ["user_exclusao"], name: "index_dividas_on_user_exclusao", using: :btree
+  add_index "dividas", ["user_inclusao"], name: "index_dividas_on_user_inclusao", using: :btree
 
   create_table "enderecos", force: :cascade do |t|
     t.string   "desc_endereco"
@@ -275,6 +311,9 @@ ActiveRecord::Schema.define(version: 20160809133526) do
   add_foreign_key "condominios", "enderecos"
   add_foreign_key "contabanks", "condominios"
   add_foreign_key "contatoprestadors", "prestadors"
+  add_foreign_key "dividas", "condominios"
+  add_foreign_key "dividas", "contabanks"
+  add_foreign_key "dividas", "prestadors"
   add_foreign_key "enderecos", "bairros"
   add_foreign_key "enderecos", "cidades"
   add_foreign_key "grupopermissaos", "grupopermissaos"

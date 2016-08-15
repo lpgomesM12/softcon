@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'usuarios/index'
+
+  resources :dividas
   resources :titulos
   resources :contatoprestadors
   resources :prestadors
@@ -39,7 +42,9 @@ Rails.application.routes.draw do
  get 'buscamorador' => 'moradors#busca_morador'
  get 'relatorio/reservas'
  get "/articles", to: "relatorio#index", as: :articles
-  get 'buscamoradorcpf' => 'moradors#busca_moradorcpf'
+ get 'buscamoradorcpf' => 'moradors#busca_moradorcpf'
+ get 'buscaprestador' => 'prestadors#busca_prestador'
+
 
 
 end

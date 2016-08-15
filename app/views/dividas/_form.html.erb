@@ -1,0 +1,101 @@
+<%= form_for(@divida) do |f| %>
+  <% if @divida.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@divida.errors.count, "error") %> prohibited this divida from being saved:</h2>
+
+      <ul>
+      <% @divida.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :numr_tipodivida %><br>
+    <%= f.number_field :numr_tipodivida %>
+  </div>
+  <div class="field">
+    <%= f.label :numr_cheque %><br>
+    <%= f.number_field :numr_cheque %>
+  </div>
+  <div class="field">
+    <%= f.label :data_vencimento %><br>
+    <%= f.datetime_select :data_vencimento %>
+  </div>
+  <div class="field">
+    <%= f.label :valr_divida %><br>
+    <%= f.text_field :valr_divida %>
+  </div>
+  <div class="field">
+    <%= f.label :desc_observacao %><br>
+    <%= f.text_field :desc_observacao %>
+  </div>
+  <div class="field">
+    <%= f.label :numg_tipopagamento %><br>
+    <%= f.number_field :numg_tipopagamento %>
+  </div>
+  <div class="field">
+    <%= f.label :data_cadastro %><br>
+    <%= f.datetime_select :data_cadastro %>
+  </div>
+  <div class="field">
+    <%= f.label :desc_docprincipal %><br>
+    <%= f.text_field :desc_docprincipal %>
+  </div>
+  <div class="field">
+    <%= f.label :data_cancelamento %><br>
+    <%= f.datetime_select :data_cancelamento %>
+  </div>
+  <div class="field">
+    <%= f.label :data_pagamento %><br>
+    <%= f.datetime_select :data_pagamento %>
+  </div>
+  <div class="field">
+    <%= f.label :valr_pagamento %><br>
+    <%= f.text_field :valr_pagamento %>
+  </div>
+  <div class="field">
+    <%= f.label :valr_multa %><br>
+    <%= f.text_field :valr_multa %>
+  </div>
+  <div class="field">
+    <%= f.label :valr_juro %><br>
+    <%= f.text_field :valr_juro %>
+  </div>
+  <div class="field">
+    <%= f.label :numr_notafiscal %><br>
+    <%= f.number_field :numr_notafiscal %>
+  </div>
+  <div class="field">
+    <%= f.label :numr_parcela %><br>
+    <%= f.number_field :numr_parcela %>
+  </div>
+  <div class="field">
+    <%= f.label :desc_caminhocheque %><br>
+    <%= f.number_field :desc_caminhocheque %>
+  </div>
+  <div class="field">
+    <%= f.label :flag_ordinaria %><br>
+    <%= f.check_box :flag_ordinaria %>
+  </div>
+  <div class="field">
+    <%= f.label :flag_despesafixa %><br>
+    <%= f.check_box :flag_despesafixa %>
+  </div>
+  <div class="field">
+    <%= f.label :condominio_id %><br>
+    <%= f.text_field :condominio_id %>
+  </div>
+  <div class="field">
+    <%= f.label :contabank_id %><br>
+    <%= f.text_field :contabank_id %>
+  </div>
+  <div class="field">
+    <%= f.label :prestador_id %><br>
+    <%= f.text_field :prestador_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

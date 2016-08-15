@@ -1,8 +1,7 @@
 <section class="content-header">
-    <h6>
-      <!--Mensagens aqui-->
-    <p id="notice"><%= notice %></p>
-    </h6>
+  <%if notice%>
+    <div class="alert alert-success" role="alert"><%= notice %></div>
+   <%end%>
 </section>
 
 <!-- Main content -->
@@ -36,6 +35,10 @@
   <%= @reserva.hora_fim %>
 </p>
 
+<p>
+  <strong>Data do Comprovante:</strong>
+  <%=@reserva.created_at.strftime("%d/%m/%Y %H:%M:%S" ) %>
+</p>
 <p>
   <strong>Apartamento:</strong>
   <%= @reserva.apartamento.numr_apartamento %> - <%= @reserva.apartamento.numr_bloco %>

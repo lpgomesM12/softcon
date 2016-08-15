@@ -1,0 +1,47 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  numr_tipodivida: 1
+  numr_cheque: 1
+  data_vencimento: 2016-08-12 10:23:53
+  valr_divida: 9.99
+  desc_observacao: MyString
+  numg_tipopagamento: 1
+  data_cadastro: 2016-08-12 10:23:53
+  desc_docprincipal: MyString
+  data_cancelamento: 2016-08-12 10:23:53
+  data_pagamento: 2016-08-12 10:23:53
+  valr_pagamento: 9.99
+  valr_multa: 9.99
+  valr_juro: 9.99
+  numr_notafiscal: 1
+  numr_parcela: 1
+  desc_caminhocheque: 1
+  flag_ordinaria: false
+  flag_despesafixa: false
+  condominio_id: 
+  contabanck_id: 
+  prestador_id: 
+
+two:
+  numr_tipodivida: 1
+  numr_cheque: 1
+  data_vencimento: 2016-08-12 10:23:53
+  valr_divida: 9.99
+  desc_observacao: MyString
+  numg_tipopagamento: 1
+  data_cadastro: 2016-08-12 10:23:53
+  desc_docprincipal: MyString
+  data_cancelamento: 2016-08-12 10:23:53
+  data_pagamento: 2016-08-12 10:23:53
+  valr_pagamento: 9.99
+  valr_multa: 9.99
+  valr_juro: 9.99
+  numr_notafiscal: 1
+  numr_parcela: 1
+  desc_caminhocheque: 1
+  flag_ordinaria: false
+  flag_despesafixa: false
+  condominio_id: 
+  contabanck_id: 
+  prestador_id: 
