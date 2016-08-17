@@ -12,7 +12,7 @@ class RelatorioController < ApplicationController
         @data_fim = params[:data_fim]
     end
 
-    @reservas = Reserva.where(condominio_id: current_user.condominio_id, data_reserva: @data_inicio..@data_fim )
+    @reservas = Reserva.where(condominio_id: current_user.condominio_id, data_reserva: @data_inicio.gsub("/","-")..@data_fim.gsub("/","-") )
     @condominio = current_user.condominio.nome_condominio
 
 
