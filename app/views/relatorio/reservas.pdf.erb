@@ -23,11 +23,11 @@
            <tbody>
                <% @reservas.each do |reserva| %>
                <tr>
-                 <td><%= reserva.apartamento.numr_bloco%> - <%= reserva.apartamento.numr_apartamento%></td>
-                 <td><%= reserva.data_reserva.blank? ? '' : reserva.data_reserva.strftime("%d/%m/%Y")%></td>
-                 <td><%= reserva.tiporeserva.desc_tiporeserva %></td>
-                 <td><%= reserva.created_at.blank? ? '' : reserva.created_at.strftime("%d/%m/%Y")%></td>
-                 <td><%= reserva.nome_solicitante %></td>
+                 <td style="font-size: 12px"><%= reserva.apartamento.numr_bloco%> - <%= reserva.apartamento.numr_apartamento%></td>
+                 <td style="font-size: 12px"><%= reserva.data_reserva.blank? ? '' : reserva.data_reserva.strftime("%d/%m/%Y")%></td>
+                 <td style="font-size: 12px"><%= reserva.tiporeserva.desc_tiporeserva %></td>
+                 <td style="font-size: 12px"><%= reserva.created_at.blank? ? '' : reserva.created_at.strftime("%d/%m/%Y")%></td>
+                 <td style="font-size: 12px"><%= reserva.nome_solicitante %></td>
                </tr>
              <% end %>
            </tbody>
