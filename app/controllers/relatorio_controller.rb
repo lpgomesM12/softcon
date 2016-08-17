@@ -8,11 +8,11 @@ class RelatorioController < ApplicationController
         @data_inicio = Date.today.at_beginning_of_month.strftime('%d/%m/%Y')
         @data_fim  = Date.today.at_end_of_month.strftime('%d/%m/%Y')
       else
-        @data_inicio = params[:data_inicio]
-        @data_fim = params[:data_fim]
+       @data_inicio = params[:data_inicio]
+       @data_fim = params[:data_fim]
     end
 
-    @reservas = Reserva.where(condominio_id: current_user.condominio_id, data_reserva: @data_inicio.gsub("/","-")..@data_fim.gsub("/","-") )
+    @reservas = Reserva.where(condominio_id: current_user.condominio_id, data_reserva: Date.strptime(@data_inicio, "%d/%m/%Y").strftime('%Y-%m-%d')..Date.strptime(@data_fim, "%d/%m/%Y").strftime('%Y-%m-%d'))
     @condominio = current_user.condominio.nome_condominio
 
 
