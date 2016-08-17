@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
   belongs_to :pessoa
   belongs_to :condominio
-  has_one :grupopermissaouser
+  has_one :grupopermissaouser, dependent: :destroy
+  belongs_to :exclusao, :class_name => "User", :foreign_key => "user_exclusao"
 
   attr_accessor :grupopermissao_id
 
@@ -10,20 +11,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-
  def tem_permissao(grupo)
-       @grupopermissao =  Grupopermissaouser.where(grupopermissao_id: grupo , user_id: self.id)
+       @grupopermissao =  Grupopermissaouser.where("user_id = ? AND grupopermissao_id IN (?)",self.id, grupo)
        @grupopermissao.empty? ? false : true
  end
-
-
- # def grupopermissao_id
- #   @grupopermissao_id
- # end
-
- # setter
- # def grupopermissao_id=(val)
- #   @grupopermissao_id = val
- # end
 
 end

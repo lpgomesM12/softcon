@@ -67,7 +67,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :pessoa_id, :condominio_id, :grupopermissao_id)
+      params.require(:user).permit(:email, :password, :password_confirmation, :pessoa_id, :condominio_id, :grupopermissao_id, :flag_exclusao)
     end
 
 end

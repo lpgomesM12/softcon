@@ -64,6 +64,7 @@
 
 <% if user_signed_in?%>
    <%= f.hidden_field :condominio_id, :value => current_user.condominio_id  %>
+   <%= f.hidden_field :flag_exclusao, :value => false  %>
     <input type="hidden" name="condominio_id"  id="condominio_id" value="<%=current_user.condominio_id%>">
 <%end%>
 </div>
@@ -75,7 +76,7 @@
       <button type="submit" value="Submit" class="btn btn-primary btn-sm">
        <span class="glyphicon glyphicon-floppy-disk"></span> Salvar
       </button>
-      <%= link_to usuarios_index_path, :class => "btn btn-default btn-sm" do %>
+      <%= link_to usuarios_path, :class => "btn btn-default btn-sm" do %>
          <span class="glyphicon glyphicon-arrow-left"></span> Voltar
        <% end %>
      </div>

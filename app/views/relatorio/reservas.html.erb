@@ -1,3 +1,41 @@
+<section class="content-header">
+
+
+  <%= form_tag nil, method: 'GET' do %>
+    <div class="row">
+      <div class="col-lg-2">
+              <label for="data_inicio">Data Início</label>
+                <div class="form-group">
+                  <input id="data_inicio" name="data_inicio" type='text' class="form-control" value="<%=@data_inicio%>" placeholder="Data Início"/>
+               </div>
+      </div>
+
+      <div class="col-lg-2">
+        <label >Data Fim</label>
+        <div class="input-group">
+          <input id="data_fim" name="data_fim" type="text" class="form-control"  value="<%=@data_fim%>" placeholder="Data Fim">
+        </div><!-- /input-group -->
+      </div><!-- /.col-lg-6 -->
+
+    <div class="col-lg-5">
+     <button class="btn btn-primary" style="margin-top:23px" type="submit" name="imprimir" value="html" data-target="_blank">
+       <span class="glyphicon glyphicon-search"></span> Pesquisar
+     </button>
+    </div>
+
+    <div class="col-lg-3">
+      <label></label><br>
+        <%= link_to relatorio_reservas_path(format: :pdf, data_inicio: @data_inicio, data_fim: @data_fim), method: :get, class: "btn btn-primary" do %>
+               <span class="glyphicon glyphicon-print"></span> Imprimir PDF
+        <% end %>
+      </div>
+
+    </div>
+  <% end %>
+
+</section>
+
+
 <!-- Main content -->
 <section class="content">
    <!-- Small boxes (Stat box) -->
@@ -9,10 +47,10 @@
          <table class="table table-hover">
            <thead>
              <tr>
+               <th>Unidade</th>
                <th>Data reserva</th>
-               <th>H. Inicio</th>
-               <th>H. Fim</th>
                <th>Local reserva</th>
+               <th>Laçamento</th>
                <th>Solicitante</th>
                <th colspan="3"></th>
              </tr>
@@ -21,10 +59,10 @@
            <tbody>
                <% @reservas.each do |reserva| %>
                <tr>
+                 <td><%= reserva.apartamento.numr_bloco%> - <%= reserva.apartamento.numr_apartamento%></td>
                  <td><%= reserva.data_reserva.blank? ? '' : reserva.data_reserva.strftime("%d/%m/%Y")%></td>
-                 <td><%= reserva.hora_inicio %></td>
-                 <td><%= reserva.hora_fim %></td>
                  <td><%= reserva.tiporeserva.desc_tiporeserva %></td>
+                 <td><%= reserva.created_at.blank? ? '' : reserva.created_at.strftime("%d/%m/%Y")%></td>
                  <td><%= reserva.nome_solicitante %></td>
                </tr>
              <% end %>
@@ -32,7 +70,15 @@
          </table>
        </div>
      </div><!-- /.box -->
-          <%= link_to new_reserva_path, class: "btn btn-default btn-sm" do %>
-                 <span class="glyphicon glyphicon-file"></span>Novo
-         <% end %>
+
  </section>
+
+
+ <script type="text/javascript">
+
+ jQuery(function($){
+   $("#data_inicio").mask("99/99/9999");
+   $("#data_fim").mask("99/99/9999");
+ });
+
+ </script>

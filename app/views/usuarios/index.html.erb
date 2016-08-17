@@ -2,11 +2,11 @@
     <h1>
       <!--Mensagens aqui-->
       <%if notice %>
-       <!-- <div class="alert alert-success alert-dismissable">
+       <div class="alert alert-success alert-dismissable">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <h4>  <i class="icon fa fa-check"></i>Mensagem</h4>
-          <%#= notice %>
-      </div> -->
+          <%= notice %>
+      </div>
       <%end%>
     <!--<small></small>-->
     </h1>
@@ -33,6 +33,15 @@
                 <tr>
                   <td><%= user.pessoa.nome_pessoa %></td>
                   <td><%= user.grupopermissaouser.grupopermissao.nome %></td>
+                  <td align='right'>
+                    <div class="btn-group">
+                      <%if current_user.tem_permissao([1,2])%>
+                        <%= link_to usuario_path(user), method: :delete, data: { confirm: 'Deseja excluir o registro?' }, class: "btn btn-default btn-sm" do %>
+                         <span class="glyphicon glyphicon-trash text-danger"></span> Excluir
+                         <% end %>
+                       <%end%>
+                    </div>
+                  </td>
                 </tr>
               <% end %>
             </tbody>

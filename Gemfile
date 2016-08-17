@@ -17,6 +17,9 @@ gem 'raphael-rails'
 gem 'rails-i18n', '~> 4.0', '>= 4.0.8'
 
 
+gem 'wkhtmltopdf-binary'
+gem 'wicked_pdf'
+
 group :assets do
   gem 'therubyracer'
   gem 'uglifier'
