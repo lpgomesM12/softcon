@@ -32,7 +32,7 @@
                      <%= link_to reserva, class: "btn btn-primary btn-sm" do %>
                        <span class="glyphicon glyphicon-list-alt"></span> Exibir
                      <% end %>
-               <%if current_user.tem_permissao(2)%>
+               <%if current_user.tem_permissao([1,2])%>
                      <button type="button"  onclick="modalAprovar(<%=reserva.id%>)" class="btn btn-success btn-sm">
                        <span class="glyphicon glyphicon-ok"></span> Aprovar
                      </button>
