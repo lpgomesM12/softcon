@@ -84,6 +84,8 @@
            <h4 class="modal-title">Negar</h4>
          </div>
          <div class="modal-body">
+
+          <div id="formNegar">
            <input type="hidden" name="idreservanegar" id="idreservanegar" >
 
            <div class="row">
@@ -94,16 +96,22 @@
          </div>
          <div class="modal-footer">
 
-           <button type="button" onclick="negaReserva()" class="btn btn-danger">Negar</button>
+           <button type="button" id="btnNegar" onclick="negaReserva()" class="btn btn-danger">Negar</button>
            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+         </div>
 
+         </div>
+         <div id="formMsg">
+           <h4>Aguarde... Negando solicitação e enviando email para responsáveis.</h4>
          </div>
        </div>
      </div>
    </div>
  </div>
 
+
  <script type="text/javascript">
+
 
    function modalAprovar(id){
      $("#myModalAprovar").modal('show');
@@ -113,6 +121,7 @@
 
    function modalNegar(id){
      $("#myModalNegar").modal('show');
+     $("#formMsg").hide()
      $("#idreservanegar").val(id);
 
    };
@@ -129,11 +138,14 @@
              };
            }
          })
-       }
+       };
 
-       function negaReserva(){
+      function negaReserva(){
              var  id = $("#idreservanegar").val();
              var motivo = $("#motivo").val();
+
+             $("#formNegar").hide();
+             $("#formMsg").show();
 
              $.ajax({
                url: '<%= negarReserva_path %>',
@@ -148,5 +160,5 @@
                  };
                }
              })
-           }
+           };
  </script>
