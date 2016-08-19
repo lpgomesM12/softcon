@@ -83,8 +83,8 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
    address:              'smtp.live.com',
    port:                  587,
-   user_name:            'softconcomercial@hotmail.com',
-   password:             'wcaetano654321',
+   :user_name            => ENV['email_username'],
+   :password             => ENV['email_password'],
    authentication:       'plain',
    enable_starttls_auto: true  }
 

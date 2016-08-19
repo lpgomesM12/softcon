@@ -13,6 +13,7 @@ gem 'devise'
 gem "cocoon"
 gem 'morrisjs-rails'
 gem 'raphael-rails'
+gem "figaro"
 
 gem 'rails-i18n', '~> 4.0', '>= 4.0.8'
 
