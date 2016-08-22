@@ -1,0 +1,32 @@
+
+<hr>
+ <table>
+   <%=@reserva.condominio.nome_condominio%>
+ </table>
+<hr>
+
+<p>
+    <strong>Local Reserva:</strong>
+    <%= @reserva.tiporeserva.desc_tiporeserva %>
+    <br>
+    <strong>Data reserva:</strong>
+    <%= @reserva.data_reserva.blank? ? '' : @reserva.data_reserva.strftime("%d/%m/%Y") %>
+    <br>
+    <strong>Hora inicio:</strong>
+    <%= @reserva.hora_inicio %>
+    <br>
+    <strong>Hora fim:</strong>
+    <%= @reserva.hora_fim %>
+    <br>
+    <strong>Data do Comprovante:</strong>
+    <%=@reserva.created_at.strftime("%d/%m/%Y %H:%M:%S" ) %>
+    <br>
+    <strong>Apartamento:</strong>
+    <%= @reserva.apartamento.numr_apartamento %> - <%= @reserva.apartamento.numr_bloco %>
+    <br>
+    <strong>Nome solicitante:</strong>
+    <%= @reserva.nome_solicitante %>
+    <br>
+    <strong>Email solicitante:</strong>
+    <%= @reserva.email_solicitante %>
+</p>

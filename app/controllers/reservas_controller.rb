@@ -51,6 +51,15 @@ class ReservasController < ApplicationController
   # GET /reservas/1
   # GET /reservas/1.json
   def show
+
+    respond_to do |format|
+      format.html
+      format.pdf { render pdf: "reserva",
+        header: {center: "Comprovante reserva"},
+        footer: { center: "[page] de [topage]" }
+        }
+    end
+
   end
 
   # GET /reservas/new

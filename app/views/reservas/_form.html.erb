@@ -25,12 +25,14 @@
 </div>
 
 <div class="row">
-<div class="col-lg-3">
+<div class="col-lg-4">
   <%= f.label :Data_Evento %><br>
    <div class="input-group">
       <%= f.text_field :data_reserva, :class => 'form-control' %>
       <span class="input-group-btn">
-        <button class="btn btn-success" type="button" onclick="buscaTipoReservaDisponivel();">Buscar</button>
+        <button class="btn btn-success" type="button" onclick="buscaTipoReservaDisponivel();">
+        <span class="glyphicon glyphicon glyphicon-search"></span>
+          Buscar local disponivel</button>
       </span>
    </div>
   </div>

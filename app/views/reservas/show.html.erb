@@ -65,4 +65,7 @@
 <%= link_to reservas_path, :class => "btn btn-default btn-sm" do %>
    <span class="glyphicon glyphicon-arrow-left"></span> Voltar
 <% end %>
+<%= link_to reserva_path(format: :pdf), class: "btn btn-primary btn-sm" do %>
+       <span class="glyphicon glyphicon-print"></span> Imprimir PDF
+<% end %>
 </div>

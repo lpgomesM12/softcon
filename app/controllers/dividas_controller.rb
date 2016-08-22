@@ -1,6 +1,16 @@
 class DividasController < ApplicationController
   before_action :set_divida, only: [:show, :edit, :update, :destroy]
 
+
+
+  def incluir_divida
+
+   @divida = Divida.new
+
+   @divida.numr_tipodivida = 1
+
+  end
+
   # GET /dividas
   # GET /dividas.json
   def index

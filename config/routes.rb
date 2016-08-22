@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   match '/listaPermissoes', to: 'grupopermissaousers#busca_permissoes', via: 'get'
   match '/mudaCondominio', to: 'condominios#muda_condominio', via: 'get'
   match '/validaPessoa', to: 'pessoas#valida_pessoa', via: 'get'
+  match '/incluirDivida', to: 'dividas#incluir_divida', via: 'get'
 
   get 'buscamorador' => 'moradors#busca_morador'
   get 'relatorio/reservas'
