@@ -45,7 +45,12 @@ class ReservasController < ApplicationController
   # GET /reservas
   # GET /reservas.json
   def index
-    @reservas = Reserva.where(condominio_id: current_user.condominio_id, flag_autorizado: false, user_cancelamento: nil )
+   if current_user.tem_permissao(4)
+      @reservas = Reserva.where(user_inclusao: current_user.id)
+    else
+      @reservas = Reserva.where(condominio_id: current_user.condominio_id, flag_autorizado: false, user_cancelamento: nil)
+   end
+
   end
 
   # GET /reservas/1

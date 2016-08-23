@@ -27,8 +27,8 @@
                  <td><%= reserva.apartamento.numr_bloco%> - <%= reserva.apartamento.numr_apartamento%></td>
                  <td><%= reserva.data_reserva.blank? ? '' : reserva.data_reserva.strftime("%d/%m/%Y")%></td>
                  <td><%= reserva.tiporeserva.desc_tiporeserva %></td>
-                 <td><%= reserva.created_at.blank? ? '' : reserva.created_at.strftime("%d/%m/%Y")%></td>
-                 <td><%= reserva.data_cancelamento.blank? ? '' : reserva.data_cancelamento.strftime("%d/%m/%Y")%></td>
+                 <td><%= reserva.created_at.blank? ? '' : reserva.created_at.strftime("%d/%m/%Y %H:%M:%S")%></td>
+                 <td><%= reserva.data_cancelamento.blank? ? '' : reserva.data_cancelamento.strftime("%d/%m/%Y %H:%M:%S")%></td>
                  <td><%= reserva.user_cancelamento.blank? ? '' : reserva.usercancelamento.pessoa.nome_pessoa%></td>
                </tr>
              <% end %>

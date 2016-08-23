@@ -16,7 +16,7 @@
                <th>Solicitante</th>
                <th>Dt Cancelamento</th>
                <th>Motivo</th>
-               <th colspan="3"></th>
+               <th>Situação</th>
              </tr>
            </thead>
 
@@ -30,6 +30,14 @@
                  <td><%= reserva.nome_solicitante %></td>
                  <td><%= reserva.data_cancelamento.blank? ? '' :  reserva.data_cancelamento.strftime("%d/%m/%Y")%></td>
                  <td><%= reserva.desc_motivocancelamento%></td>
+                  <%if reserva.data_cancelamento%>
+                    <td style="color:#d52f1d">Cancelada</td>
+                  <%elsif reserva.data_autorizacao%>
+                    <td style="color:#14925f">Autorizada</td>
+                  <%else%>
+                    <td style="color:#14925f">Solicitada</td>
+                  <%end%>
+
                <td align='right'>
                  <div class="btn-group">
                      <%= link_to reserva, class: "btn btn-primary btn-sm" do %>

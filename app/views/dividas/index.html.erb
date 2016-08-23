@@ -140,7 +140,16 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Sair</button>
+        <div class="row">
+          <div class="col-lg-1">
+            <button type="button" class="btn btn-success" data-dismiss="modal">Salvar</button>
+         </div>
+         <div class="col-lg-10">
+         </div>
+         <div class="col-lg-1">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Sair</button>
+         </div>
+       </div>
       </div>
     </div>
   </div>
@@ -148,13 +157,17 @@
 
 <script type="text/javascript">
 
+
+jQuery(function($){
+  $("#data_vencimento").mask("99/99/9999");
+ });
+
    function Salva(){
     $.ajax({
       url: '<%= incluirDivida_path %>',
       data : {
-        numr_tipodivida: $('#numr_tipodivida').val();
-        numr_cheque: $('#numr_tipodivida').val();
-
+        numr_tipodivida: $('#numr_tipodivida').val(),
+        numr_cheque: $('#numr_tipodivida').val()
       },
       success: function(data){
         var html = "";
