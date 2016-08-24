@@ -10,8 +10,6 @@ class DividasController < ApplicationController
     @valor_divida = @valor_divida/Integer(@folhas)
 
     @despesa = Despesa.new
-    @despesa.
-
 
     @i = 0
 
