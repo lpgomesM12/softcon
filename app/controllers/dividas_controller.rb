@@ -13,9 +13,9 @@ class DividasController < ApplicationController
     @despesa.
 
 
-    $i = 0
+    @i = 0
 
-    while $i < Integer(@folhas)  do
+    while @i < Integer(@folhas)  do
       @divida = Divida.new( numr_tipodivida: params[:numr_tipodivida],
                                numr_cheque: params[:numr_cheque],
                                data_vencimento: @data_vencimento,
@@ -31,7 +31,7 @@ class DividasController < ApplicationController
        @divida.save
 
        @data_vencimento = @data_vencimento + 30
-       $i +=1
+       @i +=1
     end
 
   end
