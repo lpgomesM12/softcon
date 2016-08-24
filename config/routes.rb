@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :despesas
   root 'static_pages#home'
 
   #get 'usuarios/index'

@@ -2,12 +2,37 @@ class DividasController < ApplicationController
   before_action :set_divida, only: [:show, :edit, :update, :destroy]
 
 
-
   def incluir_divida
 
-   @divida = Divida.new
+    @folhas = params[:qtd_folhas]
+    @data_vencimento = params[:data_vencimento].to_date
+    @valor_divida = Decimal(params[:valr_divida])
+    @valor_divida = @valor_divida/Integer(@folhas)
 
-   @divida.numr_tipodivida = 1
+    @despesa = Despesa.new
+    @despesa.
+
+
+    $i = 0
+
+    while $i < Integer(@folhas)  do
+      @divida = Divida.new( numr_tipodivida: params[:numr_tipodivida],
+                               numr_cheque: params[:numr_cheque],
+                               data_vencimento: @data_vencimento,
+                               valr_divida: @valor_divida,
+                               data_vencimento: params[:data_vencimento],
+                               prestador_id: params[:prestador_id],
+                               contabank_id: params[:contabank_id],
+                               condominio_id: current_user.condominio_id,
+                               user_inclusao: current_user.id,
+                               flag_ordinaria: params[:flag_ordinaria],
+                               flag_despesafixa: params[:flag_despesafixa],
+                               numr_notafiscal: params[:numr_notafiscal])
+       @divida.save
+
+       @data_vencimento = @data_vencimento + 30
+       $i +=1
+    end
 
   end
 
