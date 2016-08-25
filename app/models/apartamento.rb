@@ -6,9 +6,10 @@ class Apartamento < ActiveRecord::Base
   validates :numr_bloco, presence: true
 
 
-  def self.apartamento_morador(pessoa)
+  def self.apartamento_morador(pessoa, condominio)
       sql = " INNER JOIN moradors mo on apartamentos.id = mo.apartamento_id"
       sql = sql + " WHERE mo.pessoa_id = #{pessoa}"
+      sql = sql + " AND apartamentos.condominio_id = #{condominio}"
       self.joins(sql)
   end
 
