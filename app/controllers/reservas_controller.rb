@@ -27,15 +27,15 @@ class ReservasController < ApplicationController
      if @reserva.save
         render :json => true
 
-      #   if @reserva.email_solicitante == @reserva.userinclusao.email
-      #      emails = [@reserva.email_solicitante,current_user.condominio.email]
-      #  else
-      #     emails = [@reserva.email_solicitante,@reserva.userinclusao.email,current_user.condominio.email]
-      #   end
-      #
-      #   for email in emails
-      #       ReservaNegada.send_email(@reserva,email).deliver
-      #   end
+        if @reserva.email_solicitante == @reserva.userinclusao.email
+           emails = [@reserva.email_solicitante,current_user.condominio.email]
+       else
+          emails = [@reserva.email_solicitante,@reserva.userinclusao.email,current_user.condominio.email]
+        end
+
+        for email in emails
+            ReservaNegada.send_email(@reserva,email).deliver
+        end
 
       else
         render :json => false
@@ -84,15 +84,15 @@ class ReservasController < ApplicationController
     respond_to do |format|
       if @reserva.save
 
-      #   if @reserva.email_solicitante == current_user.email
-      #      emails = [@reserva.email_solicitante,current_user.condominio.email]
-      #  else
-      #     emails = [@reserva.email_solicitante,current_user.email,current_user.condominio.email]
-      #   end
-      #
-      #   for email in emails
-      #       Email.send_email(@reserva,email).deliver
-      #   end
+        if @reserva.email_solicitante == current_user.email
+           emails = [@reserva.email_solicitante,current_user.condominio.email]
+       else
+          emails = [@reserva.email_solicitante,current_user.email,current_user.condominio.email]
+        end
+
+        for email in emails
+            Email.send_email(@reserva,email).deliver
+        end
 
         format.html { redirect_to @reserva, notice: 'Reserva solicitada com sucesso.' }
         format.json { render :show, status: :created, location: @reserva }

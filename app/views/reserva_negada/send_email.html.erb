@@ -5,8 +5,15 @@
   </head>
   <body>
     <p>
-      A solicitação de reserva feita por <%= @reserva.nome_solicitante %>.<br>
-      Foi negada pelo seguinte motivo: <%= @reserva.desc_motivocancelamento %>
+      A solicitação de reserva foi negada pelo seguinte motivo: <%= @reserva.desc_motivocancelamento %><br>
+
+      Dados da reserva:<br>
+      Unidade: <%=@reserva.apartamento.numr_apartamento%> - <%=@reserva.apartamento.numr_bloco%> <br>
+      Local Reservado: <%=@reserva.tiporeserva.desc_tiporeserva%> <br>
+      Data do Reserva <%@reserva.data_reserva.strftime("%d/%m/%Y") %> Das <%=@reserva.hora_inicio%> hs às <%=@reserva.hora_fim%> hs. <br>
+      Data do Comprovante: <%=@reserva.created_at.strftime("%d/%m/%Y %H:%M:%S" ) %> <br>
+      Solicitante: <%=@reserva.nome_solicitante%> <br>
+      <%=@reserva.userinclusao.pessoa.nome_pessoa%>
     </p>
   </body>
 </html>

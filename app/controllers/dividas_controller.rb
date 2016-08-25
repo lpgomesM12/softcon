@@ -10,9 +10,7 @@ class DividasController < ApplicationController
     @valor_divida = @valor_divida/Integer(@folhas)
 
     @despesa = Despesa.new
-
-    @i = 0
-
+     @i = 0
     while @i < Integer(@folhas)  do
       @divida = Divida.new( numr_tipodivida: params[:numr_tipodivida],
                                numr_cheque: params[:numr_cheque],
