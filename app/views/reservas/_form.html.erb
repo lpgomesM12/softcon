@@ -81,7 +81,7 @@
 </div>
 
 
-<%= f.hidden_field :termo_id, :value => @termo.id %>
+<%= f.hidden_field :termo_id, :value => @termo.first.id %>
 <%= f.hidden_field :condominio_id, :value => current_user.condominio_id %>
 <%= f.hidden_field :user_inclusao, :value => current_user.id %>
 <%= f.hidden_field :flag_autorizado, :value => false %>
@@ -112,10 +112,10 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title"><%=@termo.nome_termo%></h4>
+        <h4 class="modal-title"><%=@termo.first.nome_termo%></h4>
       </div>
       <div class="modal-body">
-        <p><%=@termo.text_termo.html_safe%></p>
+        <p><%=@termo.first.text_termo.html_safe%></p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>

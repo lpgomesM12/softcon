@@ -70,7 +70,7 @@ class ReservasController < ApplicationController
   # GET /reservas/new
   def new
     @reserva = Reserva.new
-    @termo = Termo.find(2)
+    @termo = Termo.where(tipotermo_id: 1 , condominio_id: current_user.condominio_id)
   end
 
   # GET /reservas/1/edit
@@ -83,7 +83,7 @@ class ReservasController < ApplicationController
     @reserva = Reserva.new(reserva_params)
 
     unless @reserva.flag_termoaceito
-        @reserva.termo_id = nil    
+        @reserva.termo_id = nil
     end
 
 
