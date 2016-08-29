@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome_termo: MyString
+  text_termo: MyText
+  tipotermo_id: 
+  condominio_id: 
+
+two:
+  nome_termo: MyString
+  text_termo: MyText
+  tipotermo_id: 
+  condominio_id: 

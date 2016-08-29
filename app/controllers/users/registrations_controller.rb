@@ -17,17 +17,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     @condominio = params[:condominio_id]
 		@grupopermissao = params[:grupopermissao]
-		@pessoa = params[:pessoa_id]
+		@pessoa =  Pessoa.find(params[:pessoa_id])
 
     resource.condominio_id = @condominio
-    resource.pessoa_id = @pessoa
+    resource.pessoa_id = @pessoa.id
 
+    @user = resource
     if resource.save
         @grupopermissaouser = Grupopermissaouser.new
 				@grupopermissaouser.user_id = resource.id
 				@grupopermissaouser.grupopermissao_id = @grupopermissao
 				@grupopermissaouser.condominio_id = @condominio
 				@grupopermissaouser.save
+
+				UserMailer.send_email(@user,@pessoa)
 
       yield resource if block_given?
       if resource.active_for_authentication?

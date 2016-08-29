@@ -42,17 +42,14 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
 
-  config.action_mailer.default_url_options = { host: 'localhost:3000' }
-      config.action_mailer.delivery_method = :smtp
-      config.action_mailer.smtp_settings = {
-        address:              'smtp.live.com',
-        port:                  587,
-        domain:               'localhost',
-        user_name:            'softconcomercial@hotmail.com',
-        password:             'wcaetano654321',
-        authentication:       'plain',
-
-        enable_starttls_auto: true
-      }
+  ActionMailer::Base.smtp_settings = {
+    :address => 'smtp.sendgrid.net',
+    :user_name => ENV['email_username'],
+    :password =>  ENV['email_password'],
+    :domain => 'softcontecnologia.com.br',
+    :port => 2525,
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
 
 end

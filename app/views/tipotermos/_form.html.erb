@@ -1,0 +1,25 @@
+<%= form_for(@tipotermo) do |f| %>
+  <% if @tipotermo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tipotermo.errors.count, "error") %> prohibited this tipotermo from being saved:</h2>
+
+      <ul>
+      <% @tipotermo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nome_tipotermo %><br>
+    <%= f.text_field :nome_tipotermo %>
+  </div>
+  <div class="field">
+    <%= f.label :desc_tipotermo %><br>
+    <%= f.text_field :desc_tipotermo %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

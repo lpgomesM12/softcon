@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome tipotermo:</strong>
+  <%= @tipotermo.nome_tipotermo %>
+</p>
+
+<p>
+  <strong>Desc tipotermo:</strong>
+  <%= @tipotermo.desc_tipotermo %>
+</p>
+
+<%= link_to 'Edit', edit_tipotermo_path(@tipotermo) %> |
+<%= link_to 'Back', tipotermos_path %>

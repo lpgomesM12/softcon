@@ -1,0 +1,74 @@
+<%= form_for(@termo) do |f| %>
+  <% if @termo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@termo.errors.count, "error") %> prohibited this termo from being saved:</h2>
+
+      <ul>
+      <% @termo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="box-body">
+  <div class="row">
+    <div class="col-lg-6">
+      <%= f.label :Tipo_termo %><br>
+        <%= f.select :tipotermo_id, options_from_collection_for_select(Tipotermo.all, 'id', 'nome_tipotermo',@termo.tipotermo_id), {:include_blank => true}, {:class => 'form-control' }%>
+    </div>
+    <div class="col-lg-6">
+      <%= f.label :nome_termo %><br>
+      <%= f.text_field :nome_termo, :class => 'form-control' %>
+    </div>
+  </div>
+
+  <%= f.hidden_field :condominio_id, :value => current_user.condominio_id %>
+  <br>
+  <br>
+
+<div class="row">
+  <div class="col-lg-12">
+  <div class="box">
+    <div class="box-header">
+      <h3 class="box-title">Editor<small></small></h3>
+      <!-- tools box -->
+      <div class="pull-right box-tools">
+      </div><!-- /. tools -->
+    </div><!-- /.box-header -->
+    <div class="box-body pad">
+       <%= f.text_area :text_termo, :class => 'form-control', :placeholder => "Escreva termo...", :style => "width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" %>
+    </div>
+   </div>
+  </div>
+  </div>
+
+</div>
+</div><!-- /.box -->
+
+<div class="row mar-bot40">
+  <div class="col-lg-8" >
+     <div class="btn-group">
+       <button type="submit" value="Submit" class="btn btn-primary btn-sm">
+        <span class="glyphicon glyphicon-floppy-disk"></span> Salvar
+       </button>
+       <%= link_to termos_path, :class => "btn btn-default btn-sm" do %>
+          <span class="glyphicon glyphicon-arrow-left"></span> Voltar
+        <% end %>
+      </div>
+    </div>
+</div>
+</section>
+
+<%end%>
+
+
+
+
+<script>
+  $(function () {
+
+    //bootstrap WYSIHTML5 - text editor
+    $("#termo_text_termo").wysihtml5();
+  });
+</script>

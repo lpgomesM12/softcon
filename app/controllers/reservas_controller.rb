@@ -34,7 +34,7 @@ class ReservasController < ApplicationController
         end
 
         for email in emails
-            ReservaNegada.send_email(@reserva,email).deliver
+            ReservaNegada.send_email(@reserva,email,current_user.condominio.email).deliver
         end
 
       else
@@ -70,6 +70,7 @@ class ReservasController < ApplicationController
   # GET /reservas/new
   def new
     @reserva = Reserva.new
+    @termo = Termo.find(2)
   end
 
   # GET /reservas/1/edit
@@ -81,6 +82,11 @@ class ReservasController < ApplicationController
   def create
     @reserva = Reserva.new(reserva_params)
 
+    unless @reserva.flag_termoaceito
+        @reserva.termo_id = nil    
+    end
+
+
     respond_to do |format|
       if @reserva.save
 
@@ -91,7 +97,7 @@ class ReservasController < ApplicationController
         end
 
         for email in emails
-            Email.send_email(@reserva,email).deliver
+            Email.send_email(@reserva,email,current_user.condominio.email).deliver
         end
 
         format.html { redirect_to @reserva, notice: 'Reserva solicitada com sucesso.' }
@@ -135,6 +141,6 @@ class ReservasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reserva_params
-      params.require(:reserva).permit(:data_reserva, :hora_inicio, :hora_fim, :tiporeserva_id, :data_cancelamento, :apartamento_id, :valr_reserva, :flag_autorizado, :nome_solicitante, :email_solicitante, :condominio_id, :data_autorizacao, :user_inclusao, :user_cancelamento, :user_autorizacao)
+      params.require(:reserva).permit(:data_reserva, :hora_inicio, :hora_fim, :tiporeserva_id, :data_cancelamento, :apartamento_id, :valr_reserva, :flag_autorizado, :nome_solicitante, :email_solicitante, :condominio_id, :data_autorizacao, :user_inclusao, :user_cancelamento, :user_autorizacao, :termo_id, :flag_termoaceito)
     end
 end

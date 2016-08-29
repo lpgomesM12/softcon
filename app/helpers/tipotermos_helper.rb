@@ -1,0 +1,2 @@
+module TipotermosHelper
+end

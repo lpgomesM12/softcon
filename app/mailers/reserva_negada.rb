@@ -1,8 +1,7 @@
 class ReservaNegada < ApplicationMailer
 
-  default from: 'softconcomercial@hotmail.com'
-   def send_email(reserva,email)
+   def send_email(reserva,email,email_condominio)
      @reserva = reserva
-     mail(to: email, subject: 'Solicitação de reserva NEGADA')
+     mail(to: email, subject: 'Solicitação de reserva NEGADA', from: email_condominio)
    end
 end

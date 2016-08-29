@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :termos
+  resources :tipotermos
   root 'static_pages#home'
 
   #get 'usuarios/index'
