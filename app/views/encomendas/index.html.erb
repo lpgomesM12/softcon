@@ -1,0 +1,123 @@
+<section class="content-header">
+    <h1>
+      <!--Mensagens aqui-->
+      <%if notice %>
+       <!-- <div class="alert alert-success alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4>  <i class="icon fa fa-check"></i>Mensagem</h4>
+          <%#= notice %>
+      </div> -->
+      <%end%>
+    <!--<small></small>-->
+    </h1>
+</section>
+
+<!-- Main content -->
+<section class="content">
+   <!-- Small boxes (Stat box) -->
+      <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Encomendas</h3>
+             </div><!-- /.box-header -->
+     <div class="box-body table-responsive no-padding">
+         <table class="table table-hover">
+           <thead>
+             <tr>
+               <th>Data encomenda</th>
+               <th>Morador</th>
+               <th>Data entrega</th>
+
+               <th colspan="3"></th>
+             </tr>
+           </thead>
+
+           <tbody>
+            <% @encomendas.each do |encomenda| %>
+               <tr>
+                <td><%= encomenda.data_encomenda.blank? ? '' : encomenda.data_encomenda.strftime("%d/%m/%Y") %></td>
+                 <td><%= encomenda.morador.pessoa.nome_pessoa %></td>
+                 <td><%= encomenda.data_entrega.blank? ? '' : encomenda.data_entrega.strftime("%d/%m/%Y")%></td>
+                <td align='right'>
+                 <div class="btn-group">
+                     <%= link_to encomenda, class: "btn btn-default btn-sm" do %>
+                       <span class="glyphicon glyphicon-list-alt text-success"></span> Exibir
+                     <% end %>
+                     <%= link_to edit_encomenda_path(encomenda), class: "btn btn-default btn-sm" do %>
+                       <span class="glyphicon glyphicon-pencil text-primary"></span> Editar
+                     <% end %>
+                    <%= link_to encomenda, method: :delete, data: { confirm: 'Deseja excluir o registro?' }, class: "btn btn-default btn-sm" do %>
+                       <span class="glyphicon glyphicon-trash text-danger"></span> Excluir
+                     <% end %>
+                     <button type="submit" value="Submit" class="btn btn-success btn-sm" onclick="modalEntrega(<%=encomenda.id%>)">
+                      <span class="glyphicon glyphicon-ok"></span> Entregar
+                     </button>
+                  </div>
+                 </td>
+               </tr>
+             <% end %>
+           </tbody>
+         </table>
+       </div>
+     </div><!-- /.box -->
+          <%= link_to new_encomenda_path, class: "btn btn-default btn-sm" do %>
+                 <span class="glyphicon glyphicon-file"></span>Novo
+         <% end %>
+ </section>
+
+
+<!-- Modal -->
+<div id="myModalEntrega" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Entrega de Documento</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-2">
+            <input type="hidden" id="encomenda_id" name="encomenda_id" value="">
+          </div>
+          <div class="col-lg-8">
+            <label>Data Entrega</label>
+               <input type="text" class="form-control" id="data_entrega" name="data_entrega">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary"  onclick="entregaEncomenda()" data-dismiss="modal">Entregar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script type="text/javascript">
+
+  jQuery(function($){
+    $("#data_entrega").mask("99/99/9999");
+  });
+
+ function modalEntrega(id){
+   $("#encomenda_id").val(id);
+   $("#myModalEntrega").modal()
+ }
+
+function entregaEncomenda(){
+    $.ajax({
+      url: '<%= entregaEncomenda_path %>',
+      data : {
+        data_entrega : $("#data_entrega").val(),
+        id : $("#encomenda_id").val()
+      },
+      success: function(data){
+        location.reload();
+      }
+    })
+
+  };
+
+</script>

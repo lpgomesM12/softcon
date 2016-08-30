@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :encomendas
   resources :termos
   resources :tipotermos
   root 'static_pages#home'
@@ -38,6 +39,8 @@ Rails.application.routes.draw do
   match '/mudaCondominio', to: 'condominios#muda_condominio', via: 'get'
   match '/validaPessoa', to: 'pessoas#valida_pessoa', via: 'get'
   match '/incluirDivida', to: 'dividas#incluir_divida', via: 'get'
+  match '/entregaEncomenda', to: 'encomendas#entrega_encomenda', via: 'get'
+
 
   get 'buscamorador' => 'moradors#busca_morador'
   get 'relatorio/reservas'
@@ -47,8 +50,6 @@ Rails.application.routes.draw do
   get 'static_pages/home'
   get 'site/index'
   get "/relatorioreserva", to: "relatorio#reservas", as: :relatorioreserva
-
-
 
 
 

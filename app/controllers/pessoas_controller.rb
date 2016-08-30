@@ -8,7 +8,8 @@ class PessoasController < ApplicationController
                                         :nome => item.nome_pessoa,
                                         :desc_fone =>  item.desc_fone,
                                         :cpf => item.cpf,
-                                        :rg => item.rg}}
+                                        :rg => item.rg,
+                                        :telefone => item.desc_fone}}
 
    render :json => json_pessoa
 
@@ -83,6 +84,6 @@ class PessoasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pessoa_params
-      params.require(:pessoa).permit(:nome_pessoa, :desc_fone, :cpf, :rg)
+      params.require(:pessoa).permit(:nome_pessoa, :desc_fone, :cpf, :rg, :email_pessoa)
     end
 end

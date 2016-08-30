@@ -36,6 +36,13 @@
 </div>
 
 <div class="row">
+  <div class="col-lg-6">
+    <label>Email</label><br>
+    <%= p.text_field :email_pessoa, disabled: true, :class => 'form-control'%>
+  </div>
+</div>
+
+<div class="row">
   <div class="col-lg-3">
       <label>RG</label><br>
       <%= p.text_field :rg, disabled: true, :class => 'form-control'  %>
@@ -48,6 +55,8 @@
      <%= p.text_field :desc_fone, disabled: true, :class => 'form-control' %>
    </div>
 </div>
+
+
 
 <%end%>
 
@@ -96,7 +105,7 @@ function validaPessoa(){
         $("#morador_pessoa_attributes_nome_pessoa").val(item.nome);
         $("#morador_pessoa_attributes_cpf").val(item.cpf);
         $("#morador_pessoa_attributes_rg").val(item.rg);
-        $("#morador_pessoa_attributes_desc_fone").val(item.rg);
+        $("#morador_pessoa_attributes_desc_fone").val(item.telefone);
         $("#morador_pessoa_id").val(item.id);
         $('#morador_apartamento_id').removeAttr('disabled');
          return;
@@ -105,9 +114,11 @@ function validaPessoa(){
       $("#morador_pessoa_attributes_nome_pessoa").removeAttr('disabled');
       $("#morador_pessoa_attributes_cpf").removeAttr('disabled');
       $("#morador_pessoa_attributes_rg").removeAttr('disabled');
+      $("#morador_pessoa_attributes_email_pessoa").removeAttr('disabled');
       $("#morador_pessoa_attributes_desc_fone").removeAttr('disabled');
       $("#morador_pessoa_id").removeAttr('disabled');
       $("#morador_apartamento_id").removeAttr('disabled');
+
     }
   })
 

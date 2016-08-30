@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  msg_encomenda: MyString
+  data_encomenda: 2016-08-29 16:37:44
+  data_entrega: 2016-08-29 16:37:44
+  condominio_id: 
+  morador_id: 
+
+two:
+  msg_encomenda: MyString
+  data_encomenda: 2016-08-29 16:37:44
+  data_entrega: 2016-08-29 16:37:44
+  condominio_id: 
+  morador_id: 

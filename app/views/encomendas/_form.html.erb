@@ -1,0 +1,86 @@
+<%= form_for(@encomenda) do |f| %>
+  <% if @encomenda.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@encomenda.errors.count, "error") %> prohibited this encomenda from being saved:</h2>
+
+      <ul>
+      <% @encomenda.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="box-body">
+
+  <div class="row">
+      <div class="col-lg-5">
+             <label>Morador</label>
+                <input type="text" class="form-control" id="nomemorador" name="nomemorador" placeholder="Pesquise pelo NOME ou pelo CPF do morador">
+      </div>
+  </div>
+
+ <div class="row">
+   <div class="col-lg-2">
+     <%= f.label :data_encomenda %><br>
+     <%= f.text_field :data_encomenda, :class => "form-control" %>
+   </div>
+ </div>
+
+ <div class="row">
+  <div class="col-lg-6">
+    <%= f.label :Mensagem %><br>
+    <%= f.text_area :msg_encomenda, :class => "form-control" %>
+  </div>
+ </div>
+
+</div>
+</div><!-- /.box -->
+
+<%= f.hidden_field :condominio_id, :value => current_user.condominio_id %>
+<%= f.hidden_field :user_inclusao, :value => current_user.id %>
+<%= f.hidden_field :morador_id %>
+
+
+<div class="row mar-bot40">
+ <div class="col-lg-8" >
+    <div class="btn-group">
+      <button type="submit" value="Submit" class="btn btn-primary btn-sm">
+       <span class="glyphicon glyphicon-floppy-disk"></span> Salvar
+      </button>
+      <%= link_to encomendas_path, :class => "btn btn-default btn-sm" do %>
+         <span class="glyphicon glyphicon-arrow-left"></span> Voltar
+       <% end %>
+     </div>
+   </div>
+</div>
+</section>
+
+<% end %>
+
+<script type="text/javascript">
+
+  jQuery(function($){
+    $("#encomenda_data_encomenda").mask("99/99/9999");
+  });
+
+
+  $(document).ready(function() {
+       $('#nomemorador').autocomplete({
+       source: '/buscamorador',
+       dataType: 'json',
+       minLength: 0,
+       change: function(event, ui) {
+       if (!ui.item) {
+         $('#nomemorador').val('');
+       }
+    },
+    select: function(event, ui) {
+        if (ui.item) {
+              $("#encomenda_morador_id").val(ui.item.id);
+           }
+         }
+     });
+  });
+
+</script>

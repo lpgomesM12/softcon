@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>
+      Olá <%=@encomenda.morador.pessoa.nome_pessoa%>, <br>
+      Informamos que foi recebido uma encomenda pelo funcionário <%=@encomenda.inclusao.pessoa.nome_pessoa%>.<br>
+      A mesma está disponível para retirada.
+      Obs: <%=@encomenda.msg_encomenda%>
+  </body>
+</html>
