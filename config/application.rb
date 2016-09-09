@@ -24,5 +24,10 @@ module Softcon
     config.active_record.raise_in_transactional_callbacks = true
 
     config.i18n.default_locale = :'pt-BR'
+
+    Paperclip.options[:content_type_mappings] = { jpg: "image/jpeg" }
+
+    Paperclip::Attachment.default_options[:validate_media_type] = false
+    config.paperclip_defaults = { :validate_media_type => false }
   end
 end

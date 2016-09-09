@@ -1,17 +1,27 @@
 class DividasController < ApplicationController
   before_action :set_divida, only: [:show, :edit, :update, :destroy]
 
+  def busca_despesas
+    @despesas = Divida.where(condominio_id: current_user.condominio_id)
+
+    json_pessoa = @despesas.map { |item| {:id => item.id,
+                                          :nome => item.nome_pessoa,
+                                          :desc_fone =>  item.desc_fone,
+                                          :cpf => item.cpf,
+                                          :rg => item.rg,
+                                          :telefone => item.desc_fone}}
+
+    render :json => @despesas
+  end
 
   def incluir_divida
-
     @folhas = params[:qtd_folhas]
     @data_vencimento = params[:data_vencimento].to_date
-    @valor_divida = Decimal(params[:valr_divida])
+    @valor_divida = params[:valr_divida].to_f
     @valor_divida = @valor_divida/Integer(@folhas)
 
-    @despesa = Despesa.new
      @i = 0
-    while @i < Integer(@folhas)  do
+     while @i < Integer(@folhas)  do
       @divida = Divida.new( numr_tipodivida: params[:numr_tipodivida],
                                numr_cheque: params[:numr_cheque],
                                data_vencimento: @data_vencimento,
@@ -25,7 +35,6 @@ class DividasController < ApplicationController
                                flag_despesafixa: params[:flag_despesafixa],
                                numr_notafiscal: params[:numr_notafiscal])
        @divida.save
-
        @data_vencimento = @data_vencimento + 30
        @i +=1
     end

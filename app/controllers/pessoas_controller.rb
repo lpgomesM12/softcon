@@ -4,15 +4,26 @@ class PessoasController < ApplicationController
   def valida_pessoa
    @pessoa = Pessoa.where(cpf: params[:cpf])
 
+   #quando não tem cadastro
+   @situacao = 0
+    unless @pessoa.empty?
+      #quando encontrou a pessoa no banco de dados
+      @situacao = 1
+      @morador = Morador.where(pessoa_id: @pessoa.first.id, condominio_id: current_user.condominio_id)
+    unless @morador.empty?
+       #quando encontrou a pessoa no banco de dados e a mesma já é morador do condominio
+       @situacao = 2
+    end
+   end
+
   json_pessoa = @pessoa.map { |item| {:id => item.id,
                                         :nome => item.nome_pessoa,
                                         :desc_fone =>  item.desc_fone,
                                         :cpf => item.cpf,
                                         :rg => item.rg,
-                                        :telefone => item.desc_fone}}
-
+                                        :telefone => item.desc_fone,
+                                        :situacao => @situacao}}
    render :json => json_pessoa
-
 
   end
 
@@ -84,6 +95,6 @@ class PessoasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pessoa_params
-      params.require(:pessoa).permit(:nome_pessoa, :desc_fone, :cpf, :rg, :email_pessoa)
+      params.require(:pessoa).permit(:nome_pessoa, :desc_fone, :cpf, :rg, :email_pessoa, :avatar)
     end
 end

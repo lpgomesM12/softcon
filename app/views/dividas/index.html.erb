@@ -18,7 +18,7 @@
 </section>
 
 <section class="content">
-  <div class="box">
+     <div class="box">
               <div class="box-header">
                   <h3 class="box-title">Despesas</h3>
                 </div><!-- /.box-header -->
@@ -167,7 +167,7 @@ jQuery(function($){
   $("#data_vencimento").mask("99/99/9999");
  });
 
-   function Salva(){
+  function Salva(){
     $.ajax({
       url: '<%= incluirDivida_path %>',
       data : {
@@ -203,6 +203,29 @@ jQuery(function($){
     })
   }
 
+
+ function buscaDespesas(){
+    $.ajax({
+      url: '<%=buscaDespesas_path%>',
+      data : {},
+      success: function(data){
+        var html = "";
+        for (var i in data) {
+          var item = data[i];
+          html += "<tr><td>"+item.data_vencimento+"</td>";
+          html += "<td>"+item.valor+"</td>";
+          html += "<td>"+item.data_pagamento+"</td>";
+          html += "<td>"+item.data_vencimento+"</td>";
+          html += "<td>"+item.cpf_cnpj+"</td>";
+          html += "<td Align='right'>";
+          html += " <button type='button' onclick='confirmeExclusao("+item.id+")' class='btn btn-danger btn-xs' aria-label='Left Align'>";
+          html += "  <span class='glyphicon glyphicon-trash' aria-hidden='true'></span></button></tr>";
+        };
+         $( "#tborcamento" ).append(html);
+      }
+    })
+ }
+
   $(document).ready(function() {
        $('#nome_prestador').autocomplete({
        source: '/buscaprestador',
@@ -229,6 +252,8 @@ jQuery(function($){
   $(function() {
    $("#valr_divida").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
  })
+
+buscaDespesas();
 
 </script>
 

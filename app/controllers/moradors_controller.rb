@@ -31,14 +31,66 @@ class MoradorsController < ApplicationController
   # POST /moradors.json
   def create
 
-   if  morador_params[:pessoa_id] != ""
+  #Código comentado é na tentativa de enviar foto camera
+
+  #  if params[:avatar] != ""
+  #   encoded_picture = params[:avatar]
+  #   content_type = "image/jpg"
+  #   image = Paperclip.io_adapters.for("data:#{content_type};base64,#{encoded_picture}")
+  #   image.original_filename = "image.jpg"
+  # end
+
+   #content_type = "image/jpg"
+   #original_filename = "image.jpg"
+
+  #   data = StringIO.new(params[:avatar])
+  #   data.class_eval do
+  #        attr_accessor :content_type, :original_filename
+  #   end
+
+  #   data.content_type = content_type
+  #   data.original_filename = File.basename(original_filename)
+
+
+  if  morador_params[:pessoa_id] != ""
         @morador = Morador.new(morador_params)
       else
+        #morador_params_netested[:pessoa_attributes][:avatar] = image
         @morador = Morador.new(morador_params_netested)
-   end
+    #      StringIO.open(Base64.decode64(params[:avatar])) do |data|
+    #         data.class.class_eval { attr_accessor :original_filename, :content_type }
+    #
+    #       data.original_filename = "file.jpg"
+    #       data.content_type = "image/jpeg"
+    #       @morador.pessoa.avatar = data
+    #
+    #       #debugger
+    #       #mime_type = MIME::Types.type_for(params[:avatar])
+    #       #@morador.pessoa.avatar.avatar_content_type = mime_type.first
+    # end
+  end
 
-    respond_to do |format|
+   respond_to do |format|
       if @morador.save
+           #if params[:avatar] != ""
+
+             #StringIO.open(Base64.decode64(params[:avatar])) do |data|
+              #    data.class.class_eval { attr_accessor :original_filename, :content_type }
+              #    data.original_filename = "file.jpg"
+              #    data.content_type = "image/jpeg"
+                #  @pessoa = Pessoa.find(@morador.pessoa_id)
+              #     @pessoa = Pessoa.new
+                #  pessoa_params[:nome_pessoa] = @pesso.nome_pessoa
+                #  pessoa_params[:desc_fone] = @pessoa.desc_fone
+                #  pessoa_params[:cpf]  = @pessoa.cpf
+                #  pessoa_params[:rg] = @pessoa.rg
+                #  pessoa_params[:email_pessoa] = @pessoa.email_pessoa
+                #  pessoa_params[:avatar] = data
+              #    @pessoa.nome_pessoa = "Leandro P Gomes"
+              #    @pessoa.avatar = data
+              #    @pessoa.save
+              #  end
+            #end
         format.html { redirect_to @morador, notice: 'Cadastro realizado com sucesso!.' }
         format.json { render :show, status: :created, location: @morador }
       else
@@ -47,12 +99,11 @@ class MoradorsController < ApplicationController
       end
     end
   end
-
   # PATCH/PUT /moradors/1
   # PATCH/PUT /moradors/1.json
   def update
     respond_to do |format|
-      if @morador.update(morador_params)
+      if @morador.update(morador_params_netested)
         format.html { redirect_to @morador, notice: 'Cadastro alterado com sucesso!.' }
         format.json { render :show, status: :ok, location: @morador }
       else
@@ -79,11 +130,15 @@ class MoradorsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
+    def pessoa_params
+      params.require(:pessoa).permit(:nome_pessoa, :desc_fone, :cpf, :rg, :email_pessoa, :avatar)
+    end
+
     def morador_params
       params.require(:morador).permit(:apartamento_id, :pessoa_id, :user_inclusao, :condominio_id)
     end
 
     def morador_params_netested
-      params.require(:morador).permit(:apartamento_id, :pessoa_id, :condominio_id, :user_inclusao, pessoa_attributes: [:id, :nome_pessoa, :desc_fone, :cpf, :rg])
+      params.require(:morador).permit(:apartamento_id, :pessoa_id, :condominio_id, :user_inclusao, pessoa_attributes: [:id, :nome_pessoa, :desc_fone, :cpf, :rg, :avatar])
     end
 end

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :ocorrencia
+  resources :identificacaos
   resources :encomendas
   resources :termos
   resources :tipotermos
@@ -40,6 +42,7 @@ Rails.application.routes.draw do
   match '/validaPessoa', to: 'pessoas#valida_pessoa', via: 'get'
   match '/incluirDivida', to: 'dividas#incluir_divida', via: 'get'
   match '/entregaEncomenda', to: 'encomendas#entrega_encomenda', via: 'get'
+  match '/buscaDespesas', to: 'dividas#busca_despesas', via: 'get'
 
 
   get 'buscamorador' => 'moradors#busca_morador'

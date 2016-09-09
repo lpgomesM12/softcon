@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  data_ocorrencia: MyString
+  desc_ocorrencia: MyString
+  data_saida: MyString
+  qdt_minutos: 1
+  identificacao_id: 
+
+two:
+  data_ocorrencia: MyString
+  desc_ocorrencia: MyString
+  data_saida: MyString
+  qdt_minutos: 1
+  identificacao_id: 

@@ -47,7 +47,7 @@ Rails.application.configure do
     :user_name => ENV['email_username'],
     :password =>  ENV['email_password'],
     :domain => 'softcontecnologia.com.br',
-    :port => 2525,
+    :port => 587,
     :authentication => :plain,
     :enable_starttls_auto => true
   }

@@ -15,8 +15,6 @@
 <form role="form">
 <div class="box-body">
 
-
-
 <p>
   <strong>Data encomenda:</strong>
   <%= @encomenda.data_encomenda.blank? ? '' : @encomenda.data_encomenda.strftime("%d/%m/%Y") %>
@@ -24,7 +22,7 @@
 
 <p>
   <strong>Data entrega:</strong>
-  <%= @encomenda.data_entrega %>
+  <%= @encomenda.data_entrega.blank? ? '' : %>
 </p>
 
 <p>

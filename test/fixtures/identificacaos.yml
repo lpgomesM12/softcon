@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  desc_identificador: MyString
+  desc_nome: MyString
+  desc_fone: MyString
+  desc_atividade: MyText
+  apartamento_id: 
+
+two:
+  desc_identificador: MyString
+  desc_nome: MyString
+  desc_fone: MyString
+  desc_atividade: MyText
+  apartamento_id: 

@@ -1,0 +1,37 @@
+<%= form_for(@ocorrencium) do |f| %>
+  <% if @ocorrencium.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ocorrencium.errors.count, "error") %> prohibited this ocorrencium from being saved:</h2>
+
+      <ul>
+      <% @ocorrencium.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :data_ocorrencia %><br>
+    <%= f.text_field :data_ocorrencia %>
+  </div>
+  <div class="field">
+    <%= f.label :desc_ocorrencia %><br>
+    <%= f.text_field :desc_ocorrencia %>
+  </div>
+  <div class="field">
+    <%= f.label :data_saida %><br>
+    <%= f.text_field :data_saida %>
+  </div>
+  <div class="field">
+    <%= f.label :qdt_minutos %><br>
+    <%= f.number_field :qdt_minutos %>
+  </div>
+  <div class="field">
+    <%= f.label :identificacao_id %><br>
+    <%= f.text_field :identificacao_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

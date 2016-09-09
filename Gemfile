@@ -14,6 +14,7 @@ gem "cocoon"
 gem 'morrisjs-rails'
 gem 'raphael-rails'
 gem "figaro"
+gem "paperclip", "~> 5.0.0"
 
 gem 'rails-i18n', '~> 4.0', '>= 4.0.8'
 

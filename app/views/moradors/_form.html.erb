@@ -17,49 +17,70 @@
 <%= f.fields_for :pessoa do |p| %>
 
 <div class="row">
-<div class="col-lg-3">
+<div class="col-lg-4">
    <label>CPF</label><br>
-   <div class="input-group">
+   <!-- <div class="input-group"> -->
       <%= p.text_field :cpf, :maxlength => 11, :class => 'form-control' %>
-      <span class="input-group-btn">
+      <!-- <span class="input-group-btn">
         <button class="btn btn-success" type="button" onclick="validaPessoa();">Validar CPF</button>
-      </span>
-   </div>
+      </span> -->
+   <!-- </div> -->
   </div>
 </div>
 
 <div class="row">
  <div class="col-lg-6">
      <%= p.label :Nome_morador %><br>
-     <%= p.text_field :nome_pessoa, disabled: true, :class => 'form-control' %>
+     <%= p.text_field :nome_pessoa, :class => 'form-control' %>
    </div>
 </div>
 
 <div class="row">
   <div class="col-lg-6">
     <label>Email</label><br>
-    <%= p.text_field :email_pessoa, disabled: true, :class => 'form-control'%>
+    <%= p.text_field :email_pessoa, :class => 'form-control'%>
   </div>
 </div>
 
 <div class="row">
   <div class="col-lg-3">
       <label>RG</label><br>
-      <%= p.text_field :rg, disabled: true, :class => 'form-control'  %>
+      <%= p.text_field :rg, :class => 'form-control'  %>
     </div>
 </div>
 
 <div class="row">
- <div class="col-lg-4">
+ <div class="col-lg-3">
      <%= p.label :Telefone %><br>
-     <%= p.text_field :desc_fone, disabled: true, :class => 'form-control' %>
+     <%= p.text_field :desc_fone, :class => 'form-control' %>
    </div>
 </div>
+<br>
 
-
-
+<% unless p.object.new_record? %>
+  <div class="col-lg-6" >
+      <%= link_to image_tag(p.object.avatar.url(:thumb)),
+      p.object.avatar.url(:original)%>
+  </div>
 <%end%>
 
+<div class="row">
+   <div class="col-lg-6">
+     <!-- <label>Adicionar foto</label> -->
+      <%= p.file_field :avatar %>
+  </div>
+
+  <!-- <div class="col-lg-6">
+    <button type="button" onclick="openCamera()" class="btn btn-default">
+  <span class="fa fa-camera"></span> Câmera
+    </button>
+  </div> -->
+</div>
+<%end%>
+
+<input type="hidden" name="avatar" id="avatar">
+
+<br>
  <%= f.hidden_field :pessoa_id %>
  <%= f.hidden_field :user_inclusao, :value=>current_user.id%>
  <%= f.hidden_field :condominio_id, :value=> current_user.condominio_id%>
@@ -67,11 +88,10 @@
 <div class="row">
       <div class="col-lg-6">
         <%= f.label :Selecione_o_apartamento %><br>
-        <%= f.select :apartamento_id, options_from_collection_for_select(Apartamento.where(condominio_id: current_user.condominio_id), 'id', 'nome'), {:include_blank => true}, {:class => 'form-control', disabled: true, }%>
+        <%= f.select :apartamento_id, options_from_collection_for_select(Apartamento.where(condominio_id: current_user.condominio_id), 'id', 'nome'), {:include_blank => true}, {:class => 'form-control'}%>
       </div>
 </div>
-
-  </div>
+</div>
 </div><!-- /.box -->
 
   <div class="row mar-bot40">
@@ -89,8 +109,114 @@
 </section>
 <% end %>
 
+<div id="myModalCamera" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Câmera</h4>
+      </div>
+      <div class="modal-body">
+        <video id="video" width="570" height="480" autoplay></video>
+        <canvas id="canvas" width="570" height="480"></canvas>
+      </div>
+      <div class="modal-footer">
+        <button id="snap" class="btn btn-primary">Tirar Foto</button>
+        <button id="descartar" class="btn btn-default">Descartar</button>
+        <button id="usar" class="btn btn-default">Usar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal informativo -->
+<div id="myModalInformativo" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" id="fechar" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Aviso</h4>
+      </div>
+      <div class="modal-body">
+        <div id='mensagem'>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script type="text/javascript">
+
+
+
+function openCamera(){
+
+
+
+var localStream;
+
+ $("#video").show();
+ $("#canvas").hide();
+ $("#descartar").hide();
+ $("#usar").hide();
+
+  // Grab elements, create settings, etc.
+  var video = document.getElementById('video');
+  // Get access to the camera!
+  if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      // Not adding `{ audio: true }` since we only want video now
+      navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+          video.src = window.URL.createObjectURL(stream);
+          localStream = stream;
+          video.play();
+      });
+  }
+
+$("#myModalCamera").modal()
+
+  // Elements for taking the snapshot
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+  var video = document.getElementById('video');
+
+  // Trigger photo take
+  document.getElementById("snap").addEventListener("click", function() {
+   $("#canvas").show();
+   $("#video").hide();
+   $("#descartar").show();
+   $("#usar").show();
+  	context.drawImage(video, 0, 0, 570, 480);
+    // debugger
+  //  var x = canvas.toDataURL('image/jpg');
+  //  alert(x);
+  });
+
+  document.getElementById("descartar").addEventListener("click", function() {
+    $("#descartar").hide();
+    $("#canvas").hide();
+    $("#video").show();
+  });
+
+  document.getElementById("usar").addEventListener("click", function() {
+
+     $("#avatar").val(canvas.toDataURL('image/jpg'));
+    // navigator.mediaDevices.getUserMedia({audio: false, video: true}).then(stream => {
+    //   stream.getVideoTracks()[0].stop(); // Recommended
+    // });
+    localStream.stop();
+    //$("#fechar").click();
+    $("#myModalCamera").modal('hide');
+  });
+}
 
 function validaPessoa(){
   $.ajax({
@@ -100,6 +226,10 @@ function validaPessoa(){
     },
     success: function(data){
 
+      if (data == ""){
+          limparTela();
+          return;
+      }
       for (var i in data) {
         var item = data[i];
         $("#morador_pessoa_attributes_nome_pessoa").val(item.nome);
@@ -108,20 +238,31 @@ function validaPessoa(){
         $("#morador_pessoa_attributes_desc_fone").val(item.telefone);
         $("#morador_pessoa_id").val(item.id);
         $('#morador_apartamento_id').removeAttr('disabled');
+
+        if (item.situacao == 1 ){
+           $("#mensagem").append("<h5>Encontramos uma pessoa cadastrada em nossa base de dados com esse CPF altere os dados necessários e salve</h5>");
+         }else if(item.situacao == 2){
+           $("#mensagem").append("<h5>Esse morador já está cadastrado.</h5>");
+         }
+           chamaModel();
          return;
       };
-
-      $("#morador_pessoa_attributes_nome_pessoa").removeAttr('disabled');
-      $("#morador_pessoa_attributes_cpf").removeAttr('disabled');
-      $("#morador_pessoa_attributes_rg").removeAttr('disabled');
-      $("#morador_pessoa_attributes_email_pessoa").removeAttr('disabled');
-      $("#morador_pessoa_attributes_desc_fone").removeAttr('disabled');
-      $("#morador_pessoa_id").removeAttr('disabled');
-      $("#morador_apartamento_id").removeAttr('disabled');
-
     }
   })
-
 };
 
+function limparTela(){
+  $("#morador_pessoa_attributes_nome_pessoa").val("");
+  $("#morador_pessoa_attributes_rg").val("");
+  $("#morador_pessoa_attributes_desc_fone").val("");
+  $("#morador_pessoa_id").val("");
+}
+
+function chamaModel(){
+   $("#myModalInformativo").modal()
+}
+
+$("#morador_pessoa_attributes_cpf").blur(function() {
+      validaPessoa();
+});
 </script>

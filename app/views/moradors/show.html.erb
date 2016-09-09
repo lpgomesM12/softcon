@@ -4,7 +4,6 @@
       <%end%>
 </section>
 
-
 <!-- Main content -->
 <section class="content">
  <!-- Small boxes (Stat box) -->
@@ -15,6 +14,12 @@
 <form role="form">
 <div class="box-body">
 
+<div class="row">
+  <div class="col-lg-6" >
+      <%= image_tag @morador.pessoa.avatar.url(:thumb) %>
+  </div>
+</div>
+<br>
 <p>
     <strong>Nome:</strong>
     <%= @morador.pessoa.nome_pessoa %>
@@ -31,7 +36,6 @@
     <strong>RG:</strong>
     <%= @morador.pessoa.rg %>
 </p>
-
 
 </div><!-- /.box -->
 </form>
