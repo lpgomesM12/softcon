@@ -11,27 +11,98 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :data_ocorrencia %><br>
-    <%= f.text_field :data_ocorrencia %>
+  <div class="box-body">
+    <div class="row">
+          <div class="col-lg-7">
+            <label>Tipo</label>
+            <%= f.select :tipoocorrencium_id, options_from_collection_for_select(Tipoocorrencium.all, 'id', 'desc_tipoocorrencia'), {}, {:class => 'form-control'}%>
+          </div>
+    </div>
+    <div class="row">
+          <div class="col-lg-7">
+            <label>Unidade</label>
+            <%= f.select :apartamento_id, options_from_collection_for_select(Apartamento.where(condominio_id: current_user.condominio_id), 'id', 'nome'), {:include_blank => true}, {:class => 'form-control'}%>
+          </div>
+    </div>
+
+    <%= f.fields_for :identificacao do |identi| %>
+    <div class="row">
+     <div class="col-lg-2">
+       <label>Identificação</label>
+       <%= identi.text_field :desc_identificador, :class=> "form-control" %>
+     </div>
+        <div class="col-lg-5">
+         <label>Nome</label>
+         <%= identi.text_field :desc_nome, :class=> "form-control" %>
+        </div>
+    </div>
+    <div class="row">
+         <div class="col-lg-2">
+         <label>Fone</label>
+           <%= identi.text_field :desc_fone, :class=> "form-control" %>
+         </div>
+         <div class="col-lg-6">
+               <label>Adicionar foto</label>
+               <%= identi.file_field :avatar %>
+          </div>
+          <%= identi.hidden_field :condominio_id, :value => current_user.condominio_id %>
+    </div>
+      <%=identi.hidden_field :desc_atividade%>
+    <%end%>
+  <input type="hidden" name="id_identificacao" id="id_identificacao">
+
+   <%= f.hidden_field :condominio_id, :value => current_user.condominio_id %>
+
+  <div class="row">
+    <div class="col-lg-7">
+      <label>Atividades no condomínio</label>
+     <%= f.text_area :desc_ocorrencia, :class=> "form-control" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :desc_ocorrencia %><br>
-    <%= f.text_field :desc_ocorrencia %>
   </div>
-  <div class="field">
-    <%= f.label :data_saida %><br>
-    <%= f.text_field :data_saida %>
-  </div>
-  <div class="field">
-    <%= f.label :qdt_minutos %><br>
-    <%= f.number_field :qdt_minutos %>
-  </div>
-  <div class="field">
-    <%= f.label :identificacao_id %><br>
-    <%= f.text_field :identificacao_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  </div><!-- /.box -->
+    <div class="row mar-bot40">
+      <div class="col-lg-8" >
+         <div class="btn-group">
+           <button type="submit" value="Submit" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-floppy-disk"></span> Salvar
+           </button>
+           <%= link_to ocorrencia_path, :class => "btn btn-default btn-sm" do %>
+              <span class="glyphicon glyphicon-arrow-left"></span> Voltar
+            <% end %>
+          </div>
+        </div>
+    </div>
+  </section>
 <% end %>
+
+
+<script type="text/javascript">
+
+$("#ocorrencium_identificacao_attributes_desc_identificador").blur(function() {
+      busca_identificacao();
+});
+
+function busca_identificacao(){
+  $.ajax({
+    url: '<%= buscaIdentificacao_path %>',
+    data : {
+      identificador : $("#ocorrencium_identificacao_attributes_desc_identificador").val()
+    },
+    success: function(data){
+      if (data == ""){
+          return;
+      }
+      for (var i in data) {
+        var item = data[i];
+        $("#ocorrencium_identificacao_attributes_desc_nome").val(item.desc_nome);
+        $("#ocorrencium_identificacao_attributes_desc_fone").val(item.desc_fone);
+        $("#ocorrencium_desc_ocorrencia").val(item.desc_atividade);
+        $("#id_identificacao").val(item.id);
+         return;
+      };
+    }
+  })
+};
+
+</script>

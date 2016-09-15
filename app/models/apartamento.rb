@@ -14,7 +14,7 @@ class Apartamento < ActiveRecord::Base
   end
 
  def nome
-   self.numr_bloco + " " + numr_apartamento
+   self.numr_bloco + " - " + numr_apartamento
  end
 
 end

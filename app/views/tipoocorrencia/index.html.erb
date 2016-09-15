@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Tipoocorrencia</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Desc tipoocorrencia</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tipoocorrencia.each do |tipoocorrencium| %>
+      <tr>
+        <td><%= tipoocorrencium.desc_tipoocorrencia %></td>
+        <td><%= link_to 'Show', tipoocorrencium %></td>
+        <td><%= link_to 'Edit', edit_tipoocorrencium_path(tipoocorrencium) %></td>
+        <td><%= link_to 'Destroy', tipoocorrencium, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tipoocorrencium', new_tipoocorrencium_path %>

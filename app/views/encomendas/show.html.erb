@@ -22,7 +22,7 @@
 
 <p>
   <strong>Data entrega:</strong>
-  <%= @encomenda.data_entrega.blank? ? '' : %>
+  <%= @encomenda.data_entrega.blank? ? '' : @encomenda.data_entrega.strftime("%d/%m/%Y")%>
 </p>
 
 <p>

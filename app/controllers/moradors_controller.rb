@@ -1,9 +1,8 @@
 class MoradorsController < ApplicationController
   before_action :set_morador, only: [:show, :edit, :update, :destroy]
 
-
   def busca_morador
-     @moradors = Pessoa.search(params[:term],current_user.condominio_id)
+     @moradors = Morador.search(params[:term],current_user.condominio_id)
   end
 
   # GET /moradors

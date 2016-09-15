@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
-  resources :ocorrencia
+  resources :tipoocorrencia
+  resources :ocorrencia do
+    member do
+      get :baixa_ocorrencia
+    end
+  end
   resources :identificacaos
   resources :encomendas
   resources :termos
@@ -43,7 +48,10 @@ Rails.application.routes.draw do
   match '/incluirDivida', to: 'dividas#incluir_divida', via: 'get'
   match '/entregaEncomenda', to: 'encomendas#entrega_encomenda', via: 'get'
   match '/buscaDespesas', to: 'dividas#busca_despesas', via: 'get'
+  match '/buscaIdentificacao', to: 'ocorrencia#busca_identificacao', via: 'get'
+  match '/baixaocorrencia/:id', to: 'ocorrencia#baixa_ocorrencia', via: 'get'
 
+  get '/ocorrencia/:id', to: 'ocorrencia#baixa_ocorrencia', as: 'baicaocorrencia'
 
   get 'buscamorador' => 'moradors#busca_morador'
   get 'relatorio/reservas'

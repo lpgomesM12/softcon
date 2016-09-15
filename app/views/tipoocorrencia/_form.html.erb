@@ -1,0 +1,21 @@
+<%= form_for(@tipoocorrencium) do |f| %>
+  <% if @tipoocorrencium.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tipoocorrencium.errors.count, "error") %> prohibited this tipoocorrencium from being saved:</h2>
+
+      <ul>
+      <% @tipoocorrencium.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :desc_tipoocorrencia %><br>
+    <%= f.text_field :desc_tipoocorrencia %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

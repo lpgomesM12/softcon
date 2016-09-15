@@ -1,4 +1,4 @@
 json.array!(@moradors) do |result|
 json.id result.id
-json.value result.nome_pessoa
+json.value result.pessoa.nome_pessoa
 end

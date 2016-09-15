@@ -48,9 +48,16 @@
                     <%= link_to encomenda, method: :delete, data: { confirm: 'Deseja excluir o registro?' }, class: "btn btn-default btn-sm" do %>
                        <span class="glyphicon glyphicon-trash text-danger"></span> Excluir
                      <% end %>
-                     <button type="submit" value="Submit" class="btn btn-success btn-sm" onclick="modalEntrega(<%=encomenda.id%>)">
-                      <span class="glyphicon glyphicon-ok"></span> Entregar
-                     </button>
+
+                     <%if encomenda.user_entrega == nil%>
+                       <button type="submit" value="Submit" class="btn btn-primary btn-sm" onclick="modalEntrega(<%=encomenda.id%>)">
+                        <span class="glyphicon glyphicon-unchecked"></span> Entregar
+                       </button>
+                     <%else%>
+                       <button type="submit" value="Submit" class="btn btn-success btn-sm">
+                         <span class="glyphicon glyphicon-check"></span> Entregue
+                       </button>
+                     <%end%>
                   </div>
                  </td>
                </tr>

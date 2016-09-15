@@ -30,6 +30,17 @@
           <%#if current_user.empresa_id == 1%>
 
           <%unless current_user.tem_permissao(4)%>
+           <li class="treeview">
+                <a href="">
+                  <i class="glyphicon glyphicon-home"></i> <span>Portaria</span>
+                  <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                   <li> <%= link_to  ocorrencia_path do %><i class="fa fa-circle-o"></i><span>Controle Acesso</span><% end %></li>
+                   <li> <%= link_to  encomendas_path do %><i class="fa fa-circle-o"></i><span>Encomendas</span><% end %></li>
+                </ul>
+            </li>
+
              <li class="treeview">
                    <a href="">
                      <i class="fa fa-edit"></i> <span>Cadastros</span>
@@ -41,7 +52,6 @@
                       <li> <%= link_to  moradors_path do %><i class="fa fa-circle-o"></i><span>Moradores</span><% end %></li>
                       <li> <%= link_to  tiporeservas_path do %><i class="fa fa-circle-o"></i><span>Local Reserva</span><% end %></li>
                       <li> <%= link_to  prestadors_path do %><i class="fa fa-circle-o"></i><span>Prestadores</span><% end %></li>
-                      <li> <%= link_to  encomendas_path do %><i class="fa fa-circle-o"></i><span>Encomendas</span><% end %></li>
                       <li> <%= link_to  termos_path do %><i class="fa fa-circle-o"></i><span>Termos</span><% end %></li>
                       <li> <%= link_to  bairros_path do %><i class="fa fa-circle-o"></i><span>Bairros</span><% end %></li>
                    </ul>

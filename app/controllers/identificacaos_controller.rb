@@ -69,6 +69,6 @@ class IdentificacaosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def identificacao_params
-      params.require(:identificacao).permit(:desc_identificador, :desc_nome, :desc_fone, :desc_atividade, :apartamento_id)
+      params.require(:identificacao).permit(:desc_identificador, :desc_nome, :desc_fone, :desc_atividade, :apartamento_id, :avatar, :condominio_id)
     end
 end
