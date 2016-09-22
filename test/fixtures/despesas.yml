@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  valr_despesa: 9.99
+  numr_qtdparcela: 1
+  condominio_id: 
+  prestador_id: 
+
+two:
+  valr_despesa: 9.99
+  numr_qtdparcela: 1
+  condominio_id: 
+  prestador_id: 

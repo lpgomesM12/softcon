@@ -18,6 +18,8 @@ gem "paperclip", "~> 5.0.0"
 
 gem 'rails-i18n', '~> 4.0', '>= 4.0.8'
 
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.42'
 
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'

@@ -34,7 +34,7 @@ class PrestadorsController < ApplicationController
 
     respond_to do |format|
       if @prestador.save
-        format.html { redirect_to @prestador, notice: 'Prestador was successfully created.' }
+        format.html { redirect_to @prestador, notice: 'Prestador cadastrado com sucesso.' }
         format.json { render :show, status: :created, location: @prestador }
       else
         format.html { render :new }
@@ -48,7 +48,7 @@ class PrestadorsController < ApplicationController
   def update
     respond_to do |format|
       if @prestador.update(prestador_params)
-        format.html { redirect_to @prestador, notice: 'Prestador was successfully updated.' }
+        format.html { redirect_to @prestador, notice: 'Prestador alterado com sucesso.' }
         format.json { render :show, status: :ok, location: @prestador }
       else
         format.html { render :edit }
@@ -62,7 +62,7 @@ class PrestadorsController < ApplicationController
   def destroy
     @prestador.destroy
     respond_to do |format|
-      format.html { redirect_to prestadors_url, notice: 'Prestador was successfully destroyed.' }
+      format.html { redirect_to prestadors_url, notice: 'Prestador deletado com sucesso.' }
       format.json { head :no_content }
     end
   end

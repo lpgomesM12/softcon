@@ -13,6 +13,7 @@
  *= require_self
  *= require AdminLTE
  *= require morris
+ *= require bootstrap-datetimepicker
  *= require skins/_all-skins.min
  *= require plugins/iCheck/flat/blue
  *= require plugins/iCheck/square/blue
@@ -26,3 +27,4 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "bootstrap-datetimepicker";

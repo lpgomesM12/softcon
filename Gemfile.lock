@@ -51,6 +51,8 @@ GEM
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
+    bootstrap3-datetimepicker-rails (4.17.42)
+      momentjs-rails (>= 2.8.1)
     builder (3.2.2)
     byebug (9.0.5)
     capistrano (3.5.0)
@@ -118,6 +120,8 @@ GEM
     mimemagic (0.3.2)
     mini_portile2 (2.0.0)
     minitest (5.9.0)
+    momentjs-rails (2.11.1)
+      railties (>= 3.1)
     morrisjs-rails (0.5.1)
       railties (> 3.1, < 5)
     multi_json (1.12.1)
@@ -219,6 +223,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass (~> 3.3.6)
+  bootstrap3-datetimepicker-rails (~> 4.17.42)
   byebug
   capistrano (~> 3.5)
   capistrano-bundler (~> 1.1, >= 1.1.4)
@@ -231,6 +236,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   jquery-ui-rails
+  momentjs-rails (>= 2.9.0)
   morrisjs-rails
   paperclip (~> 5.0.0)
   pg (~> 0.15)

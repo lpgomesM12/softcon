@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  get 'relatorioacesso/relatorio'
+
+  resources :despesas
   resources :tipoocorrencia
   resources :ocorrencia do
     member do
@@ -61,7 +64,6 @@ Rails.application.routes.draw do
   get 'static_pages/home'
   get 'site/index'
   get "/relatorioreserva", to: "relatorio#reservas", as: :relatorioreserva
-
 
 
 end

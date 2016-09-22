@@ -1,0 +1,33 @@
+<%= form_for(@despesa) do |f| %>
+  <% if @despesa.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@despesa.errors.count, "error") %> prohibited this despesa from being saved:</h2>
+
+      <ul>
+      <% @despesa.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :valr_despesa %><br>
+    <%= f.text_field :valr_despesa %>
+  </div>
+  <div class="field">
+    <%= f.label :numr_qtdparcela %><br>
+    <%= f.number_field :numr_qtdparcela %>
+  </div>
+  <div class="field">
+    <%= f.label :condominio_id %><br>
+    <%= f.text_field :condominio_id %>
+  </div>
+  <div class="field">
+    <%= f.label :prestador_id %><br>
+    <%= f.text_field :prestador_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

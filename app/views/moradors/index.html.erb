@@ -23,6 +23,7 @@
           <table class="table table-hover">
             <thead>
               <tr>
+                <th></th>
                 <th>Nome</th>
                 <th>Ap</th>
                 <th>Bloco</th>
@@ -33,6 +34,7 @@
             <tbody>
                 <% @moradors.each do |morador| %>
                 <tr>
+                  <td><%= image_tag morador.pessoa.avatar.url(:thumb), size: "25x25"%></td>
                   <td><%= morador.pessoa.nome_pessoa %></td>
                   <td><%= morador.apartamento.numr_apartamento %></td>
                   <td><%= morador.apartamento.numr_bloco %></td>

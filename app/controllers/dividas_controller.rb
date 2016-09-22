@@ -2,16 +2,16 @@ class DividasController < ApplicationController
   before_action :set_divida, only: [:show, :edit, :update, :destroy]
 
   def busca_despesas
+    
     @despesas = Divida.where(condominio_id: current_user.condominio_id)
-
     json_pessoa = @despesas.map { |item| {:id => item.id,
                                           :nome => item.nome_pessoa,
                                           :desc_fone =>  item.desc_fone,
                                           :cpf => item.cpf,
                                           :rg => item.rg,
                                           :telefone => item.desc_fone}}
-
     render :json => @despesas
+
   end
 
   def incluir_divida
@@ -20,9 +20,14 @@ class DividasController < ApplicationController
     @valor_divida = params[:valr_divida].to_f
     @valor_divida = @valor_divida/Integer(@folhas)
 
+    # começa aqui o cadastro de despesas
+    # @despesa = Despesa.new(valr_despesa: params[:valr_divida].to_f,
+    #                        numr_qtdparcela: params[:qtd_folhas],
+    #                        )
+
      @i = 0
      while @i < Integer(@folhas)  do
-      @divida = Divida.new( numr_tipodivida: params[:numr_tipodivida],
+     @divida = Divida.new( numr_tipodivida: params[:numr_tipodivida],
                                numr_cheque: params[:numr_cheque],
                                data_vencimento: @data_vencimento,
                                valr_divida: @valor_divida,
