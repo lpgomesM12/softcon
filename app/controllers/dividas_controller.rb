@@ -1,16 +1,17 @@
 class DividasController < ApplicationController
   before_action :set_divida, only: [:show, :edit, :update, :destroy]
 
+  include ActionView::Helpers::NumberHelper
+
   def busca_despesas
-    
+
     @despesas = Divida.where(condominio_id: current_user.condominio_id)
     json_pessoa = @despesas.map { |item| {:id => item.id,
-                                          :nome => item.nome_pessoa,
-                                          :desc_fone =>  item.desc_fone,
-                                          :cpf => item.cpf,
-                                          :rg => item.rg,
-                                          :telefone => item.desc_fone}}
-    render :json => @despesas
+                                          :data_vencimento => item.data_vencimento.blank? ? '' : item.data_vencimento.strftime("%d/%m/%Y"),
+                                          :valr_divida => number_to_currency(item.valr_divida , unit: "R$ ", separator: ",", delimiter: ""),
+                                          :data_pagamento => item.data_pagamento.blank? ? '' : item.data_pagamento.strftime("%d/%m/%Y"),
+                                          :desc_cpfcnpj => item.prestador.desc_cpfcnpj}}
+    render :json => json_pessoa
 
   end
 
@@ -20,10 +21,17 @@ class DividasController < ApplicationController
     @valor_divida = params[:valr_divida].to_f
     @valor_divida = @valor_divida/Integer(@folhas)
 
+    #debugger
     # começa aqui o cadastro de despesas
-    # @despesa = Despesa.new(valr_despesa: params[:valr_divida].to_f,
-    #                        numr_qtdparcela: params[:qtd_folhas],
-    #                        )
+    @despesa = Despesa.new(valr_despesa: params[:valr_divida].to_f,
+                           numr_qtdparcela: params[:qtd_folhas],
+                           condominio_id: current_user.condominio_id,
+                           prestador_id: params[:prestador_id],
+                           user_inclusao: current_user.id,
+                           item_id: params[:item_id],
+                           subitem_id: params[:subitem_id],
+                           prestador_id: params[:prestador_id])
+   @despesa.save
 
      @i = 0
      while @i < Integer(@folhas)  do
@@ -31,17 +39,31 @@ class DividasController < ApplicationController
                                numr_cheque: params[:numr_cheque],
                                data_vencimento: @data_vencimento,
                                valr_divida: @valor_divida,
-                               data_vencimento: params[:data_vencimento],
-                               prestador_id: params[:prestador_id],
                                contabank_id: params[:contabank_id],
                                condominio_id: current_user.condominio_id,
                                user_inclusao: current_user.id,
                                flag_ordinaria: params[:flag_ordinaria],
                                flag_despesafixa: params[:flag_despesafixa],
-                               numr_notafiscal: params[:numr_notafiscal])
+                               numr_notafiscal: params[:numr_notafiscal],
+                               prestador_id: params[:prestador_id])
+
+       @data_vencimento = @data_vencimento + 30.days
+
        @divida.save
-       @data_vencimento = @data_vencimento + 30
        @i +=1
+    end
+
+    return busca_despesas
+
+  end
+
+
+  def excluir_divida
+
+    @divida = Divida.find(params[:id])
+
+    if @divida.destroy
+       return busca_despesas
     end
 
   end
