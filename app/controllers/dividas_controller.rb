@@ -26,7 +26,6 @@ class DividasController < ApplicationController
     @despesa = Despesa.new(valr_despesa: params[:valr_divida].to_f,
                            numr_qtdparcela: params[:qtd_folhas],
                            condominio_id: current_user.condominio_id,
-                           prestador_id: params[:prestador_id],
                            user_inclusao: current_user.id,
                            item_id: params[:item_id],
                            subitem_id: params[:subitem_id],
