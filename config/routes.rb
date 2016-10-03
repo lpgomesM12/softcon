@@ -54,6 +54,8 @@ Rails.application.routes.draw do
   match '/buscaIdentificacao', to: 'ocorrencia#busca_identificacao', via: 'get'
   match '/baixaocorrencia/:id', to: 'ocorrencia#baixa_ocorrencia', via: 'get'
   match '/excluirdivida', to: 'dividas#excluir_divida', via: 'get'
+  match '/buscadivida', to: 'dividas#busca_divida', via: 'get'
+
 
   get '/ocorrencia/:id', to: 'ocorrencia#baixa_ocorrencia', as: 'baicaocorrencia'
 

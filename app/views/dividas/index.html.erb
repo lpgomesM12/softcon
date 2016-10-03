@@ -14,7 +14,6 @@
     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModalDespesa">
       <span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Nova despesa
     </button>
-
 </section>
 
 <section class="content">
@@ -58,7 +57,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h3 class="modal-title">Cadastro Despesas</h3>
+        <h3 class="modal-title">Despesa</h3>
       </div>
       <div class="modal-body">
 
@@ -161,7 +160,6 @@
 </div>
 
 
-
 <!-- Modal -->
 <div id="myModalExcluir" class="modal fade" role="dialog">
   <div class="modal-dialog modal-sm">
@@ -173,16 +171,19 @@
         <h4 class="modal-title">Excluir</h4>
       </div>
       <div class="modal-body">
+        <input type="hidden" id="divida">
         <p>Deseja realmente excluir esse registro?</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Excluir</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="excluirDivida()">Excluir</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
       </div>
     </div>
 
   </div>
 </div>
+
+<%= render 'dividajs' %>
 
 <style media="screen">
 .table > tbody > tr > td {
@@ -192,141 +193,7 @@
   font-size: 12px;
 }
 
-</style>
-
-<script type="text/javascript">
-
-
-function chamaModal() {
-  $('#myModalExcluir').modal('show');
+.ui-autocomplete {
+    z-index: 5000;
 }
-
-
-jQuery(function($){
-  $("#data_vencimento").mask("99/99/9999");
- });
-
-  function Salva(){
-    $.ajax({
-      url: '<%= incluirDivida_path %>',
-      data : {
-        numr_tipodivida: $('#numr_tipodivida').val(),
-        numr_cheque: $('#numr_cheque').val(),
-        valr_divida: $('#valr_divida').val(),
-        data_vencimento: $('#data_vencimento').val(),
-        qtd_folhas:  $('#qtd_folhas').val(),
-        prestador_id: $('#prestador_id').val(),
-        item_id: $('#item_id').val(),
-        subitem_id: $('#subitem_id').val(),
-        flag_ordinaria: $('#flag_ordinaria').is(':checked'),
-        flag_despesafixa: $('#flag_despesafixa').is(':checked'),
-        contabank_id: $('#contabank_id').val()
-      },
-      success: function(data){
-        var html = "";
-        for (var i in data) {
-          var item = data[i];
-
-          html += "<tr><td>"+item.data_vencimento+"</td>";
-          html += "<td>"+item.valr_divida+"</td>";
-          html += "<td>"+item.desc_cpfcnpj+"</td>";
-          html += "<td>"+item.data_pagamento+"</td>";
-          html += "<td Align='center'>";
-          html += " <button type='button' onclick='chamaModal("+item.id+")' data-toggle='tooltip' title='Excluir' class='btn btn-danger btn-xs' aria-label='Left Align'>";
-          html += "  <span class='glyphicon glyphicon-trash' aria-hidden='true'></span></button></tr>";
-
-        };
-
-         html =  "<tr>" + html + "</tr>"
-         $( "#tborcamento" ).append(html);
-      }
-    })
-  }
-
- function buscaDespesas(){
-    $.ajax({
-      url: '<%=buscaDespesas_path%>',
-      data : {},
-      success: function(data){
-        var html = "";
-        $("#tborcamento").empty();
-        for (var i in data) {
-          var item = data[i];
-          html += "<tr><td>"+item.data_vencimento+"</td>";
-          html += "<td>"+item.valr_divida+"</td>";
-          html += "<td>"+item.desc_cpfcnpj+"</td>";
-          html += "<td>"+item.data_pagamento+"</td>";
-          html += "<td Align='center'>";
-          html += " <button type='button' onclick='chamaModal("+item.id+")' data-toggle='tooltip' title='Excluir' class='btn btn-danger btn-xs' aria-label='Left Align'>";
-          html += "  <span class='glyphicon glyphicon-trash' aria-hidden='true'></span></button></tr>";
-        };
-         $("#tborcamento").append(html);
-      }
-    })
- }
-
-
- function excluirDivida(){
-    $.ajax({
-      url: '<%=excluirdivida_path%>',
-      data : {},
-      success: function(data){
-        var html = "";
-        $("#tborcamento").empty();
-        for (var i in data) {
-          var item = data[i];
-          html += "<tr><td>"+item.data_vencimento+"</td>";
-          html += "<td>"+item.valr_divida+"</td>";
-          html += "<td>"+item.desc_cpfcnpj+"</td>";
-          html += "<td>"+item.data_pagamento+"</td>";
-          html += "<td Align='center'>";
-          html += " <button type='button' onclick='confirmeExclusao("+item.id+")' data-toggle='tooltip' title='Excluir' class='btn btn-danger btn-xs' aria-label='Left Align'>";
-          html += "  <span class='glyphicon glyphicon-trash' aria-hidden='true'></span></button></tr>";
-        };
-         $("#tborcamento").append(html);
-      }
-    })
- }
-
-$(document).ready(function() {
-       $('#nome_prestador').autocomplete({
-       source: '/buscaprestador',
-       dataType: 'json',
-       minLength: 0,
-       change: function(event, ui) {
-       if (!ui.item) {
-         $('#nome_prestador').val('');
-       }
-    },
-    select: function(event, ui) {
-        if (ui.item) {
-              $("#prestador_id").val(ui.item.id);
-           }
-         }
-     });
-  });
-
-  function seta_tipodivida(id){
-    $('#numr_tipodivida').val(id);
-  }
-
-
-  $(function() {
-   $("#valr_divida").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
- })
-
-
- // $(function () {
- //   $('[data-toggle="tooltip"]').tooltip()
- // })
-
-buscaDespesas();
-
-</script>
-
-
-<style type="text/css">
-  .ui-autocomplete {
-      z-index: 5000;
-  }
 </style>

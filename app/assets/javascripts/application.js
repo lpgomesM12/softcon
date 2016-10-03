@@ -13,6 +13,9 @@
 
 //= require jquery
 //= require jquery_ujs
+//= require dispatcher
+//= require boot
+//= require_tree ./views
 //= require bootstrap-sprockets
 //= require jquery-ui
 //= require raphael

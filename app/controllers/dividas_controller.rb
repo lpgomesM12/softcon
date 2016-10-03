@@ -59,12 +59,29 @@ class DividasController < ApplicationController
 
   def excluir_divida
 
-    @divida = Divida.find(params[:id])
+    @divida = Divida.find(params[:divida])
 
     if @divida.destroy
        return busca_despesas
     end
 
+  end
+
+  def busca_divida
+    @divida = Divida.find(params[:divida_id])
+
+    json_pessoa = @divida.map { |item| {:id => item.id,
+                                          :numr_notafiscal => item.numr_notafiscal,
+                                          :numr_cheque => item.numr_cheque,
+                                          :nome_prestador => item.prestador.nome_prestador,
+                                          :nome_banco => item.contaban.nome_banco,
+                                          :item => item.item.desc_titulo,
+                                          :subitem => item.subitem.desc_titulo,
+                                          :flag_despesafixa => item.flag_despesafixa,
+                                          :flag_ordinaria => item.flag_ordinaria,
+                                          :valr_divida => number_to_currency(item.valr_divida , unit: "R$ ", separator: ",", delimiter: ""),
+                                          :data_vencimento => item.data_vencimento.blank? ? '' : item.data_vencimento.strftime("%d/%m/%Y"),
+                                          :data_pagamento => item.data_pagamento.blank? ? '' : item.data_pagamento.strftime("%d/%m/%Y")}}
   end
 
   # GET /dividas
