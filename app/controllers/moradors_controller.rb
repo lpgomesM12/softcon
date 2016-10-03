@@ -134,10 +134,10 @@ class MoradorsController < ApplicationController
     end
 
     def morador_params
-      params.require(:morador).permit(:apartamento_id, :pessoa_id, :user_inclusao, :condominio_id)
+      params.require(:morador).permit(:apartamento_id, :pessoa_id, :user_inclusao, :email_pessoa, :condominio_id)
     end
 
     def morador_params_netested
-      params.require(:morador).permit(:apartamento_id, :pessoa_id, :condominio_id, :user_inclusao, pessoa_attributes: [:id, :nome_pessoa, :desc_fone, :cpf, :rg, :avatar])
+      params.require(:morador).permit(:apartamento_id, :pessoa_id, :condominio_id, :user_inclusao, pessoa_attributes: [:id, :nome_pessoa, :desc_fone, :cpf, :rg, :avatar, :email_pessoa])
     end
 end
