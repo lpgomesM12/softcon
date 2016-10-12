@@ -1,26 +1,121 @@
 <script type="text/javascript">
 
+
+//Setando biblioteca de calendário para campos datas
+$(function () {
+   $('#datetimepicker1').datepicker({
+     format: 'dd/mm/yyyy',
+     language: 'pt-BR'
+   });
+
+   $('#datetimepicker2').datepicker({
+     format: 'dd/mm/yyyy',
+     language: 'pt-BR'
+   });
+
+   $('#datetimepicker3').datepicker({
+     format: 'dd/mm/yyyy',
+     language: 'pt-BR'
+   });
+
+   $('#datetimepicker4').datepicker({
+     format: 'dd/mm/yyyy',
+     language: 'pt-BR'
+   });
+});
+
+//chama modal para cadastro e edição de despesas
+function chamaModalDespesa() {
+  limpa_despesa();
+  $('#myModalDespesa').modal('show');
+}
+
 //Função chama modal exclusão
  function chamaModal(id) {
     $('#myModalExcluir').modal('show');
     $('#divida').val(id);
   };
 
-  function Salva(){
+//evento que captura ação quando click no butão salvar do modal despesa
+ $(document).ready(function(){
+      $("#btnSalvar").click(function(){
+          var notafiscal = $('#numr_notafiscal').val();
+          var numg_tipopagamento = $('#numg_tipopagamento').val();
+          var contabank = $('#contabank_id').val();
+          var valor_divida = $('#valr_divida').val();
+          var data_vencimento = $('#data_vencimento').val();
+          var prestador = $('#prestador_id').val();
+          var item = $('#item_id').val();
+          var subitem = $('#subitem_id').val();
+
+          if(notafiscal == ""){
+            alert_boot('O campo NOTA FISCAL é obrigatório','danger','#alert_placeholder');
+            return false;
+          }
+          if(contabank == ""){
+            alert_boot('O campo CONTA é obrigatório','danger','#alert_placeholder');
+            return false;
+          }
+          if(valor_divida ==""){
+            alert_boot('O campo VALOR DIVIDA é obrigatório','danger','#alert_placeholder');
+            return false;
+          }
+          if(data_vencimento ==""){
+            alert_boot('O campo DATA VENCIMENTO é obrigatório','danger','#alert_placeholder');
+            return false;
+          }
+          if(prestador ==""){
+            alert_boot('O campo PRESTADOR é obrigatório','danger','#alert_placeholder');
+            return false;
+          }
+          if(item == ""){
+            alert_boot('O campo ITEM é obrigatório','danger','#alert_placeholder');
+            return false;
+          }
+          if(subitem == ""){
+            alert_boot('O campo SUBITEM é obrigatório','danger','#alert_placeholder');
+            return false;
+          }
+
+          Salva();
+      });
+ });
+
+
+//função salvar/editar dados despesas
+ function Salva(){
+      var urlbase = "";
+      var id = $("#divida_id").val();
+        if(id == ""){
+          urlbase = '/incluirDivida'
+        }else{
+          urlbase = '/alterarDivida'
+        }
+
+       var divida = { "numg_tipopagamento": $('#numg_tipopagamento').val(),
+                      "numr_notafiscal": $('#numr_notafiscal').val(),
+                      "numr_cheque": $('#numr_cheque').val(),
+                      "valr_divida": $('#valr_divida').val(),
+                      "data_vencimento": $('#data_vencimento').val(),
+                      "data_pagamento": $('#data_pagamento').val(),
+                      "prestador_id": $('#prestador_id').val(),
+                      "item_id": $('#item_id').val(),
+                      "subitem_id": $('#subitem_id').val(),
+                      "flag_ordinaria": $('#flag_ordinaria').is(':checked'),
+                      "flag_despesafixa": $('#flag_despesafixa').is(':checked'),
+                      "flag_pago": $('#flag_despesapaga').is(':checked'),
+                      "contabank_id": $('#contabank_id').val()
+                  }
       $.ajax({
-        url: '/incluirDivida',
+
+        url: urlbase,
         data : {
-          numr_tipodivida: $('#numr_tipodivida').val(),
-          numr_cheque: $('#numr_cheque').val(),
-          valr_divida: $('#valr_divida').val(),
-          data_vencimento: $('#data_vencimento').val(),
-          qtd_folhas:  $('#qtd_folhas').val(),
-          prestador_id: $('#prestador_id').val(),
-          item_id: $('#item_id').val(),
-          subitem_id: $('#subitem_id').val(),
-          flag_ordinaria: $('#flag_ordinaria').is(':checked'),
-          flag_despesafixa: $('#flag_despesafixa').is(':checked'),
-          contabank_id: $('#contabank_id').val()
+            divida,
+            qtd_folhas:  $('#qtd_folhas').val(),
+            item_id: $('#item_id').val(),
+            subitem_id: $('#subitem_id').val(),
+            divida_id: $('#divida_id').val(),
+            despesa_id: $('#despesa_id').val()
         },
         success: function(data){
             monta_lista_divia(data);
@@ -28,10 +123,18 @@
       })
     };
 
+ //funcão que busca todas as despesas
    function buscaDespesas(){
       $.ajax({
         url: '/buscaDespesas',
-        data : {},
+        data : {
+          data_inicio: $('#data_inicio').val(),
+          data_fim: $('#data_fim').val(),
+          flag_pago: $('#flag_despesapagafiltro').is(':checked'),
+          flag_naopago: $('#flag_despesa_nao_pagafiltro').is(':checked'),
+          flag_despesafixa: $('#flag_despesafixafiltro').is(':checked'),
+          flag_ordinaria: $('#flag_despesaordinariafiltro').is(':checked')
+        },
         success: function(data){
           monta_lista_divia(data);
         }
@@ -50,8 +153,31 @@
       })
    };
 
-   function chama_editar(id){
+  function limpa_despesa(){
+    $('#despesa_id').val("");
+    $('#divida_id').val("");
+    $('#numr_notafiscal').val("");
+    $('#numr_cheque').val("");
+    $('#nome_prestador').val("");
+    $('#valr_divida').val("");
+    $('#data_vencimento').val("");
+    $('#data_pagamento').val("");
+    $('#data_pagamento').prop("disabled", true);
+    $("#prestador_id").val("");
+    $("#contabank_id").val("");
+    $('#item_id').val("");
+    $('#subitem_id').val("");
+    $('#qtd_folhas').val("");
+    $("#tipopagamento1").prop('checked', false);
+    $("#tipopagamento2").prop('checked', false);
+    $("#tipopagamento3").prop('checked', false);
+    $("#flag_ordinaria").prop('checked', false);
+    $("#flag_despesafixa").prop('checked', false);
+    $("#flag_despesapaga").prop('checked', false);
+    $('#qtd_folhas').prop("disabled", false);
+  }
 
+   function chama_editar(id){
         $.ajax({
           url: '/buscadivida',
           data : {
@@ -59,27 +185,59 @@
           },
           success: function(data){
 
-         $("#tborcamento").empty();
-         for (var i in data) {
-            var item = data[i];
-            numr_tipodivida: $('#numr_tipodivida').val(item.),
-            numr_cheque: $('#numr_cheque').val(),
-            valr_divida: $('#valr_divida').val(item.valr_divida),
-            data_vencimento: $('#data_vencimento').val(),
-            qtd_folhas:  $('#qtd_folhas').val(),
-            prestador_id: $('#prestador_id').val(),
-            item_id: $('#item_id').val(),
-            subitem_id: $('#subitem_id').val(),
-            flag_ordinaria: $('#flag_ordinaria').is(':checked'),
-            flag_despesafixa: $('#flag_despesafixa').is(':checked'),
-            contabank_id: $('#contabank_id').val()
+          limpa_despesa();
+            $('#divida_id').val(data.id);
+            $('#despesa_id').val(data.despesa_id);
+            $('#numr_notafiscal').val(data.numr_notafiscal);
+            $('#numr_cheque').val(data.numr_cheque);
+            $('#nome_prestador').val(data.nome_prestador);
+            $('#valr_divida').val(data.valr_divida);
+            $('#data_vencimento').val(data.data_vencimento);
+            $("#prestador_id").val(data.prestador_id);
+            $("#contabank_id").val(data.contabank_id);
+            $('#item_id').val(data.item);
+            $('#subitem_id').val(data.subitem);
+            $('#qtd_folhas').prop("disabled", true);
+
+            if(data.numg_tipopagamento == 1){
+               $("#tipopagamento1").prop('checked', true);
+            } else if (data.numg_tipopagamento == 2){
+               $("#tipopagamento2").prop('checked', true);
+            } else if (data.numg_tipopagamento == 3){
+               $("#tipopagamento3").prop('checked', true);
+            };
+            if(data.flag_ordinaria){
+              $("#flag_ordinaria").prop('checked', true);
+            }else {
+              $("#flag_ordinaria").prop('checked', false);
             }
-         };
+            if(data.flag_despesafixa){
+              $("#flag_despesafixa").prop('checked', true);
+            }else{
+              $("#flag_despesafixa").prop('checked', false);
+            }
+
+            if(data.flag_pago){
+               $("#flag_despesapaga").prop('checked', true);
+               $('#data_pagamento').prop("disabled", false);
+               $('#data_pagamento').val(data.data_pagamento);
+            }
+         }
+
         })
         $('#myModalDespesa').modal('show');
    };
 
-   function monta_lista_divia(data){
+   $('#flag_despesapaga').change(function () {
+      if ($(this).is(':checked')) {
+          $("#data_pagamento").prop("disabled", false);
+      };
+      if ($(this).is(':checked') == false) {
+          $("#data_pagamento").prop("disabled", true);
+      };
+  });
+
+function monta_lista_divia(data){
     var html = "";
     $("#tborcamento").empty();
      for (var i in data) {
@@ -116,12 +274,13 @@
     });
 
     function seta_tipodivida(id){
-      $('#numr_tipodivida').val(id);
+      $('#numg_tipopagamento').val(id);
     };
 
   //Adicionando mascara data_vencimento
   jQuery(function($){
       $("#data_vencimento").mask("99/99/9999");
+      $("#data_pagamento").mask("99/99/9999");
   });
 
     $(function() {
@@ -129,5 +288,9 @@
    })
 
   buscaDespesas();
+
+  function alert_boot(message,color,place) {
+    $(place).html('<div style="padding: 8px;" class="alert alert-'+ color +'" role="alert">'+message+'<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button> </div>')
+  }
 
 </script>

@@ -1,9 +1,7 @@
 class EncomendasController < ApplicationController
   before_action :set_encomenda, only: [:show, :edit, :update, :destroy]
 
-
   def entrega_encomenda
-
 
     @encomenda = Encomenda.find(params[:id])
     @encomenda.user_entrega = current_user.id
@@ -43,7 +41,10 @@ class EncomendasController < ApplicationController
     @encomenda = Encomenda.new(encomenda_params)
     respond_to do |format|
       if @encomenda.save
-        EncomendaInfo.send_email(@encomenda,@encomenda.morador.pessoa.email_pessoa,current_user.condominio.email).deliver
+
+        if @encomenda.morador.pessoa.email_pessoa != nil
+           EncomendaInfo.send_email(@encomenda,@encomenda.morador.pessoa.email_pessoa,current_user.condominio.email).deliver
+        end
         format.html { redirect_to @encomenda, notice: 'Encomenda cadastrada com sucesso' }
         format.json { render :show, status: :created, location: @encomenda }
       else

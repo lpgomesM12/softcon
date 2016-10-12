@@ -3,7 +3,7 @@ class PrestadorsController < ApplicationController
 
 
   def busca_prestador
-     @prestaores = Prestador.search(params[:term])
+     @prestaores = Prestador.search(params[:term]).limit(10)
   end
 
   # GET /prestadors

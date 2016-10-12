@@ -1,27 +1,67 @@
 <section class="content-header">
     <h1>
-      <!--Mensagens aqui-->
       <%if notice %>
-       <!-- <div class="alert alert-success alert-dismissable">
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <h4>  <i class="icon fa fa-check"></i>Mensagem</h4>
-          <%#= notice %>
-      </div> -->
       <%end%>
-    <!--<small></small>-->
     </h1>
 
-    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModalDespesa">
-      <span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Nova despesa
-    </button>
+    <div class="well" style="padding: 9px">
+        <div class="row">
+          <div class="col-lg-2">
+            <br>
+            <button type="button" class="btn btn-danger" onclick="chamaModalDespesa()">
+                <span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Nova despesa
+            </button>
+        </div>
+          <div class='col-sm-2'>
+             <label for="data_inicio">Data Início</label>
+              <div class="form-group">
+                  <div class='input-group date' id='datetimepicker1'>
+                      <input type='text' id="data_inicio" name="data_inicio" value="<%=@data_inicio%>" class="form-control" />
+                      <span class="input-group-addon">
+                          <span class="fa fa-calendar"></span>
+                      </span>
+                  </div>
+              </div>
+          </div>
+          <div class='col-sm-2'>
+             <label for="data_inicio">Data Fim</label>
+              <div class="form-group">
+                  <div class='input-group date' id='datetimepicker2'>
+                      <input type='text' id="data_fim" name="data_fim" value="<%=@data_fim%>" class="form-control"/>
+                      <span class="input-group-addon">
+                          <span class="fa fa-calendar"></span>
+                      </span>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="checkbox">
+              <label><input type="checkbox" id="flag_despesapagafiltro" name="flag_despesapagafiltro" checked="checked">Pagas</label>
+              <label><input type="checkbox" id="flag_despesa_nao_pagafiltro" name="flag_despesapagafiltro" checked="checked">Não pagas</label>
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="checkbox">
+             <label><input type="checkbox" id="flag_despesafixafiltro" name="flag_despesapagafiltro">Despesa Fixa</label>
+             <label><input type="checkbox" id="flag_despesaordinariafiltro" name="flag_despesapagafiltro">Despesa Ordinária</label>
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <button class="btn btn-primary" style="margin-top:23px" type="submit" name="imprimir" onclick="buscaDespesas()" value="html" data-target="_blank">
+               <span class="glyphicon glyphicon-search"></span> Pesquisar
+            </button>
+          </div>
+      </div>
+    </div>
 </section>
 
-<section class="content">
+<section class="content" style="margin-top:-25px">
      <div class="box">
               <div class="box-header">
                   <h3 class="box-title">Despesas</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
+                  <div class="table-overflow">
                   <table id="example1" class="table table-bordered table-hover table-responsive table-condensed">
                     <thead>
                       <tr>
@@ -32,27 +72,38 @@
                         <th style="text-align:center">Ações</th>
                       </tr>
                     </thead>
-                    <tbody id="tborcamento">
-
-                    </tbody>
-                    <!-- <tfoot>
-                      <tr>
-                        <th>Data Vencimento</th>
-                        <th>Valor</th>
-                        <th>Data Pagamento</th>
-                        <th>CPF/CPNJ</th>
-                        <th style="text-align:center">Ações</th>
-                      </tr>
-                    </tfoot> -->
+                     <tbody id="tborcamento" >
+                     </tbody>
                   </table>
+                  </div>
                 </div><!-- /.box-body -->
+                <div class="box-footer">
+                    <table id="example1" class="table table-bordered table-hover table-responsive table-condensed">
+                      <thead>
+                        <tr>
+                          <td>Despesa Paga: <span id="lbldespesa_paga"></span></td>
+                          <td>Despesa a Pagar: <span id="lbldespesa_a_paga"></span></td>
+                          <td>Despesa em Atraso: <span id="lbldespesa_atraso"></span></td>
+                          <td>Despesa Lançada: <span id="lbldespesa_lancada"></span></td>
+                        </tr>
+                      </thead>
+                    </table>
+                </div><!-- /.box-header -->
           </div><!-- /.box -->
 </section>
 
+<!-- <section class="content" style="margin-top:-25px">
+     <div class="box">
+                <div class="box-body">
+                </div>
+      </div>
+</section> -->
 
 <div id="myModalDespesa" class="modal fade" role="dialog">
   <div class="modal-dialog modal-lg">
 
+  <input type="hidden" id="despesa_id">
+  <input type="hidden" id="divida_id">
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
@@ -60,51 +111,72 @@
         <h3 class="modal-title">Despesa</h3>
       </div>
       <div class="modal-body">
+          <div id = "alert_placeholder"></div>
 
         <div class="row">
            <div class="col-md-6">
               <div class="row">
                 <div class="col-lg-4">
-                 Nota Fiscal <br>
+                 *Nota Fiscal <br>
                  <input type="text" name="numr_notafiscal" id="numr_notafiscal" class="form-control">
                 </div>
               </div><br>
               <div class="row">
                 <div class="col-lg-8">
-                  <label class="radio-inline"><input type="radio" onclick="seta_tipodivida(this.value)" value="1" name="optradio">Cheque</label>
-                  <label class="radio-inline"><input type="radio" onclick="seta_tipodivida(this.value)" value="2" name="optradio">Boleto</label>
-                  <label class="radio-inline"><input type="radio" onclick="seta_tipodivida(this.value)" value="3" name="optradio">Recibo</label><br>
-
-                  <input type="hidden" id="numr_tipodivida" name="numr_tipodivida">
+                  <label class="radio-inline"><input type="radio" onclick="seta_tipodivida(this.value)" value="1" id="tipopagamento1" name="optradio">Cheque</label>
+                  <label class="radio-inline"><input type="radio" onclick="seta_tipodivida(this.value)" value="2" id="tipopagamento2" name="optradio">Boleto</label>
+                  <label class="radio-inline"><input type="radio" onclick="seta_tipodivida(this.value)" value="3" id="tipopagamento3" name="optradio">Recibo</label><br>
+                  <input type="hidden" id="numg_tipopagamento" name="numg_tipopagamento">
                </div>
              </div>
              <div class="row">
                <div class="col-lg-4">
                  <input type="text" name="numr_cheque" id="numr_cheque" class="form-control">
+
                </div>
              </div>
              <div class="row">
                <div class="col-lg-12">
-                 Conta<br>
+                 *Conta<br>
                  <%=select_tag "contabank_id", options_from_collection_for_select(Contabank.all, "id", "nome_banco"),{:class => 'form-control'}%>
                 </div>
             </div>
             <div class="row">
               <div class="col-lg-4">
-                Valor(R$) Total<br>
+                *Valor(R$) Total<br>
                 <input type="txt" name="valr_divida" id="valr_divida" class="form-control">
               </div>
-              <div class="col-lg-4">
-                Data Vencimento<br>
-                <input type="txt" name="data_vencimento" id="data_vencimento" class="form-control">
+              <div class="col-lg-5">
+                *Data Vencimento<br>
+                  <div class="form-group">
+                      <div class='input-group date' id='datetimepicker3'>
+                          <input type='text' id="data_vencimento" name="data_vencimento" class="form-control" />
+                          <span class="input-group-addon">
+                              <span class="fa fa-calendar"></span>
+                          </span>
+                      </div>
+                </div>
               </div>
               <div class="col-lg-3">
                 Qtd. Folhas<br>
                 <input type="txt" name="qtd_folhas" id="qtd_folhas" class="form-control">
               </div>
-              <div class="col-lg-1">
+            </div>
+            <div class="row">
+              <div class="col-lg-4">
                 <div class="checkbox">
-                  <label><input type="checkbox" id="flag_despesafixa" name="flag_despesafixa">D.Fixa</label>
+                  <label><input type="checkbox" id="flag_despesapaga" name="flag_despesapaga">Despesa Paga</label>
+                 </div>
+              </div>
+              <div class="col-lg-5">
+                Data Pagamento<br>
+                <div class="form-group">
+                    <div class='input-group date' id='datetimepicker4'>
+                        <input type='text' id="data_pagamento" name="data_pagamento" disabled class="form-control" />
+                        <span class="input-group-addon">
+                            <span class="fa fa-calendar"></span>
+                        </span>
+                    </div>
                 </div>
               </div>
             </div>
@@ -113,25 +185,28 @@
          <div class="col-md-6">
             <div class="row">
               <div class="col-lg-12">
-                 Prestador<br>
-                <input type="text" name="nome_prestador"  id="nome_prestador" placeholder="Pesquise pelo nome do prestador" class="form-control">
+                 *Prestador<br>
+                <input type="text" name="nome_prestador"  id="nome_prestador" placeholder="Pesquise pelo nome do prestador" onfocus="javascript:$(this).autocomplete('search','');" class="form-control">
                 <input type="hidden" id="prestador_id">
              </div>
             </div>
             <div class="row">
               <div class="col-lg-12">
-                 Item<br>
+                 *Item<br>
                 <%=select_tag "item_id", options_from_collection_for_select(Titulo.where(numr_tipolancamento: 1), "id", "desc_titulo"),{:class => 'form-control'}%>
                </div>
            </div>
            <div class="row">
              <div class="col-lg-12">
-               SubItem<br>
-               <%=select_tag "subitem_id", options_from_collection_for_select(Titulo.where(numr_tipolancamento: 2), "id", "desc_titulo"),{:class => 'form-control'}%>
+               *SubItem<br>
+               <%=select_tag "subitem_id", options_from_collection_for_select(Titulo.where(numr_tipolancamento: 2), "id", "desc_titulo",@id_subitem),{:class => 'form-control'}%>
               </div>
           </div>
            <div class="row">
              <div class="col-lg-5">
+               <div class="checkbox">
+                 <label><input type="checkbox" id="flag_despesafixa" name="flag_despesafixa">D.Fixa</label>
+               </div>
              </div>
              <div class="col-lg-7">
                <div class="checkbox">
@@ -146,7 +221,7 @@
       <div class="modal-footer">
         <div class="row">
           <div class="col-lg-1">
-            <button type="button" class="btn btn-success" onclick="Salva()" data-dismiss="modal">Salvar</button>
+            <button type="button" class="btn btn-success" id="btnSalvar"  data-dismiss="modal">Salvar</button>
          </div>
          <div class="col-lg-10">
          </div>
@@ -186,9 +261,25 @@
 <%= render 'dividajs' %>
 
 <style media="screen">
+
+
+.box-title {
+    text-align: center; /* Center text in .block */
+}
+
+.table-overflow {
+    max-height:350px;
+    overflow-y:auto;
+}
+
 .table > tbody > tr > td {
   font-size: 12px;
 }
+
+.table > thead > tr > td {
+  font-size: 12px;
+}
+
 .table > thead > tr > th {
   font-size: 12px;
 }
@@ -196,4 +287,8 @@
 .ui-autocomplete {
     z-index: 5000;
 }
+.datepicker {
+  z-index:1200 !important;
+}
+
 </style>

@@ -24,6 +24,7 @@ class ContabanksController < ApplicationController
   # POST /contabanks
   # POST /contabanks.json
   def create
+
     @contabank = Contabank.new(contabank_params)
 
     respond_to do |format|

@@ -49,13 +49,13 @@ Rails.application.routes.draw do
   match '/mudaCondominio', to: 'condominios#muda_condominio', via: 'get'
   match '/validaPessoa', to: 'pessoas#valida_pessoa', via: 'get'
   match '/incluirDivida', to: 'dividas#incluir_divida', via: 'get'
+  match '/alterarDivida', to: 'dividas#alterar_divida', via: 'get'
   match '/entregaEncomenda', to: 'encomendas#entrega_encomenda', via: 'get'
   match '/buscaDespesas', to: 'dividas#busca_despesas', via: 'get'
   match '/buscaIdentificacao', to: 'ocorrencia#busca_identificacao', via: 'get'
   match '/baixaocorrencia/:id', to: 'ocorrencia#baixa_ocorrencia', via: 'get'
   match '/excluirdivida', to: 'dividas#excluir_divida', via: 'get'
   match '/buscadivida', to: 'dividas#busca_divida', via: 'get'
-
 
   get '/ocorrencia/:id', to: 'ocorrencia#baixa_ocorrencia', as: 'baicaocorrencia'
 

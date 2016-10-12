@@ -17,7 +17,7 @@ class RelatorioacessoController < ApplicationController
 
 
     @acessos = Ocorrencium.where(identificacao_id: @tipoocorrencia,
-                                 updated_at: Date.strptime(@data_inicio, "%d/%m/%Y").strftime('%Y-%m-%d')..Date.strptime(@data_fim, "%d/%m/%Y").strftime('%Y-%m-%d'),
+                                 created_at: Date.strptime(@data_inicio, "%d/%m/%Y").strftime('%Y-%m-%d')..Date.strptime(@data_fim, "%d/%m/%Y").strftime('%Y-%m-%d'),
                                  apartamento_id: @apartamento)
 
           respond_to do |format|
