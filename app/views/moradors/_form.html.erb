@@ -158,9 +158,6 @@
 
 
 function openCamera(){
-
-
-
 var localStream;
 
  $("#video").show();
@@ -238,6 +235,7 @@ function validaPessoa(){
         $("#morador_pessoa_id").val(item.id);
         $('#morador_apartamento_id').removeAttr('disabled');
 
+         $("#mensagem").empty();
         if (item.situacao == 1 ){
            $("#mensagem").append("<h5>Encontramos uma pessoa cadastrada em nossa base de dados com esse CPF altere os dados necessários e salve</h5>");
          }else if(item.situacao == 2){

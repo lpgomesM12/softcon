@@ -253,15 +253,17 @@ function monta_lista_divia(data){
        html += "  <span class='glyphicon glyphicon-trash' aria-hidden='true'></span></button></tr>";
      };
 
-     var result = data[0];
 
-    if(result.total_paga != null){
-       $('#lbldespesa_paga').text(result.total_paga);
-      }
+    if (data != ""){
+      var result = data[0];
+      if(result.total_paga != null){
+         $('#lbldespesa_paga').text(result.total_paga);
+        }
+       $('#lbldespesa_a_paga').text(result.total_naopaga);
+       $('#lbldespesa_atraso').text(result.total_atraso);
+       $('#lbldespesa_lancada').text(result.total_lancado);
+    }
 
-     $('#lbldespesa_a_paga').text(result.total_naopaga);
-     $('#lbldespesa_atraso').text(result.total_atraso);
-     $('#lbldespesa_lancada').text(result.total_lancado);
      $("#tborcamento").append(html);
    };
 

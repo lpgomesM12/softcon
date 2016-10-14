@@ -6,6 +6,7 @@ class PessoasController < ApplicationController
 
    #quando não tem cadastro
    @situacao = 0
+   
     unless @pessoa.empty?
       #quando encontrou a pessoa no banco de dados
       @situacao = 1
