@@ -13,11 +13,6 @@ class DividasController < ApplicationController
        @data_fim = params[:data_fim]
     end
 
-
-    # Date.strptime(@data_inicio, "%d/%m/%Y").strftime('%Y-%m-%d'),
-    # Date.strptime(@data_fim, "%d/%m/%Y").strftime('%Y-%m-%d'),
-    #  debugger
-
     @dividas = Divida.busca_dividas(current_user.condominio_id,
                                     params[:flag_pago],
                                     params[:flag_naopago],
@@ -26,13 +21,22 @@ class DividasController < ApplicationController
                                     Date.strptime(@data_inicio, "%d/%m/%Y").strftime('%Y-%m-%d'),
                                     Date.strptime(@data_fim, "%d/%m/%Y").strftime('%Y-%m-%d'))
     # @total_divida = @dividas.to_a.sum(&:valr_divida)
+    @date = Time.now.strftime('%Y-%m-%d')
+    @total_paga = @dividas.where(flag_pago: true).to_a.sum(&:valr_divida)
+    @total_naopaga = @dividas.where(flag_pago: false).to_a.sum(&:valr_divida)
+    @total_atraso = @dividas.where("flag_pago = false AND data_vencimento <= '#{@date}'").to_a.sum(&:valr_divida)
+    @total_lancado = @dividas.to_a.sum(&:valr_divida)
+
 
     json_dividas = @dividas.map { |item| {:id => item.id,
                                           :data_vencimento => item.data_vencimento.blank? ? '' : item.data_vencimento.strftime("%d/%m/%Y"),
                                           :valr_divida => number_to_currency(item.valr_divida , unit: "R$", separator: ",", delimiter: ""),
                                           :data_pagamento => item.data_pagamento.blank? ? '' : item.data_pagamento.strftime("%d/%m/%Y"),
                                           :desc_cpfcnpj => item.prestador.desc_cpfcnpj,
-                                          :total_divida => @total_divida}}
+                                          :total_paga => number_to_currency(@total_paga , unit: "R$", separator: ",", delimiter: ""),
+                                          :total_naopaga => number_to_currency(@total_naopaga , unit: "R$", separator: ",", delimiter: ""),
+                                          :total_atraso => number_to_currency(@total_atraso , unit: "R$", separator: ",", delimiter: ""),
+                                          :total_lancado => number_to_currency(@total_lancado , unit: "R$", separator: ",", delimiter: "")}}
     render :json => json_dividas
 
   end
@@ -73,13 +77,13 @@ class DividasController < ApplicationController
       @divida.despesa_id = @despesa.id
       @divida.numr_tipodivida = 1
 
-     @data_vencimento = @data_vencimento + 30.days
+       @data_vencimento = @data_vencimento + 30.days
 
        @divida.save
        @i +=1
     end
 
-    return busca_despesas
+    render :json => true
 
   end
 
@@ -95,14 +99,14 @@ class DividasController < ApplicationController
     @divida = Divida.find(params[:divida_id])
     @divida.update(divida_params)
 
-    return busca_despesas
+    render :json => true
 
   end
 
   def excluir_divida
     @divida = Divida.find(params[:divida])
     if @divida.destroy
-       return busca_despesas
+       render :json => true
     end
   end
 
@@ -205,6 +209,6 @@ class DividasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def divida_params
-      params.require(:divida).permit(:numr_tipodivida, :numr_cheque, :data_vencimento, :valr_divida, :desc_observacao, :numg_tipopagamento, :data_cadastro, :desc_docprincipal, :data_cancelamento, :data_pagamento, :valr_pagamento, :valr_multa, :valr_juro, :numr_notafiscal, :numr_parcela, :desc_caminhocheque, :flag_ordinaria, :flag_despesafixa, :condominio_id, :contabank_id, :prestador_id, :user_inclusao, :despesa_id, :user_exclusao, flag_pago)
+      params.require(:divida).permit(:numr_tipodivida, :numr_cheque, :data_vencimento, :valr_divida, :desc_observacao, :numg_tipopagamento, :data_cadastro, :desc_docprincipal, :data_cancelamento, :data_pagamento, :valr_pagamento, :valr_multa, :valr_juro, :numr_notafiscal, :numr_parcela, :desc_caminhocheque, :flag_ordinaria, :flag_despesafixa, :condominio_id, :contabank_id, :prestador_id, :user_inclusao, :despesa_id, :user_exclusao, :flag_pago)
     end
 end

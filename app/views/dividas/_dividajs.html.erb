@@ -118,7 +118,7 @@ function chamaModalDespesa() {
             despesa_id: $('#despesa_id').val()
         },
         success: function(data){
-            monta_lista_divia(data);
+            buscaDespesas();
         }
       })
     };
@@ -148,7 +148,7 @@ function chamaModalDespesa() {
           divida: $('#divida').val()
         },
         success: function(data){
-          monta_lista_divia(data);
+          buscaDespesas();
         }
       })
    };
@@ -252,7 +252,17 @@ function monta_lista_divia(data){
        html += " <button type='button' onclick='chamaModal("+item.id+")' data-toggle='tooltip' title='Excluir' class='btn btn-danger btn-xs' aria-label='Left Align'>";
        html += "  <span class='glyphicon glyphicon-trash' aria-hidden='true'></span></button></tr>";
      };
-      $("#tborcamento").append(html);
+
+     var result = data[0];
+
+    if(result.total_paga != null){
+       $('#lbldespesa_paga').text(result.total_paga);
+      }
+
+     $('#lbldespesa_a_paga').text(result.total_naopaga);
+     $('#lbldespesa_atraso').text(result.total_atraso);
+     $('#lbldespesa_lancada').text(result.total_lancado);
+     $("#tborcamento").append(html);
    };
 
   $(document).ready(function() {
