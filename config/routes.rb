@@ -59,10 +59,12 @@ Rails.application.routes.draw do
   match '/baixaocorrencia/:id', to: 'ocorrencia#baixa_ocorrencia', via: 'get'
   match '/excluirdivida', to: 'dividas#excluir_divida', via: 'get'
   match '/buscadivida', to: 'dividas#busca_divida', via: 'get'
+  match '/incluirInadimplente', to: 'inadimplentes#incluir', via: 'get'
 
   get '/ocorrencia/:id', to: 'ocorrencia#baixa_ocorrencia', as: 'baicaocorrencia'
 
   get 'buscamorador' => 'moradors#busca_morador'
+  get 'buscaapartamento' => 'apartamentos#busca'
   get 'relatorio/reservas'
   get "/articles", to: "relatorio#index", as: :articles
   get 'buscamoradorcpf' => 'moradors#busca_moradorcpf'

@@ -1,6 +1,13 @@
 class InadimplentesController < ApplicationController
   before_action :set_inadimplente, only: [:show, :edit, :update, :destroy]
 
+
+ def incluir
+   @inadimplente = Inadimplente.new
+   @inadimplente.apartamento_id = params[:apartamento_id]
+   @inadimplente.save
+   render :json => true
+ end
   # GET /inadimplentes
   # GET /inadimplentes.json
   def index

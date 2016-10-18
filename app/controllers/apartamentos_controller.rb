@@ -1,6 +1,10 @@
 class ApartamentosController < ApplicationController
   before_action :set_apartamento, only: [:show, :edit, :update, :destroy]
 
+  def busca
+    @apartamentos = Apartamento.search(params[:term], current_user.condominio_id).limit(10)
+  end
+
   # GET /apartamentos
   # GET /apartamentos.json
   def index

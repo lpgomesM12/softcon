@@ -5,6 +5,13 @@ class Apartamento < ActiveRecord::Base
   validates :numr_apartamento, presence: { message: "precisa de" }
   validates :numr_bloco, presence: true
 
+  def self.search(term,condominio)
+
+    sql = "lower(numr_apartamento)like '%#{term.downcase}%'"
+    sql = sql + " AND condominio_id = #{condominio}"
+    where(sql)
+
+  end
 
   def self.apartamento_morador(pessoa, condominio)
       sql = " INNER JOIN moradors mo on apartamentos.id = mo.apartamento_id"
