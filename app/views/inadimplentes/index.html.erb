@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Inadimplentes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Apartamento</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @inadimplentes.each do |inadimplente| %>
+      <tr>
+        <td><%= inadimplente.apartamento %></td>
+        <td><%= link_to 'Show', inadimplente %></td>
+        <td><%= link_to 'Edit', edit_inadimplente_path(inadimplente) %></td>
+        <td><%= link_to 'Destroy', inadimplente, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Inadimplente', new_inadimplente_path %>

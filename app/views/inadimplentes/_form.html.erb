@@ -1,0 +1,21 @@
+<%= form_for(@inadimplente) do |f| %>
+  <% if @inadimplente.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@inadimplente.errors.count, "error") %> prohibited this inadimplente from being saved:</h2>
+
+      <ul>
+      <% @inadimplente.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :apartamento_id %><br>
+    <%= f.text_field :apartamento_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

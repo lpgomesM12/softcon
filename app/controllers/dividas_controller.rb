@@ -129,6 +129,7 @@ class DividasController < ApplicationController
                     :valr_divida => number_to_currency(@divida.valr_divida , unit: "", separator: ",", delimiter: ""),
                     :data_vencimento => @divida.data_vencimento.blank? ? '' : @divida.data_vencimento.strftime("%d/%m/%Y"),
                     :flag_pago => @divida.flag_pago,
+                    :desc_observacao => @divida.desc_observacao,
                     :data_pagamento => @divida.data_pagamento.blank? ? '' : @divida.data_pagamento.strftime("%d/%m/%Y")}
       render :json => json_divida
   end

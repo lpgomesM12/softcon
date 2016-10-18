@@ -104,7 +104,8 @@ function chamaModalDespesa() {
                       "flag_ordinaria": $('#flag_ordinaria').is(':checked'),
                       "flag_despesafixa": $('#flag_despesafixa').is(':checked'),
                       "flag_pago": $('#flag_despesapaga').is(':checked'),
-                      "contabank_id": $('#contabank_id').val()
+                      "contabank_id": $('#contabank_id').val(),
+                      "desc_observacao": $('#desc_observacao').val()
                   }
       $.ajax({
 
@@ -198,6 +199,7 @@ function chamaModalDespesa() {
             $('#item_id').val(data.item);
             $('#subitem_id').val(data.subitem);
             $('#qtd_folhas').prop("disabled", true);
+            $('#desc_observacao').val(data.desc_observacao);
 
             if(data.numg_tipopagamento == 1){
                $("#tipopagamento1").prop('checked', true);

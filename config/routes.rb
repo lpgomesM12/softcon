@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  resources :inadimplentes
+  get 'relatoriodespesa/relatorio'
+
   get 'relatorioacesso/relatorio'
 
   resources :despesas

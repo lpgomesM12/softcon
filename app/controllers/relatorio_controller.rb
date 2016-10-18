@@ -3,7 +3,6 @@ class RelatorioController < ApplicationController
   end
 
   def reservas
-
     if params[:data_inicio] == "" or params[:data_inicio] == nil
         @data_inicio = Date.today.at_beginning_of_month.strftime('%d/%m/%Y')
         @data_fim  = Date.today.at_end_of_month.strftime('%d/%m/%Y')
