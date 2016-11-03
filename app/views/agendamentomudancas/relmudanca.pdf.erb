@@ -1,0 +1,113 @@
+
+<meta charset="utf-8">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+ <table id="t03" style="width: 100%;" border="1">
+   <tr>
+     <td style="font-size: 12px" align="center">
+          <span style="padding-left:420px">Goiânia, <strong><%=Time.zone.now.strftime("%d/%m/%Y")%></span>
+       <br>
+         <h2 align="center"><%=@condominio%></h2>
+       <br>
+       <br>
+     </td>
+   </tr>
+ </table>
+
+<h5>Registro de saída de objetos  &nbsp;&nbsp; <%=@agendamentomudanca.flag_entrada == true ? 'Entrada' : '' %></h5>
+<p style="font-size:11px">Eu <strong><%=@agendamentomudanca.nome%></strong>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   Condôminio Apto. <strong><%=@agendamentomudanca.apartamento.numr_apartamento%></strong>
+   &nbsp;&nbsp;&nbsp;&nbsp; Torre <strong><%=@agendamentomudanca.apartamento.numr_bloco%></strong><br>
+   Quero agendar a minha Mudança para o dia: <strong><%=@agendamentomudanca.data_agendamento.strftime("%d/%m/%Y")%></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   Fone: <strong><%=@agendamentomudanca.fone%></strong>
+ </p>
+<br>
+<p style="font-size:11px">
+  Proibido a entrada de caminhões. Proibido a entreda com botijão de gàs;<br>
+  Toda mudança deve entrar pelo "ELEVADOR DE SERVIÇO", se houver;<br>
+  Os móveis que não couber no Elevador, subirão pela escada.(com Cuidado);<br>
+  Favor jogar papelão, isopor e plásticos na lixeira que se localizada na entrada do condomínio;<br>
+  O preenchimento da ficha de cadastro de moradores é obrigatório;<br>
+  Entregar copia do contrato de compra/venda ou escritura quando proprietário e se locatário copia do contrato de locação;
+</p>
+
+<h4 align="center">AGRADECEMOS</h4>
+
+<p style="font-size:11px">
+
+____________________________    <span style="padding-left:300px"></span>   ____________________________<br>
+Assinatura do Condôminio  <span style="padding-left:390px">&nbsp;</span> Administração
+
+</p>
+
+<h5 align="center">Observações adcionais:</h5>
+<p style="font-size:11px">  <%=@agendamentomudanca.observacao%></p>
+<br>
+
+<i class="fa fa-scissors" aria-hidden="true"></i>
+---------------------------------------------------------------------------------------------------------------------------
+
+
+<h5>Registro de saída de objetos  &nbsp;&nbsp; <%=@agendamentomudanca.flag_entrada == true ? 'Entrada' : '' %></h5>
+<p style="font-size:11px">Eu <strong><%=@agendamentomudanca.nome%></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   Condôminio Apto. <strong><%=@agendamentomudanca.apartamento.numr_apartamento%></strong>
+   &nbsp;&nbsp;&nbsp;&nbsp; Torre <strong><%=@agendamentomudanca.apartamento.numr_bloco%></strong><br>
+   Quero agendar a minha Mudança para o dia: <strong><%=@agendamentomudanca.data_agendamento.strftime("%d/%m/%Y")%></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   Fone: <strong><%=@agendamentomudanca.fone%></strong>
+ </p>
+
+<br><br>
+ <p style="font-size:11px">
+
+ ____________________________    <span style="padding-left:300px"></span>   ____________________________<br>
+ Assinatura do Condôminio  <span style="padding-left:390px">&nbsp;</span> Administração
+
+ </p>
+
+<p style="font-size:11px">
+  Observações adcionais: <span style="padding-left:390px">&nbsp;</span> Goiânia, <strong><%=Time.zone.now.strftime("%d/%m/%Y")%></strong>
+</p>
+
+ <p style="font-size:11px">  <%=@agendamentomudanca.observacao%></p>
+ <br>
+
+ <style media="screen">
+   table, th, td {
+       border: 1px solid black;
+       border-collapse: collapse;
+       font-size: 11px;
+   }
+   table#t01 th {
+       background-color: #cbcbcb;
+   }
+
+   table#t02 th {
+     border:none !important;
+     border-collapse: collapse;
+     width: 100%;
+   }
+
+   table#t02 td {
+     border:none !important;
+     border-collapse: collapse;
+   }
+   table#t02  {
+     border:none !important;
+     border-collapse: collapse;
+     padding:2px;
+   }
+   table#t03  {
+     border: 1px solid black;
+     border-collapse: collapse;
+     padding:2px;
+   }
+
+   table#t04  {
+     border: 1px solid black;
+     border-collapse: collapse;
+     padding:1px;
+   }
+
+ </style>

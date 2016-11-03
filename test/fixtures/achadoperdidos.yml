@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  descricao: MyString
+  data_achado: 2016-10-26 06:34:53
+  data_entrega: 2016-10-26 06:34:53
+  observacao: MyString
+  morador_id: 
+
+two:
+  descricao: MyString
+  data_achado: 2016-10-26 06:34:53
+  data_entrega: 2016-10-26 06:34:53
+  observacao: MyString
+  morador_id: 

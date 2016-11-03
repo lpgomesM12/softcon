@@ -54,3 +54,9 @@ rails g scaffold identificacao desc_identificador:string desc_nome:string desc_f
 
 OCORRENCIA:
 rails g scaffold ocorrencia data_ocorrencia:string desc_ocorrencia:string data_saida:string qdt_minutos:integer identificacao:references
+
+ACHADOPERDIDO:
+rails g scaffold achadoperdido descricao:string data_achado:datetime data_entrega:datetime observacao:string morador:references
+
+AGENDAMENTOMUDANCA
+rails g scaffold agendamentomudanca nome:string fone:string apartamento:references data_agendamento:datatime valr_taxa:decimal periodo:string flag_entrada:boolean flag_saida:boolean observacao:string

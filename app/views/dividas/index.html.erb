@@ -6,12 +6,6 @@
 
     <div class="well" style="padding: 9px">
         <div class="row">
-          <div class="col-lg-2">
-            <br>
-            <button type="button" class="btn btn-danger" onclick="chamaModalDespesa()">
-                <span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Nova despesa
-            </button>
-        </div>
           <div class='col-sm-2'>
              <label for="data_inicio">Data Início</label>
               <div class="form-group">
@@ -43,14 +37,33 @@
           <div class="col-lg-2">
             <div class="checkbox">
              <label><input type="checkbox" id="flag_despesafixafiltro" name="flag_despesapagafiltro">Despesa Fixa</label>
-             <label><input type="checkbox" id="flag_despesaordinariafiltro" name="flag_despesapagafiltro">Despesa Ordinária</label>
+             <label><input type="checkbox" id="flag_despesaordinariafiltro" name="flag_despesapagafiltro" checked="checked">Despesa Ordinária</label>
             </div>
           </div>
-          <div class="col-lg-2">
-            <button class="btn btn-primary" style="margin-top:23px" type="submit" name="imprimir" onclick="buscaDespesas()" value="html" data-target="_blank">
-               <span class="glyphicon glyphicon-search"></span> Pesquisar
-            </button>
-          </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-2">
+          <label>N° Fiscal</label>
+          <input type="text" name="notafiscal" id="notafiscal" class="form-control">
+        </div>
+        <div class="col-lg-2">
+          <label>Cheque</label>
+          <input type="text" name="cheque" id="cheque" class="form-control">
+        </div>
+        <div class="col-lg-4">
+          <label>Prestador</label>
+          <input type="text" name="nomeprestador"  id="nomeprestador" placeholder="Pesquise pelo nome do prestador" onfocus="javascript:$(this).autocomplete('search','');" class="form-control">
+          <input type="hidden" id="id_prestador">
+        </div>
+        <div>
+          <br>
+          <button class="btn btn-primary" type="submit" name="imprimir" onclick="buscaDespesas()" value="html" data-target="_blank">
+             <span class="glyphicon glyphicon-search"></span> Pesquisar
+          </button>
+          <button type="button" class="btn btn-danger" onclick="chamaModalDespesa()">
+              <span class='glyphicon glyphicon-plus' aria-hidden='true'></span> Nova despesa
+          </button>
+        </div>
       </div>
     </div>
 </section>
@@ -58,7 +71,9 @@
 <section class="content" style="margin-top:-25px">
      <div class="box">
               <div class="box-header">
-                  <h3 class="box-title">Despesas</h3>
+                   <div Align="left">
+
+                  </div>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <div class="table-overflow">
@@ -67,8 +82,9 @@
                       <tr>
                         <th>Data Vencimento</th>
                         <th>Valor</th>
-                        <th>CPF/CPNJ</th>
                         <th>Data Pagamento</th>
+                        <th>Prestador</th>
+                        <th>Observação</th>
                         <th style="text-align:center">Ações</th>
                       </tr>
                     </thead>
@@ -120,19 +136,19 @@
                  *Nota Fiscal <br>
                  <input type="text" name="numr_notafiscal" id="numr_notafiscal" class="form-control">
                 </div>
-              </div><br>
-              <div class="row">
+              </div>
+              <!-- <div class="row">
                 <div class="col-lg-8">
                   <label class="radio-inline"><input type="radio" onclick="seta_tipodivida(this.value)" value="1" id="tipopagamento1" name="optradio">Cheque</label>
                   <label class="radio-inline"><input type="radio" onclick="seta_tipodivida(this.value)" value="2" id="tipopagamento2" name="optradio">Boleto</label>
                   <label class="radio-inline"><input type="radio" onclick="seta_tipodivida(this.value)" value="3" id="tipopagamento3" name="optradio">Recibo</label><br>
                   <input type="hidden" id="numg_tipopagamento" name="numg_tipopagamento">
                </div>
-             </div>
+             </div> -->
              <div class="row">
                <div class="col-lg-4">
+                 Cheque<br>
                  <input type="text" name="numr_cheque" id="numr_cheque" class="form-control">
-
                </div>
              </div>
              <div class="row">

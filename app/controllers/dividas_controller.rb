@@ -19,7 +19,10 @@ class DividasController < ApplicationController
                                     params[:flag_despesafixa],
                                     params[:flag_ordinaria],
                                     Date.strptime(@data_inicio, "%d/%m/%Y").strftime('%Y-%m-%d'),
-                                    Date.strptime(@data_fim, "%d/%m/%Y").strftime('%Y-%m-%d'))
+                                    Date.strptime(@data_fim, "%d/%m/%Y").strftime('%Y-%m-%d'),
+                                    params[:id_prestador],
+                                    params[:notafiscal],
+                                    params[:cheque])
     # @total_divida = @dividas.to_a.sum(&:valr_divida)
     @date = Time.now.strftime('%Y-%m-%d')
     @total_paga = @dividas.where(flag_pago: true).to_a.sum(&:valr_divida)
@@ -36,7 +39,9 @@ class DividasController < ApplicationController
                                           :total_paga => number_to_currency(@total_paga , unit: "R$", separator: ",", delimiter: ""),
                                           :total_naopaga => number_to_currency(@total_naopaga , unit: "R$", separator: ",", delimiter: ""),
                                           :total_atraso => number_to_currency(@total_atraso , unit: "R$", separator: ",", delimiter: ""),
-                                          :total_lancado => number_to_currency(@total_lancado , unit: "R$", separator: ",", delimiter: "")}}
+                                          :total_lancado => number_to_currency(@total_lancado , unit: "R$", separator: ",", delimiter: ""),
+                                          :nome_prestador => item.prestador.nome_prestador,
+                                          :desc_observacao => item.desc_observacao}}
     render :json => json_dividas
 
   end

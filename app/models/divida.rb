@@ -8,7 +8,7 @@ class Divida < ActiveRecord::Base
   belongs_to :cancelamento, :class_name => "User", :foreign_key => "user_cancelamento"
 
 
-  def self.busca_dividas(condominio,flag_pago,flag_naopago,flag_despesafixa,flag_ordinaria,data_inicio,data_fim)
+  def self.busca_dividas(condominio,flag_pago,flag_naopago,flag_despesafixa,flag_ordinaria,data_inicio,data_fim,prestador_id,notafiscal,cheque)
 
     @or = "AND"
     sql = " condominio_id = #{condominio}"
@@ -27,6 +27,15 @@ class Divida < ActiveRecord::Base
       end
       if flag_despesafixa == "true"
         sql = sql + " AND flag_despesafixa = true"
+      end
+      if prestador_id != nil && prestador_id != ""
+        sql = sql + " AND prestador_id = #{prestador_id}"
+      end
+      if notafiscal != nil && notafiscal != ""
+        sql = sql + " AND numr_notafiscal = #{notafiscal}"
+      end
+      if cheque != nil && cheque != ""
+        sql = sql + " AND numr_cheque = #{cheque}"
       end
        sql = sql + " AND (data_vencimento >= '#{data_inicio}' AND data_vencimento <= '#{data_fim}')"
 

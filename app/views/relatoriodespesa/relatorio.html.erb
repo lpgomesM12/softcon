@@ -1,6 +1,6 @@
 <section class="content-header">
 
-  <%= form_tag nil, method: 'GET' do %>
+<%= form_tag nil, method: 'GET' do %>
 <div class="well">
     <div class="row">
       <div class='col-sm-2'>
@@ -55,7 +55,23 @@
         </div>
       </div>
 
+          <input type="text" name="id_prestador" style="width:0px;display:none" id="id_prestador" class="form-control">
 
+    </div>
+
+    <div class="row">
+      <div class="col-lg-2">
+        <label>N° Fiscal</label>
+        <input type="text" name="notafiscal" id="notafiscal" class="form-control" value="<%=@notafiscal%>" >
+      </div>
+      <div class="col-lg-2">
+        <label>Cheque</label>
+        <input type="text" name="cheque" id="cheque" class="form-control" value="<%=@cheque%>">
+      </div>
+      <div class="col-lg-4">
+        <label>Prestador</label>
+        <input type="text" name="nomeprestador" id="nomeprestador" placeholder="Pesquise pelo nome do prestador" value="<%=@nome_prestador%>" onfocus="javascript:$(this).autocomplete('search','');" class="form-control">
+      </div>
       <div class="col-lg-3">
         <div class="btn-group-vertical">
         <button class="btn btn-primary" type="submit" name="imprimir" value="html" data-target="_blank">
@@ -85,24 +101,21 @@
          <table class="table table-hover">
            <thead>
              <tr>
-               <th>Vencimento</th>
-               <th>Data PGTO</th>
-               <th>Nota Fiscal</th>
-               <th>Cheque</th>
-               <th>Destinário</th>
+               <th>Dt. vencimento</th>
                <th>Valor</th>
-               <th colspan="3"></th>
+               <th>Data PGTO</th>
+               <th>Prestador</th>
+               <th>Observação</th>
              </tr>
            </thead>
            <tbody>
                <% @dividas.each do |divida| %>
                <tr>
                  <td><%=divida.data_vencimento.strftime("%d/%m/%Y")%></td>
-                 <td><%=divida.data_pagamento.blank? ? '' : divida.data_pagamento.strftime("%d/%m/%Y")%></td>
-                 <td><%=divida.numr_notafiscal%></td>
-                 <td><%=divida.numr_cheque%></td>
-                 <td><%=divida.prestador.nome_prestador%></td>
                  <td><%=number_to_currency(divida.valr_divida , unit: "R$", separator: ",", delimiter: "")%></td>
+                 <td><%=divida.data_pagamento.blank? ? '' : divida.data_pagamento.strftime("%d/%m/%Y")%></td>
+                 <td><%=divida.prestador.nome_prestador%></td>
+                 <td><%=divida.desc_observacao%></td>
                </tr>
              <% end %>
            </tbody>
@@ -125,4 +138,25 @@
          language: 'pt-BR'
        });
     });
+
+
+    //pesquisa prestador modal
+      $(document).ready(function() {
+             $('#nomeprestador').autocomplete({
+             source: '/buscaprestador',
+             dataType: 'json',
+             minLength: 0,
+             change: function(event, ui) {
+             if (!ui.item) {
+               $('#nomeprestador').val('');
+             }
+          },
+          select: function(event, ui) {
+              if (ui.item) {
+                    $("#id_prestador").val(ui.item.id);
+                 }
+               }
+           });
+        });
+
 </script>

@@ -1,0 +1,65 @@
+<section class="content-header">
+      <%if notice %>
+       <!-- <div class="alert alert-success alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4>  <i class="icon fa fa-check"></i>Mensagem</h4>
+          <%#= notice %>
+      </div> -->
+      <%end%>
+</section>
+
+<section class="content">
+   <!-- Small boxes (Stat box) -->
+      <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Achados perdidos</h3>
+             </div><!-- /.box-header -->
+     <div class="box-body table-responsive no-padding">
+ <table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Descrição</th>
+      <th>Data achado</th>
+      <th>Data devolução</th>
+      <th>Unidade</th>
+      <th>Quem recebeu</th>
+      <th>Observação</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @achadoperdidos.each do |achadoperdido| %>
+      <tr>
+        <td><%= achadoperdido.descricao %></td>
+        <td><%= achadoperdido.data_achado.blank? ? '' : achadoperdido.data_achado.strftime("%d/%m/%Y")%></td>
+        <td><%= achadoperdido.data_entrega %></td>
+        <td><%= achadoperdido.morador_id != nil ? achadoperdido.morador.apartamento.nome : '' %></td>
+        <td><%= achadoperdido.morador_id != nil ? achadoperdido.morador.pessoa.nome_pessoa : '' %></td>
+        <td><%= achadoperdido.observacao %></td>
+        <td align='right'>
+          <div class="btn-group">
+              <%= link_to achadoperdido, class: "btn btn-default btn-sm" do %>
+                <span class="glyphicon glyphicon-list-alt text-success"></span> Exibir
+              <% end %>
+              <%= link_to edit_achadoperdido_path(achadoperdido), class: "btn btn-default btn-sm" do %>
+                <span class="glyphicon glyphicon-pencil text-primary"></span> Editar
+              <% end %>
+             <%= link_to achadoperdido, method: :delete, data: { confirm: 'Deseja excluir o registro?' }, class: "btn btn-default btn-sm" do %>
+                <span class="glyphicon glyphicon-trash text-danger"></span> Excluir
+              <% end %>
+              <%= link_to termoachado_path(id: achadoperdido, format: :pdf), class: "btn btn-default btn-sm" do %>
+                <span class="glyphicon glyphicon-print"></span> Imprimir
+              <% end %>
+          </div>
+          </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+</div><!-- /.box -->
+<%= link_to new_achadoperdido_path, class: "btn btn-default btn-sm" do %>
+       <span class="glyphicon glyphicon-file"></span>Novo
+<% end %>
+</section>

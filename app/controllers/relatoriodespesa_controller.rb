@@ -10,8 +10,6 @@ class RelatoriodespesaController < ApplicationController
           @data_fim = params[:data_fim]
         end
 
-        # debugger
-
         if params[:flag_pago] == "on"
           @flag_pago = true
         else
@@ -33,7 +31,17 @@ class RelatoriodespesaController < ApplicationController
         else
           @despesa_ordinaria = false
         end
+        if params[:id_prestador] != ""
+          @prestador = params[:id_prestador]
+        end
+        if params[:notafiscal] != ""
+          @notafiscal = params[:notafiscal]
+        end
+        if params[:cheque] != ""
+          @cheque = params[:cheque]
+        end
 
+        @nome_prestador = params[:nomeprestador] 
         @condominio = current_user.condominio.nome_condominio
 
         @dividas = Divida.busca_dividas(current_user.condominio_id,
@@ -42,7 +50,12 @@ class RelatoriodespesaController < ApplicationController
                                         params[:flag_despesafixa],
                                         params[:flag_ordinaria],
                                         Date.strptime(@data_inicio, "%d/%m/%Y").strftime('%Y-%m-%d'),
-                                        Date.strptime(@data_fim, "%d/%m/%Y").strftime('%Y-%m-%d'))
+                                        Date.strptime(@data_fim, "%d/%m/%Y").strftime('%Y-%m-%d'),
+                                        @prestador,
+                                        @notafiscal,
+                                        @cheque)
+
+
         # @total_divida = @dividas.to_a.sum(&:valr_divida)
         @date = Time.zone.now.strftime('%Y-%m-%d')
         @data_emissao = Time.zone.now.strftime('%d-%m-%Y')

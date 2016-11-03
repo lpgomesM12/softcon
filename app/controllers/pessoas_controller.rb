@@ -1,12 +1,13 @@
 class PessoasController < ApplicationController
   before_action :set_pessoa, only: [:show, :edit, :update, :destroy]
 
+
   def valida_pessoa
    @pessoa = Pessoa.where(cpf: params[:cpf])
 
    #quando não tem cadastro
    @situacao = 0
-   
+
     unless @pessoa.empty?
       #quando encontrou a pessoa no banco de dados
       @situacao = 1

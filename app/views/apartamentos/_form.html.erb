@@ -19,6 +19,7 @@
     <%= f.text_field :numr_apartamento, :class => 'form-control', :required=>true%>
    </div>
   </div>
+
   <div class="row">
    <div class="col-lg-3">
     <%= f.label :Bloco %><br>
@@ -26,8 +27,7 @@
    </div>
   </div>
 
-
-  <%= f.hidden_field :condominio_id, :value => current_user.condominio_id %>
+   <%= f.hidden_field :condominio_id, :value => current_user.condominio_id %>
 
 </div>
 </div><!-- /.box -->

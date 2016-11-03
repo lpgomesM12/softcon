@@ -1,0 +1,91 @@
+<meta charset="utf-8">
+
+ <table id="t03" style="width: 100%;" border="1">
+   <tr>
+     <td style="font-size: 12px" align="center">
+       <br>
+         <h2 align="center"><%=@condominio%></h2>
+       <br>
+       <br>
+     </td>
+   </tr>
+ </table>
+
+
+<h4 align="center">Registro de saída de objetos</h4>
+
+<p style="font-size:11px">
+  Declaramos a saída do(s) objeto(s) abaixo relacionado(s) sob guarda da Administração, entregue(s) a seu
+  correspondente proprietário, após análise de comprovação de posse.
+
+  <br><br>
+   <strong><%=@achadoperdido.descricao%></strong>
+  <br><br>
+   <strong><%=@achadoperdido.observacao%></strong>
+
+</p>
+____________________________________________________________________________<br>
+____________________________________________________________________________<br>
+____________________________________________________________________________<br>
+
+
+<p style="font-size:11px">
+A partir da data de assinatura desse Registro de Saída de Objetos, a Administração do condomínio não detém
+responsabilidade sobre o(s) objeto(s) supracitado(s).<br><br>
+Assinatura do entregador:__________________________________________________________________________________________
+</p>
+<br>
+<p style="font-size:11px"> Goiânia: <strong><%=Time.zone.now.strftime("%d/%m/%Y")%></strong></p>
+
+<p style="font-size:11px">
+  Declaro ter crecebido da Administração do Condomíno o(s) objeto(s) supracitado(s) de minha propriedade que
+  se encontravam sob guarda e responsabilidade desta.
+ <br>
+ <br>
+  Assinatura do proprietário:__________________________________________________________________________________________
+    <strong align="center" style="margin-left:25em">                       <%=@achadoperdido.morador.apartamento.nome%> <%=@achadoperdido.morador.pessoa.nome_pessoa%></strong>
+ </p>
+ <br>
+ <p style="font-size:11px">
+     Forma de comprovação de propriedade:_______________________________________________________________________________
+ </p>
+
+ <p style="font-size:11px"> Goiânia: <strong><%=Time.zone.now.strftime("%d/%m/%Y %H:%M:%S")%></strong></p>
+
+ <style media="screen">
+   table, th, td {
+       border: 1px solid black;
+       border-collapse: collapse;
+       font-size: 11px;
+   }
+   table#t01 th {
+       background-color: #cbcbcb;
+   }
+
+   table#t02 th {
+     border:none !important;
+     border-collapse: collapse;
+     width: 100%;
+   }
+
+   table#t02 td {
+     border:none !important;
+     border-collapse: collapse;
+   }
+   table#t02  {
+     border:none !important;
+     border-collapse: collapse;
+     padding:2px;
+   }
+   table#t03  {
+     border: 1px solid black;
+     border-collapse: collapse;
+     padding:2px;
+   }
+
+   table#t04  {
+     border: 1px solid black;
+     border-collapse: collapse;
+     padding:1px;
+   }
+   </style>

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'relmudanca/relatorio'
+
+  resources :agendamentomudancas
+  resources :achadoperdidos
   resources :inadimplentes
   get 'relatoriodespesa/relatorio'
 
@@ -72,6 +76,7 @@ Rails.application.routes.draw do
   get 'static_pages/home'
   get 'site/index'
   get "/relatorioreserva", to: "relatorio#reservas", as: :relatorioreserva
-
+  get "/termoachado", to: "achadoperdidos#relatoriotermo", as: :termoachado
+  get "/relmudanca", to: "agendamentomudancas#relmudanca", as: :relmudanca
 
 end
