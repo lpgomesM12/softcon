@@ -1,6 +1,7 @@
 class IdentificacaosController < ApplicationController
   before_action :set_identificacao, only: [:show, :edit, :update, :destroy]
 
+
   # GET /identificacaos
   # GET /identificacaos.json
   def index

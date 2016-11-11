@@ -60,3 +60,6 @@ rails g scaffold achadoperdido descricao:string data_achado:datetime data_entreg
 
 AGENDAMENTOMUDANCA
 rails g scaffold agendamentomudanca nome:string fone:string apartamento:references data_agendamento:datatime valr_taxa:decimal periodo:string flag_entrada:boolean flag_saida:boolean observacao:string
+
+PESSOAAUTORIZADA
+rails g scaffold pessoaautorizada identificacao:references flag_pessoaautorizada:boolean flag_pessoabloqueada:boolean desc_atribuicao:string flag_todasemana:boolean flag_segunda:boolean flag_terca:boolean flag_quarta:booelan flag_quinta:boolean flag_sexta:boolean flag_sabado:boolean flag_domingo:boolean flag_periodo:boolean data_periodoinicio:datetime data_periodofim:datetime flag_nestadata:boolean data_nessadata:datetime numr_horainicio:integer numr_horafim:integer condominio:references

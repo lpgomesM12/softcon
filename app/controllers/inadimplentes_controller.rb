@@ -2,6 +2,16 @@ class InadimplentesController < ApplicationController
   before_action :set_inadimplente, only: [:show, :edit, :update, :destroy]
 
 
+  def valida_inadiplente
+    @identificacaos = Identificacao.where(apartamento_id: params[:apartamento_id])
+
+    if @identificacaos.empty?
+      render :json => false
+    else
+      render :json => true
+    end
+  end
+
  def incluir
    @inadimplente = Inadimplente.new
    @inadimplente.apartamento_id = params[:apartamento_id]

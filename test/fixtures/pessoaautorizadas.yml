@@ -1,0 +1,45 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  identificacao_id: 
+  flag_pessoaautorizada: false
+  flag_pessoabloqueada: false
+  desc_atribuicao: MyString
+  flag_todasemana: false
+  flag_segunda: false
+  flag_terca: false
+  flag_quarta: 
+  flag_quinta: false
+  flag_sexta: false
+  flag_sabado: false
+  flag_domingo: false
+  flag_periodo: false
+  data_periodoinicio: 2016-11-09 17:21:52
+  data_periodofim: 2016-11-09 17:21:52
+  flag_nestadata: false
+  data_nessadata: 2016-11-09 17:21:52
+  numr_horainicio: 1
+  numr_horafim: 1
+  condominio_id: 
+
+two:
+  identificacao_id: 
+  flag_pessoaautorizada: false
+  flag_pessoabloqueada: false
+  desc_atribuicao: MyString
+  flag_todasemana: false
+  flag_segunda: false
+  flag_terca: false
+  flag_quarta: 
+  flag_quinta: false
+  flag_sexta: false
+  flag_sabado: false
+  flag_domingo: false
+  flag_periodo: false
+  data_periodoinicio: 2016-11-09 17:21:52
+  data_periodofim: 2016-11-09 17:21:52
+  flag_nestadata: false
+  data_nessadata: 2016-11-09 17:21:52
+  numr_horainicio: 1
+  numr_horafim: 1
+  condominio_id: 

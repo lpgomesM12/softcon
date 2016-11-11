@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :pessoaautorizadas
   get 'relmudanca/relatorio'
 
   resources :agendamentomudancas
@@ -64,6 +65,7 @@ Rails.application.routes.draw do
   match '/excluirdivida', to: 'dividas#excluir_divida', via: 'get'
   match '/buscadivida', to: 'dividas#busca_divida', via: 'get'
   match '/incluirInadimplente', to: 'inadimplentes#incluir', via: 'get'
+  match '/validaInadiplente', to: 'inadimplentes#valida_inadiplente', via: 'get'
 
   get '/ocorrencia/:id', to: 'ocorrencia#baixa_ocorrencia', as: 'baicaocorrencia'
 

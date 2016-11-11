@@ -15,17 +15,18 @@
    </tr>
  </table>
 
-<h5>Registro de saída de objetos  &nbsp;&nbsp; <%=@agendamentomudanca.flag_entrada == true ? 'Entrada' : '' %></h5>
+<h5>Agendamento de Mudança  &nbsp;&nbsp; <%=@agendamentomudanca.flag_entrada == true ? 'Entrada' : '' %></h5>
 <p style="font-size:11px">Eu <strong><%=@agendamentomudanca.nome%></strong>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
    Condôminio Apto. <strong><%=@agendamentomudanca.apartamento.numr_apartamento%></strong>
    &nbsp;&nbsp;&nbsp;&nbsp; Torre <strong><%=@agendamentomudanca.apartamento.numr_bloco%></strong><br>
    Quero agendar a minha Mudança para o dia: <strong><%=@agendamentomudanca.data_agendamento.strftime("%d/%m/%Y")%></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-   Fone: <strong><%=@agendamentomudanca.fone%></strong>
+   Fone: <strong><%=@agendamentomudanca.fone%></strong><br>
+   no período <strong><%=@agendamentomudanca.periodo%></strong>
  </p>
 <br>
 <p style="font-size:11px">
-  Proibido a entrada de caminhões. Proibido a entreda com botijão de gàs;<br>
+  Proibido a entrada de caminhões. Proibido a entreda com botijão de gás;<br>
   Toda mudança deve entrar pelo "ELEVADOR DE SERVIÇO", se houver;<br>
   Os móveis que não couber no Elevador, subirão pela escada.(com Cuidado);<br>
   Favor jogar papelão, isopor e plásticos na lixeira que se localizada na entrada do condomínio;<br>
@@ -50,12 +51,13 @@ Assinatura do Condôminio  <span style="padding-left:390px">&nbsp;</span> Admini
 ---------------------------------------------------------------------------------------------------------------------------
 
 
-<h5>Registro de saída de objetos  &nbsp;&nbsp; <%=@agendamentomudanca.flag_entrada == true ? 'Entrada' : '' %></h5>
+<h5>Agenda de Mudança  &nbsp;&nbsp; <%=@agendamentomudanca.flag_entrada == true ? 'Entrada' : '' %></h5>
 <p style="font-size:11px">Eu <strong><%=@agendamentomudanca.nome%></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
    Condôminio Apto. <strong><%=@agendamentomudanca.apartamento.numr_apartamento%></strong>
    &nbsp;&nbsp;&nbsp;&nbsp; Torre <strong><%=@agendamentomudanca.apartamento.numr_bloco%></strong><br>
    Quero agendar a minha Mudança para o dia: <strong><%=@agendamentomudanca.data_agendamento.strftime("%d/%m/%Y")%></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-   Fone: <strong><%=@agendamentomudanca.fone%></strong>
+   Fone: <strong><%=@agendamentomudanca.fone%></strong><br>
+   no período <strong><%=@agendamentomudanca.periodo%></strong>
  </p>
 
 <br><br>
