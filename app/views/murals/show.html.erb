@@ -1,0 +1,43 @@
+<section class="content-header">
+    <%if notice%>
+      <div class="alert alert-success" role="alert"><%= notice %></div>
+      <%end%>
+</section>
+
+<!-- Main content -->
+<section class="content">
+ <!-- Small boxes (Stat box) -->
+<div class="box box-primary">
+   <div class="box-header with-border">
+      <h3 class="box-title">Documento</h3>
+    </div><!-- /.box-header -->
+<form role="form">
+<div class="box-body">
+
+<p>
+  <strong>Titulo:</strong>
+  <%= @mural.titulo %>
+</p>
+
+<p>
+  <strong>Descrição:</strong>
+  <%= @mural.descricao %>
+</p>
+
+
+<br>
+<%= link_to 'Abrir arquivo PDF', @mural.pdf.url, :target=>"_blank" %>
+<br>
+
+</div><!-- /.box -->
+</form>
+</div><!-- /.box-body -->
+
+<div class="btn-group">
+     <%= link_to edit_mural_path(@mural), :class => "btn btn-default btn-sm" do %>
+  <span class="glyphicon glyphicon-pencil"></span> Editar
+<% end %>
+<%= link_to murals_path, :class => "btn btn-default btn-sm" do %>
+   <span class="glyphicon glyphicon-arrow-left"></span> Voltar
+<% end %>
+</div>

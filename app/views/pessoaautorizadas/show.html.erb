@@ -1,104 +1,118 @@
-<p id="notice"><%= notice %></p>
+<section class="content-header">
+    <%if notice%>
+      <div class="alert alert-success" role="alert"><%= notice %></div>
+      <%end%>
+</section>
+
+
+<!-- Main content -->
+<section class="content">
+ <!-- Small boxes (Stat box) -->
+<div class="box box-primary">
+   <div class="box-header with-border">
+      <h3 class="box-title">Morador</h3>
+    </div><!-- /.box-header -->
+<form role="form">
+<div class="box-body">
 
 <p>
-  <strong>Identificacao:</strong>
-  <%= @pessoaautorizada.identificacao %>
+  <strong>RG:</strong>
+  <%= @pessoaautorizada.identificacao.desc_identificador %>
 </p>
 
 <p>
-  <strong>Flag pessoaautorizada:</strong>
-  <%= @pessoaautorizada.flag_pessoaautorizada %>
+  <strong>Nome:</strong>
+  <%= @pessoaautorizada.identificacao.desc_nome %>
 </p>
 
 <p>
-  <strong>Flag pessoabloqueada:</strong>
-  <%= @pessoaautorizada.flag_pessoabloqueada %>
+  <strong>Pessoa autorizada:</strong>
+  <%= @pessoaautorizada.flag_pessoaautorizada? ? 'Sim' : 'Não' %>
 </p>
 
 <p>
-  <strong>Desc atribuicao:</strong>
+  <strong>Pessoa bloqueada:</strong>
+  <%= @pessoaautorizada.flag_pessoabloqueada? ? 'Sim' : 'Não' %>
+</p>
+
+<p>
+  <strong>Atribuições:</strong>
   <%= @pessoaautorizada.desc_atribuicao %>
 </p>
 
+
+<h3>Dias autorizados</h3>
 <p>
-  <strong>Flag todasemana:</strong>
-  <%= @pessoaautorizada.flag_todasemana %>
+  <strong>Segunda:</strong>
+  <%= @pessoaautorizada.flag_segunda? ? 'Sim' : 'Não' %>
 </p>
 
 <p>
-  <strong>Flag segunda:</strong>
-  <%= @pessoaautorizada.flag_segunda %>
+  <strong>Terça:</strong>
+  <%= @pessoaautorizada.flag_terca? ? 'Sim' : 'Não' %>
 </p>
 
 <p>
-  <strong>Flag terca:</strong>
-  <%= @pessoaautorizada.flag_terca %>
+  <strong>Quarta:</strong>
+  <%= @pessoaautorizada.flag_quarta? ? 'Sim' : 'Não' %>
 </p>
 
 <p>
-  <strong>Flag quarta:</strong>
-  <%= @pessoaautorizada.flag_quarta %>
+  <strong>Quinta:</strong>
+  <%= @pessoaautorizada.flag_quinta? ? 'Sim' : 'Não' %>
 </p>
 
 <p>
-  <strong>Flag quinta:</strong>
-  <%= @pessoaautorizada.flag_quinta %>
+  <strong>Sexta:</strong>
+  <%= @pessoaautorizada.flag_sexta? ? 'Sim' : 'Não' %>
 </p>
 
 <p>
-  <strong>Flag sexta:</strong>
-  <%= @pessoaautorizada.flag_sexta %>
+  <strong>Sábado:</strong>
+  <%= @pessoaautorizada.flag_sabado? ? 'Sim' : 'Não' %>
 </p>
 
 <p>
-  <strong>Flag sabado:</strong>
-  <%= @pessoaautorizada.flag_sabado %>
+  <strong>Domingo:</strong>
+  <%= @pessoaautorizada.flag_domingo? ? 'Sim' : 'Não' %>
 </p>
 
 <p>
-  <strong>Flag domingo:</strong>
-  <%= @pessoaautorizada.flag_domingo %>
+  <strong>Data Inicio:</strong>
+  <%= @pessoaautorizada.data_periodoinicio.blank? ? '' : @pessoaautorizada.data_periodoinicio.strftime("%d/%m/%Y")%>
 </p>
 
 <p>
-  <strong>Flag periodo:</strong>
-  <%= @pessoaautorizada.flag_periodo %>
-</p>
-
-<p>
-  <strong>Data periodoinicio:</strong>
-  <%= @pessoaautorizada.data_periodoinicio %>
-</p>
-
-<p>
-  <strong>Data periodofim:</strong>
-  <%= @pessoaautorizada.data_periodofim %>
-</p>
-
-<p>
-  <strong>Flag nestadata:</strong>
-  <%= @pessoaautorizada.flag_nestadata %>
+  <strong>Data Fim:</strong>
+  <%= @pessoaautorizada.data_periodofim.blank? ? '' : @pessoaautorizada.data_periodofim.strftime("%d/%m/%Y")%>
 </p>
 
 <p>
   <strong>Data nessadata:</strong>
-  <%= @pessoaautorizada.data_nessadata %>
+  <%= @pessoaautorizada.data_nessadata.blank? ? '' : @pessoaautorizada.data_nessadata.strftime("%d/%m/%Y")%>
 </p>
 
 <p>
-  <strong>Numr horainicio:</strong>
+  <strong>Hora Inicio:</strong>
   <%= @pessoaautorizada.numr_horainicio %>
 </p>
 
 <p>
-  <strong>Numr horafim:</strong>
+  <strong>Hora fim:</strong>
   <%= @pessoaautorizada.numr_horafim %>
 </p>
 
-<p>
-  <strong>Condominio:</strong>
-  <%= @pessoaautorizada.condominio %>
-</p>
 
-<%= link_to 'Edit', edit_pessoaautorizada_path(@pessoaautorizada) %> |
-<%= link_to 'Back', pessoaautorizadas_path %>
+
+</div><!-- /.box -->
+</form>
+</div><!-- /.box-body -->
+
+<div class="btn-group">
+     <%= link_to edit_pessoaautorizada_path(@pessoaautorizada), :class => "btn btn-default btn-sm" do %>
+  <span class="glyphicon glyphicon-pencil"></span> Editar
+<% end %>
+<%= link_to pessoaautorizadas_path, :class => "btn btn-default btn-sm" do %>
+   <span class="glyphicon glyphicon-arrow-left"></span> Voltar
+<% end %>
+</div>

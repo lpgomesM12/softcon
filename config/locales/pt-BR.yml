@@ -1,6 +1,12 @@
 ---
 pt-BR:
   activerecord:
+    attributes:
+      ocorrencium:
+        apartamento_id: ''
+      identificacao:
+         desc_identificador: ''
+         desc_nome: ''  
     errors:
       messages:
         record_invalid: 'A validação falhou: %{errors}'

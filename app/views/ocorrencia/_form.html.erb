@@ -1,65 +1,94 @@
 <%= form_for(@ocorrencium) do |f| %>
+  <div class="box-body">
   <% if @ocorrencium.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@ocorrencium.errors.count, "error") %> prohibited this ocorrencium from being saved:</h2>
+ <div class="alert  alert-danger">
+   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+     <ul>
+     <% @ocorrencium.errors.full_messages.each do |message| %>
+       <li><%= message %></li>
+     <% end %>
+     </ul>
+ </div>
 
-      <ul>
-      <% @ocorrencium.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
   <% end %>
 
-  <div class="box-body">
-    <div class="row">
-          <div class="col-lg-7">
-            <label>Tipo</label>
-            <%= f.select :tipoocorrencium_id, options_from_collection_for_select(Tipoocorrencium.all, 'id', 'desc_tipoocorrencia'), {}, {:class => 'form-control'}%>
-          </div>
-    </div>
-    <div class="row">
-          <div class="col-lg-7">
-            <label>Unidade</label>
-            <%= f.select :apartamento_id, options_from_collection_for_select(Apartamento.where(condominio_id: current_user.condominio_id), 'id', 'nome'), {:include_blank => true}, {:class => 'form-control'}%>
-          </div>
-    </div>
+   <div class="row">
+     <div class="col-md-6">
 
-    <%= f.fields_for :identificacao do |identi| %>
-    <div class="row">
-     <div class="col-lg-2">
-       <label>Identificação</label>
-       <%= identi.text_field :desc_identificador, :class=> "form-control" %>
-     </div>
-        <div class="col-lg-5">
-         <label>Nome</label>
-         <%= identi.text_field :desc_nome, :class=> "form-control" %>
-        </div>
-    </div>
-    <div class="row">
-         <div class="col-lg-2">
-         <label>Fone</label>
-           <%= identi.text_field :desc_fone, :class=> "form-control" %>
+      <div class="row">
+            <div class="col-lg-12">
+              <label>Tipo</label>
+              <%= f.select :tipoocorrencium_id, options_from_collection_for_select(Tipoocorrencium.all, 'id', 'desc_tipoocorrencia'), {}, {:class => 'form-control'}%>
+            </div>
+      </div>
+      <div class="row">
+         <div class="col-lg-12">
+            <label>Apartamento</label>
+             <input type="text" class="form-control" id="nome_apartamento" class="form-control" placeholder="Pesquise pelo apartamento" value="<%=@ocorrencium.apartamento !=nil ? @ocorrencium.apartamento.nome : ''%>" onfocus="javascript:$(this).autocomplete('search','');">
+              <%= f.hidden_field :apartamento_id%>
          </div>
-         <div class="col-lg-6">
-               <label>Adicionar foto</label>
-               <%= identi.file_field :avatar %>
+      </div>
+
+      <%= f.fields_for :identificacao do |identi| %>
+      <div class="row">
+       <div class="col-lg-4">
+         <label>Identificação</label>
+         <%= identi.text_field :desc_identificador, :class=> "form-control" %>
+       </div>
+          <div class="col-lg-8">
+           <label>Nome</label>
+           <%= identi.text_field :desc_nome, :class=> "form-control" %>
           </div>
-          <%= identi.hidden_field :condominio_id, :value => current_user.condominio_id %>
+      </div>
+      <div class="row">
+           <div class="col-lg-4">
+           <label>Fone</label>
+             <%= identi.text_field :desc_fone, :class=> "form-control" %>
+           </div>
+           <div class="col-lg-8">
+                 <label>Adicionar foto</label>
+                 <%= identi.file_field :avatar %>
+            </div>
+            <%= identi.hidden_field :condominio_id, :value => current_user.condominio_id %>
+      </div>
+        <%=identi.hidden_field :desc_atividade%>
+      <%end%>
+     <input type="hidden" name="id_identificacao" id="id_identificacao">
+      <%= f.hidden_field :condominio_id, :value => current_user.condominio_id %>
+      <div class="row">
+       <div class="col-lg-12">
+         <label>Atividades no condomínio</label>
+          <%= f.text_area :desc_ocorrencia, :class=> "form-control" %>
+        </div>
+       </div>
     </div>
-      <%=identi.hidden_field :desc_atividade%>
-    <%end%>
-  <input type="hidden" name="id_identificacao" id="id_identificacao">
-
-   <%= f.hidden_field :condominio_id, :value => current_user.condominio_id %>
-
-  <div class="row">
-    <div class="col-lg-7">
-      <label>Atividades no condomínio</label>
-     <%= f.text_area :desc_ocorrencia, :class=> "form-control" %>
+    <div class="col-md-6">
+      <br>
+      <table id="example1" class="table table-bordered table-hover table-responsive table-condensed">
+        <thead>
+          <tr>
+            <th bgcolor="#f1f1f1">Pessoas AUTORIZADAS</th>
+            <th bgcolor="#f1f1f1">Atribuições</th>
+          </tr>
+        </thead>
+         <tbody id="tbautorizadas" >
+         </tbody>
+      </table>
+      <table id="example1" class="table table-bordered table-hover table-responsive table-condensed">
+        <thead>
+          <tr>
+            <th bgcolor="#f1f1f1">Pessoas BLOQUEADAS</th>
+            <th bgcolor="#f1f1f1">Atribuições</th>
+          </tr>
+        </thead>
+         <tbody id="tbbloqueadas" >
+         </tbody>
+      </table>
     </div>
   </div>
-  </div>
+
+</div>
+
   </div><!-- /.box -->
     <div class="row mar-bot40">
       <div class="col-lg-8" >
@@ -105,4 +134,70 @@ function busca_identificacao(){
   })
 };
 
+
+$(document).ready(function() {
+       $('#nome_apartamento').autocomplete({
+       source: '/buscaapartamento',
+       dataType: 'json',
+       minLength: 0,
+       change: function(event, ui) {
+       if (!ui.item) {
+         $('#nome_apartamento').val('');
+       }
+    },
+    select: function(event, ui) {
+        if (ui.item) {
+              $("#agendamentomudanca_apartamento_id").val(ui.item.id);
+              buscaPessoasAutorizadas(ui.item.id);
+           }
+         }
+     });
+  });
+
+function buscaPessoasAutorizadas(apartamento){
+    $.ajax({
+      url: '<%= pessoasautorizadas_path %>',
+      data : {
+        apartamento_id : apartamento
+      },
+      success: function(data){
+
+        $("#tbautorizadas").empty();
+        $("#tbbloqueadas").empty(html1);
+
+        for (var i in data) {
+          var item = data[i];
+
+          if(item.flag_pessoaautorizada == true){
+             // Pessoas autorizadas
+            var html = "";
+             for (var i in data) {
+               var item = data[i];
+               html += "<tr><td>"+item.desc_nome+"</td>";
+               html += "<td>"+item.desc_atribuicao+"</td>";
+             };
+             $("#tbautorizadas").append(html);
+
+          }else if (item.flag_pessoaautorizada == false) {
+             //Pessoas bloqueadas
+            var html1 = "";
+             for (var i in data) {
+               var item = data[i];
+               html1 += "<tr><td>"+item.desc_nome+"</td>";
+               html1 += "<td>"+item.desc_atribuicao+"</td>";
+             };
+             $("#tbbloqueadas").append(html1);
+          }
+
+        };
+      }
+    })
+}
 </script>
+
+
+<style media="screen">
+
+
+
+</style>

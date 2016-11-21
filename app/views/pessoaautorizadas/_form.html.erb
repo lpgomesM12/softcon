@@ -142,7 +142,7 @@
       <button type="submit" value="Submit" class="btn btn-primary btn-sm">
        <span class="glyphicon glyphicon-floppy-disk"></span> Salvar
       </button>
-      <%= link_to new_pessoaautorizada_path, :class => "btn btn-default btn-sm" do %>
+      <%= link_to pessoaautorizadas_path, :class => "btn btn-default btn-sm" do %>
          <span class="glyphicon glyphicon-arrow-left"></span> Voltar
        <% end %>
      </div>
@@ -156,6 +156,31 @@
 
 $("#pessoaautorizada_numr_horainicio").mask("99:99");
 $("#pessoaautorizada_numr_horafim").mask("99:99");
+
+
+$("#pessoaautorizada_identificacao_attributes_desc_identificador").blur(function() {
+      busca_identificacao();
+});
+
+function busca_identificacao(){
+  $.ajax({
+    url: '<%= buscaIdentificacao_path %>',
+    data : {
+      identificador : $("#pessoaautorizada_identificacao_attributes_desc_identificador").val()
+    },
+    success: function(data){
+      for (var i in data) {
+        var item = data[i];
+        $("#pessoaautorizada_identificacao_attributes_desc_nome").val(item.desc_nome);
+        $("#pessoaautorizada_identificacao_attributes_desc_fone").val(item.desc_fone);
+        $("#id_identificacao").val(item.id);
+        console.log('doidera');
+         return;
+      };
+    }
+  })
+};
+
 
 $(function () {
    $('#datetimepicker1').datepicker({
@@ -208,6 +233,18 @@ $('#pessoaautorizada_flag_nestadata').change(function () {
    };
 });
 
+$('#pessoaautorizada_flag_pessoaautorizada').change(function () {
+   if ($(this).is(':checked')) {
+       $('#pessoaautorizada_flag_pessoabloqueada').prop("checked", false);
+   };
+});
+
+$('#pessoaautorizada_flag_pessoabloqueada').change(function () {
+   if ($(this).is(':checked')) {
+       $('#pessoaautorizada_flag_pessoaautorizada').prop("checked", false);
+   };
+});
+
 
 $(document).ready(function() {
        $('#nome_apartamento').autocomplete({
@@ -221,7 +258,7 @@ $(document).ready(function() {
     },
     select: function(event, ui) {
         if (ui.item) {
-              $("#agendamentomudanca_apartamento_id").val(ui.item.id);
+              $("#pessoaautorizada_apartamento_id").val(ui.item.id);
            }
          }
      });

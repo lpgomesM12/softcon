@@ -25,15 +25,13 @@
              <tr>
                <th>Identificação</th>
                <th>Nome</th>
-               <th>Segunda</th>
-               <th>Terça</th>
-               <th>Quarta</th>
-               <th>Quinta</th>
-               <th>Sexta</th>
-               <th>Sábado</th>
-               <th>Domingo</th>
-               <th>Data.Autorização</th>
-               <th>Autorizações</th>
+               <th>Seg</th>
+               <th>Ter</th>
+               <th>Qua</th>
+               <th>Qui</th>
+               <th>Sex</th>
+               <th>Sáb</th>
+               <th>Dom</th>
                <th>Nessa.Data</th>
                <th>Data.Inicio</th>
                <th>Data.Fim</th>
@@ -47,33 +45,31 @@
              <% @pessoaautorizadas.each do |pessoaautorizada| %>
                <tr>
                  <td><%= pessoaautorizada.identificacao.desc_identificador %></td>
-                 <td><%= pessoaautorizada.identificacao.desc_identificador.desc_nome %></td>
-                 <td><%= pessoaautorizada.desc_atribuicao %></td>
-                 <td><%= pessoaautorizada.flag_todasemana %></td>
-                 <td><%= pessoaautorizada.flag_segunda %></td>
-                 <td><%= pessoaautorizada.flag_terca %></td>
-                 <td><%= pessoaautorizada.flag_quarta %></td>
-                 <td><%= pessoaautorizada.flag_quinta %></td>
-                 <td><%= pessoaautorizada.flag_sexta %></td>
-                 <td><%= pessoaautorizada.flag_sabado %></td>
-                 <td><%= pessoaautorizada.flag_domingo %></td>
-                 <td><%= pessoaautorizada.data_periodoinicio %></td>
-                 <td><%= pessoaautorizada.data_periodofim %></td>
-                 <td><%= pessoaautorizada.flag_nestadata %></td>
+                 <td><%= pessoaautorizada.identificacao.desc_nome %></td>
+                 <td><%= pessoaautorizada.flag_segunda? ? 'Sim' : 'Não' %></td>
+                 <td><%= pessoaautorizada.flag_terca? ? 'Sim' : 'Não' %></td>
+                 <td><%= pessoaautorizada.flag_quarta? ? 'Sim' : 'Não' %></td>
+                 <td><%= pessoaautorizada.flag_quinta? ? 'Sim' : 'Não' %></td>
+                 <td><%= pessoaautorizada.flag_sexta? ? 'Sim' : 'Não' %></td>
+                 <td><%= pessoaautorizada.flag_sabado? ? 'Sim' : 'Não' %></td>
+                 <td><%= pessoaautorizada.flag_domingo? ? 'Sim' : 'Não' %></td>
+                 <td><%= pessoaautorizada.data_nessadata.blank? ? '' : pessoaautorizada.data_nessadata.strftime("%d/%m/%Y")%></td>
+                 <td><%= pessoaautorizada.data_periodoinicio.blank? ? '' : pessoaautorizada.data_periodoinicio.strftime("%d/%m/%Y")%></td>
+                 <td><%= pessoaautorizada.data_periodofim.blank? ? '' : pessoaautorizada.data_periodofim.strftime("%d/%m/%Y")%></td>
                  <td><%= pessoaautorizada.numr_horainicio %></td>
                  <td><%= pessoaautorizada.numr_horafim %></td>
                <td align='right'>
                  <div class="btn-group">
                      <%= link_to pessoaautorizada, class: "btn btn-default btn-sm" do %>
-                       <span class="glyphicon glyphicon-list-alt text-success"></span> Exibir
+                       <span class="glyphicon glyphicon-list-alt text-success"></span>
                      <% end %>
                      <%= link_to edit_pessoaautorizada_path(pessoaautorizada), class: "btn btn-default btn-sm" do %>
-                       <span class="glyphicon glyphicon-pencil text-primary"></span> Editar
+                       <span class="glyphicon glyphicon-pencil text-primary"></span>
                      <% end %>
                     <%= link_to pessoaautorizada, method: :delete, data: { confirm: 'Deseja excluir o registro?' }, class: "btn btn-default btn-sm" do %>
-                       <span class="glyphicon glyphicon-trash text-danger"></span> Excluir
+                       <span class="glyphicon glyphicon-trash text-danger"></span>
                      <% end %>
-                 </div>
+                   </div>
                  </td>
                </tr>
              <% end %>
@@ -87,3 +83,14 @@
  </section>
 
 <br>
+
+
+<style media="screen">
+.table > tbody > tr > td {
+  font-size: 12px;
+}
+
+.table > thead > tr > th {
+  font-size: 12px;
+}
+</style>

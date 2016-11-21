@@ -1,0 +1,52 @@
+
+
+<section class="content-header">
+      <%if notice %>
+       <p id="notice"><%= notice %></p>
+      <%end%>
+</section>
+
+ <!-- Main content -->
+ <section class="content">
+    <!-- Small boxes (Stat box) -->
+       <div class="box box-primary">
+             <div class="box-header with-border">
+               <h3 class="box-title">Mural documentos</h3>
+              </div><!-- /.box-header -->
+      <div class="box-body table-responsive no-padding">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Titulo</th>
+                <th>Documento</th>
+              </tr>
+            </thead>
+
+            <tbody>
+                <% @murals.each do |mural| %>
+                <tr>
+                  <td><%= mural.titulo %></td>
+                  <td><%= link_to 'Abrir arquivo', mural.pdf.url, :target=>"_blank" %></td>
+                <td align='right'>
+                  <div class="btn-group">
+                      <%= link_to mural, class: "btn btn-default btn-sm" do %>
+                        <span class="glyphicon glyphicon-list-alt text-success"></span> Exibir
+                      <% end %>
+                      <%= link_to edit_mural_path(mural), class: "btn btn-default btn-sm" do %>
+                        <span class="glyphicon glyphicon-pencil text-primary"></span> Editar
+                      <% end %>
+                     <%= link_to mural, method: :delete, data: { confirm: 'Deseja excluir o registro?' }, class: "btn btn-default btn-sm" do %>
+                        <span class="glyphicon glyphicon-trash text-danger"></span> Excluir
+                      <% end %>
+                  </div>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div><!-- /.box -->
+           <%= link_to new_mural_path, class: "btn btn-default btn-sm" do %>
+                  <span class="glyphicon glyphicon-file"></span>Novo
+          <% end %>
+  </section>

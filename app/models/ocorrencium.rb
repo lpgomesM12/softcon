@@ -5,6 +5,8 @@ class Ocorrencium < ActiveRecord::Base
   belongs_to :inclusao, :class_name => "User", :foreign_key => "user_inclusao"
   belongs_to :userbaixa, :class_name => "User", :foreign_key => "user_baixa"
 
+  validates :apartamento_id, presence: { message: "Pesquise por um apartamento" }
+
   accepts_nested_attributes_for :identificacao
 
   def self.relatorio(data_inicio,data_fim,tipo,apartamento,nome)

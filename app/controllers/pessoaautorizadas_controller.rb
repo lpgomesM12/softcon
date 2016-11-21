@@ -1,6 +1,17 @@
 class PessoaautorizadasController < ApplicationController
   before_action :set_pessoaautorizada, only: [:show, :edit, :update, :destroy]
 
+
+  def pessoas_autorizadas
+    pessoas = Pessoaautorizada.where(apartamento_id: params[:apartamento_id])
+
+    pessoas_json = pessoas.map {|item| {:id => item.id,
+                                               :desc_nome => item.identificacao.desc_nome,
+                                               :desc_atribuicao => item.desc_atribuicao,
+                                               :flag_pessoaautorizada => item.flag_pessoaautorizada? ? true : false}}
+    render :json => pessoas_json
+
+  end
   # GET /pessoaautorizadas
   # GET /pessoaautorizadas.json
   def index
@@ -26,8 +37,19 @@ class PessoaautorizadasController < ApplicationController
   # POST /pessoaautorizadas
   # POST /pessoaautorizadas.json
   def create
-    @pessoaautorizada = Pessoaautorizada.new(pessoaautorizada_params)
-
+    if  params[:id_identificacao] != ""
+          @pessoaautorizada = Pessoaautorizada.new(pessoaautorizada_params)
+          @pessoaautorizada.identificacao_id = params[:id_identificacao]
+          @identificacao = Identificacao.find(params[:id_identificacao])
+          @identificacao.desc_nome = pessoaautorizada_params[:identificacao_attributes][:desc_nome]
+          @identificacao.desc_fone = pessoaautorizada_params[:identificacao_attributes][:desc_fone]
+          @indetificacao.condominio_id = current_user.condominio_id
+          @identificacao.save
+        else
+          @pessoaautorizada = Pessoaautorizada.new(pessoaautorizada_params)
+          @pessoaautorizada.identificacao.apartamento_id = @pessoaautorizada.apartamento_id
+          @pessoaautorizada.identificacao.condominio_id = current_user.condominio_id
+    end
     respond_to do |format|
       if @pessoaautorizada.save
         format.html { redirect_to @pessoaautorizada, notice: 'Cadastro realizado com sucesso.' }
@@ -71,6 +93,6 @@ class PessoaautorizadasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pessoaautorizada_params
-      params.require(:pessoaautorizada).permit(:flag_pessoaautorizada, :flag_pessoabloqueada, :desc_atribuicao, :flag_todasemana, :flag_segunda, :flag_terca, :flag_quarta, :flag_quinta, :flag_sexta, :flag_sabado, :flag_domingo, :flag_periodo, :data_periodoinicio, :data_periodofim, :flag_nestadata, :data_nessadata, :numr_horainicio, :numr_horafim, :condominio_id, identificacao_attributes: [ :id, :desc_identificador, :desc_nome, :desc_fone ])
+      params.require(:pessoaautorizada).permit(:flag_pessoaautorizada, :flag_pessoabloqueada, :desc_atribuicao, :flag_todasemana, :flag_segunda, :flag_terca, :flag_quarta, :flag_quinta, :flag_sexta, :flag_sabado, :flag_domingo, :flag_periodo, :data_periodoinicio, :data_periodofim, :flag_nestadata, :data_nessadata, :numr_horainicio, :numr_horafim, :apartamento_id, :condominio_id, identificacao_attributes: [ :id, :desc_identificador, :desc_nome, :desc_fone ])
     end
 end

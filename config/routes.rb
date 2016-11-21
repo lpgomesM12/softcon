@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :murals
   resources :pessoaautorizadas
   get 'relmudanca/relatorio'
 
@@ -66,6 +67,7 @@ Rails.application.routes.draw do
   match '/buscadivida', to: 'dividas#busca_divida', via: 'get'
   match '/incluirInadimplente', to: 'inadimplentes#incluir', via: 'get'
   match '/validaInadiplente', to: 'inadimplentes#valida_inadiplente', via: 'get'
+  match '/pessoasautorizadas', to: 'pessoaautorizadas#pessoas_autorizadas', via: 'get'
 
   get '/ocorrencia/:id', to: 'ocorrencia#baixa_ocorrencia', as: 'baicaocorrencia'
 
@@ -80,5 +82,6 @@ Rails.application.routes.draw do
   get "/relatorioreserva", to: "relatorio#reservas", as: :relatorioreserva
   get "/termoachado", to: "achadoperdidos#relatoriotermo", as: :termoachado
   get "/relmudanca", to: "agendamentomudancas#relmudanca", as: :relmudanca
+  get 'muraluser' => 'murals#mural'
 
 end
