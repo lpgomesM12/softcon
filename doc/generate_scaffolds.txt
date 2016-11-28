@@ -66,3 +66,9 @@ rails g scaffold pessoaautorizada identificacao:references flag_pessoaautorizada
 
 MURAL
 rails g scaffold mural titulo:string descricao:string condominio:references
+
+EMPRESA
+rails g scaffold empresa nome_empresa:string cnpj:string descricao:string endereco:references
+
+PRODUTOS
+rails g scaffold produto nome_produto:string desc_produto:string
