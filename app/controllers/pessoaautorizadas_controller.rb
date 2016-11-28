@@ -1,7 +1,6 @@
 class PessoaautorizadasController < ApplicationController
   before_action :set_pessoaautorizada, only: [:show, :edit, :update, :destroy]
 
-
   def pessoas_autorizadas
     pessoas = Pessoaautorizada.where(apartamento_id: params[:apartamento_id])
 

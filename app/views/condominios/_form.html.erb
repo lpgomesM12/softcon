@@ -90,26 +90,6 @@
 
 <script type="text/javascript">
 
-    function changeState(state){
-        $.ajax({
-          url: '<%= listarCidade_path %>',
-          data : {id : state.value},
-          success: function(data){
-            $('#condominio_endereco_attributes_cidade_id').empty();
-            $('#condominio_endereco_attributes_cidade_id').html('<option>Carregando...</option>');
-            $('#condominio_endereco_attributes_cidade_id').attr('disabled', 'disabled');
-            var options = "";
-            for (var i in data) {
-              var item = data[i];
-              options += "<option value='"+item.id+"'>"+item.nome+"</option>"
-            };
-
-            $('#condominio_endereco_attributes_cidade_id').html(options);
-            $('#condominio_endereco_attributes_cidade_id').removeAttr('disabled');
-          }
-        })
-      }
-
       function changeBairro(bairro){
        $.ajax({
          url: '<%= listarBairro_path %>',

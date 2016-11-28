@@ -59,7 +59,17 @@
                       <li> <%= link_to  murals_path do %><i class="fa fa-circle-o"></i><span>Mural</span><% end %></li>
                       <li> <%= link_to  bairros_path do %><i class="fa fa-circle-o"></i><span>Bairros</span><% end %></li>
                    </ul>
-                 </li>
+                </li>
+                <li class="treeview">
+                      <a href="">
+                        <i class="fa fa-bars"></i> <span>Cotação</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                      </a>
+                      <ul class="treeview-menu">
+                         <li> <%= link_to  empresas_path do %><i class="fa fa-circle-o"></i><span>Empresas</span><% end %></li>
+                         <li> <%= link_to  produtos_path do %><i class="fa fa-circle-o"></i><span>Produtos</span><% end %></li>
+                        </ul>
+                    </li>
            <%end%>
           <li>
              <%= link_to  reservas_path do %>
