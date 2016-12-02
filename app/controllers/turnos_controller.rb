@@ -54,7 +54,7 @@ class TurnosController < ApplicationController
 
     respond_to do |format|
       if @turno.save
-        format.html { redirect_to @turno, notice: 'Turno was successfully created.' }
+        format.html { redirect_to @turno, notice: 'Ocorrência cadastrada com sucesso.' }
         format.json { render :show, status: :created, location: @turno }
       else
         format.html { render :new }
@@ -68,7 +68,7 @@ class TurnosController < ApplicationController
   def update
     respond_to do |format|
       if @turno.update(turno_params)
-        format.html { redirect_to @turno, notice: 'Turno was successfully updated.' }
+        format.html { redirect_to @turno, notice: 'Ocorrência alterada com sucesso.' }
         format.json { render :show, status: :ok, location: @turno }
       else
         format.html { render :edit }
@@ -82,7 +82,7 @@ class TurnosController < ApplicationController
   def destroy
     @turno.destroy
     respond_to do |format|
-      format.html { redirect_to turnos_url, notice: 'Turno was successfully destroyed.' }
+      format.html { redirect_to turnos_url, notice: 'Ocorrência excluída com sucesso.' }
       format.json { head :no_content }
     end
   end
