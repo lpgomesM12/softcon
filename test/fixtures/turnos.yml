@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  desc_relatorio: MyText
+  data_entrega: 2016-11-30 17:23:51
+  user_id: 
+  flag_entregue: false
+
+two:
+  desc_relatorio: MyText
+  data_entrega: 2016-11-30 17:23:51
+  user_id: 
+  flag_entregue: false

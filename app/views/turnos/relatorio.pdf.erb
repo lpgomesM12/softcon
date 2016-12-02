@@ -1,0 +1,34 @@
+<meta charset="utf-8">
+<br>
+<hr>
+ <table>
+   <td style="font-size: 12px"> <strong><%=@condominio%></strong></td>
+
+   <td style="font-size: 12px" align="right">
+     wwww.softcontecnologia.com.br - Sistemas para condominio
+   </td>
+
+ </table>
+<br><br>
+<table>
+  <td style="font-size: 10px"> <strong>Funcionário:</strong> <%=@turno.user.pessoa.nome_pessoa%></td>
+
+  <td style="font-size: 10px" align="right">
+    <strong>Data Entrega</strong> <%=@turno.data_entrega.strftime("%d/%m/%Y %H:%M:%S")%>
+  </td>
+
+</table>
+
+<hr>
+<h4 align="center">OCORRÊNCIAS</h4>
+
+<label style="font-size: 10px"><%= @turno.desc_relatorio.html_safe %></label>
+
+
+
+
+<style media="screen">
+  table {
+     width:100%;
+  }
+</style>

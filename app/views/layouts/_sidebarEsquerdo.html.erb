@@ -38,13 +38,14 @@
                 <ul class="treeview-menu">
                    <li> <%= link_to  ocorrencia_path do %><i class="fa fa-circle-o"></i><span>Controle Acesso</span><% end %></li>
                    <li> <%= link_to  encomendas_path do %><i class="fa fa-circle-o"></i><span>Encomendas</span><% end %></li>
+                   <li> <%= link_to  turnos_path do %><i class="fa fa-circle-o"></i><span>Livro ocorrencia</span><% end %></li>
                    <li> <%= link_to achadoperdidos_path do %><i class="fa fa-circle-o"></i><span>Achados Perdidos</span><% end %></li>
                    <li> <%= link_to agendamentomudancas_path do %><i class="fa fa-circle-o"></i><span>Agendamento de Mudança</span><% end %></li>
                    <li> <%= link_to pessoaautorizadas_path do %><i class="fa fa-circle-o"></i><span>Autorizar/Bloquear</span><% end %></li>
                 </ul>
             </li>
 
-             <li class="treeview">
+            <li class="treeview">
                    <a href="">
                      <i class="fa fa-edit"></i> <span>Cadastros</span>
                      <i class="fa fa-angle-left pull-right"></i>
@@ -59,8 +60,8 @@
                       <li> <%= link_to  murals_path do %><i class="fa fa-circle-o"></i><span>Mural</span><% end %></li>
                       <li> <%= link_to  bairros_path do %><i class="fa fa-circle-o"></i><span>Bairros</span><% end %></li>
                    </ul>
-                </li>
-                <li class="treeview">
+              </li>
+              <li class="treeview">
                       <a href="">
                         <i class="fa fa-bars"></i> <span>Cotação</span>
                         <i class="fa fa-angle-left pull-right"></i>
@@ -69,21 +70,21 @@
                          <li> <%= link_to  empresas_path do %><i class="fa fa-circle-o"></i><span>Empresas</span><% end %></li>
                          <li> <%= link_to  produtos_path do %><i class="fa fa-circle-o"></i><span>Produtos</span><% end %></li>
                         </ul>
-                    </li>
+              </li>
            <%end%>
-          <li>
-             <%= link_to  reservas_path do %>
-             <i class="fa fa-calendar-o"></i>
-                <span>Reservas</span>
-                <% end %>
-          </li>
+              <li>
+                 <%= link_to  reservas_path do %>
+                 <i class="fa fa-calendar-o"></i>
+                    <span>Reservas</span>
+                    <% end %>
+              </li>
 
-          <li>
-             <%= link_to  muraluser_path do %>
-             <i class="fa fa-file-pdf-o"></i>
-                <span>Mural(Portal Transparência)</span>
-                <% end %>
-          </li>
+             <li>
+                 <%= link_to  muraluser_path do %>
+                 <i class="fa fa-file-pdf-o"></i>
+                    <span>Mural(Portal Transparência)</span>
+                    <% end %>
+              </li>
 
     <%unless current_user.tem_permissao(4)%>
           <li class="treeview">

@@ -1,0 +1,106 @@
+<section class="content-header">
+
+</section>
+
+<!-- Main content -->
+<section class="content">
+   <!-- Small boxes (Stat box) -->
+      <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Livro/Ocorrencia</h3>
+             </div><!-- /.box-header -->
+     <div class="box-body table-responsive no-padding">
+         <table class="table table-hover">
+           <thead>
+             <tr>
+               <th>Funcionário</th>
+               <th>Data Fechamento</th>
+             </tr>
+           </thead>
+
+           <tbody>
+           <% @turnos.each do |turno| %>
+               <tr>
+                 <td><%= turno.user.pessoa.nome_pessoa %></td>
+                 <td><%= turno.data_entrega.blank? ? '' : turno.data_entrega.strftime("%d/%m/%Y %H:%M:%S")%></td>
+
+               <td align='right'>
+                 <div class="btn-group">
+                     <%= link_to turno, class: "btn btn-default btn-sm" do %>
+                       <span class="glyphicon glyphicon glyphicon-eye-open"></span> Exibir
+                     <% end %>
+                    <% if turno.flag_entregue%>
+                         <%= link_to livroocorrencia_path(turno,format: :pdf), class: "btn btn-default btn-sm" do %>
+                           <span class="fa fa-file-pdf-o"></span>
+                           PDF
+                         <% end %>
+                        <%else%>
+                         <%= link_to edit_turno_path(turno), class: "btn btn-default btn-sm" do %>
+                           <span class="glyphicon glyphicon-pencil text-primary"></span> Editar
+                         <% end %>
+                     <%end%>
+
+                     <button type="button"  onclick="modalEntregar(<%=turno.id%>)" class="btn btn-primary btn-sm">
+                       <span class="glyphicon glyphicon-check"></span> Fechar
+                     </button>
+
+                    <%#= link_to turno, method: :delete, data: { confirm: 'Deseja excluir o registro?' }, class: "btn btn-default btn-sm" do %>
+                       <!-- <span class="glyphicon glyphicon-trash text-danger"></span> -->
+                     <%# end %>
+                 </div>
+                 </td>
+               </tr>
+             <% end %>
+           </tbody>
+         </table>
+       </div>
+     </div><!-- /.box -->
+          <%= link_to new_turno_path, class: "btn btn-default btn-sm" do %>
+                 <span class="glyphicon glyphicon-file"></span>Novo
+         <% end %>
+ </section>
+
+
+ <div class="modal fade" id="myModalEntregar" role="dialog">
+     <div class="modal-dialog modal-sm">
+       <div class="modal-content">
+         <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal">&times;</button>
+           <h4 class="modal-title">Aviso</h4>
+         </div>
+         <div class="modal-body">
+           <input type="hidden" name="id" id="idturno" >
+           <p>Deseja realmente fechar essa ocorrencia.</p>
+         </div>
+         <div class="modal-footer">
+
+           <button type="button" onclick="entregaOcorrencia()" class="btn btn-success">Sim</button>
+           <button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
+
+         </div>
+       </div>
+     </div>
+   </div>
+
+
+   <script type="text/javascript">
+
+   function modalEntregar(id){
+     $("#myModalEntregar").modal('show');
+     $("#idturno").val(id);
+   };
+
+  function entregaOcorrencia(){
+         var  id = $("#idturno").val();
+         $.ajax({
+           url: '<%= entregaTurno_path %>',
+           data : {id : id},
+           success: function(data){
+             if(data){
+               location.reload();
+           };
+         }
+     })
+  };
+
+   </script>

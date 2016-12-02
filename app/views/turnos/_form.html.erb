@@ -1,0 +1,94 @@
+<%= form_for(@turno) do |f| %>
+  <% if @turno.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@turno.errors.count, "error") %> prohibited this turno from being saved:</h2>
+
+      <ul>
+      <% @turno.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="box-body">
+
+  <div class="row">
+    <div class="col-lg-12">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">Relatório ocorrência<small></small></h3>
+        <!-- tools box -->
+        <div class="pull-right box-tools">
+        </div><!-- /. tools -->
+      </div><!-- /.box-header -->
+      <div class="box-body pad">
+         <%= f.text_area :desc_relatorio, :class => 'form-control', :placeholder => "Escreva as ocorrências", :style => "width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" %>
+      </div>
+     </div>
+    </div>
+  </div>
+
+
+   <%= f.hidden_field :user_id, :value => current_user.id%>
+
+</div>
+</div><!-- /.box -->
+
+<div class="row mar-bot40">
+  <div class="col-lg-8" >
+     <div class="btn-group">
+       <button type="submit" value="Submit" class="btn btn-primary btn-sm">
+        <span class="glyphicon glyphicon-floppy-disk"></span> Salvar
+       </button>
+       <%= link_to turnos_path, :class => "btn btn-default btn-sm" do %>
+          <span class="glyphicon glyphicon-arrow-left"></span> Voltar
+        <% end %>
+      </div>
+    </div>
+</div>
+</section>
+
+<%end%>
+
+
+<script>
+  $(function () {
+    //bootstrap WYSIHTML5 - text editor
+    $("#turno_desc_relatorio").wysihtml5();
+  });
+</script>
+
+
+
+
+<style media="screen">
+/*! ========================================================================
+* Bootstrap Toggle: bootstrap-toggle.css v2.2.0
+* http://www.bootstraptoggle.com
+* ========================================================================
+* Copyright 2014 Min Hur, The New York Times Company
+* Licensed under MIT
+* ======================================================================== */
+.checkbox label .toggle,.checkbox-inline .toggle{margin-left:-20px;margin-right:5px}
+.toggle{position:relative;overflow:hidden}
+.toggle input[type=checkbox]{display:none}
+.toggle-group{position:absolute;width:200%;top:0;bottom:0;left:0;transition:left .35s;-webkit-transition:left .35s;-moz-user-select:none;-webkit-user-select:none}
+.toggle.off .toggle-group{left:-100%}
+.toggle-on{position:absolute;top:0;bottom:0;left:0;right:50%;margin:0;border:0;border-radius:0}
+.toggle-off{position:absolute;top:0;bottom:0;left:50%;right:0;margin:0;border:0;border-radius:0}
+.toggle-handle{position:relative;margin:0 auto;padding-top:0;padding-bottom:0;height:100%;width:0;border-width:0 1px}
+.toggle.btn{min-width:59px;min-height:34px}
+.toggle-on.btn{padding-right:24px}
+.toggle-off.btn{padding-left:24px}
+.toggle.btn-lg{min-width:79px;min-height:45px}
+.toggle-on.btn-lg{padding-right:31px}
+.toggle-off.btn-lg{padding-left:31px}
+.toggle-handle.btn-lg{width:40px}
+.toggle.btn-sm{min-width:50px;min-height:30px}
+.toggle-on.btn-sm{padding-right:20px}
+.toggle-off.btn-sm{padding-left:20px}
+.toggle.btn-xs{min-width:35px;min-height:22px}
+.toggle-on.btn-xs{padding-right:12px}
+.toggle-off.btn-xs{padding-left:12px}
+</style>

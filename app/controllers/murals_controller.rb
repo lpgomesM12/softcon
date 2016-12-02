@@ -4,7 +4,12 @@ class MuralsController < ApplicationController
   # GET /murals
   # GET /murals.json
   def mural
-    @murals = Mural.where(condominio_id: current_user.condominio_id)
+    if params[:q]
+      @q = params[:q]
+      @murals = Mural.where("condominio_id = #{current_user.condominio_id} and lower(titulo)like '%#{@q.downcase}%'")
+    else
+      @murals = Mural.where(condominio_id: current_user.condominio_id)
+    end
   end
 
   # GET /murals
