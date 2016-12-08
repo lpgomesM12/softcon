@@ -1,0 +1,18 @@
+<div class="top-bar">
+    <!-- Topbar Start -->
+
+    <div class="inner clearfix">
+        <a href="/" class="logo">Softcon<span>Tecnologia</span></a>
+        <a href="#" class="menu-action res-open">+</a>
+        <ul class="list-inline">
+            <!-- Main Menu Start -->
+            <li><%= link_to "Quem Somos", site_about_path %></li>
+            <li><%= link_to "Serviços", site_servico_path %></li>
+            <li><%= link_to "Contato", site_contato_path %></li>
+            <li class="active">
+
+             <li><%= link_to "Entrar", user_session_path, class: "border-blue btn form_"%></li>
+        </ul>
+        <!-- Main Menu End -->
+    </div>
+</div>

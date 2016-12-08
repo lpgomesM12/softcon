@@ -88,5 +88,8 @@ Rails.application.routes.draw do
   get "/relmudanca", to: "agendamentomudancas#relmudanca", as: :relmudanca
   get 'muraluser' => 'murals#mural'
   get '/livroocorrencia/:id', to: 'turnos#relatorio', as: :livroocorrencia
+  get 'site/about'
+  get 'site/contato'
+  get 'site/servico'
 
 end
