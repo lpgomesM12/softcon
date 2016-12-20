@@ -40,3 +40,8 @@
 //= require morris
 //= require cocoon
 //= require bootstrap-datepicker.pt-BR
+
+
+$(document).ready(function() {
+  $('.has-tooltip').tooltip();
+});

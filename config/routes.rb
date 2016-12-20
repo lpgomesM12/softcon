@@ -5,15 +5,9 @@ Rails.application.routes.draw do
   resources :empresas
   resources :murals
   resources :pessoaautorizadas
-  get 'relmudanca/relatorio'
-
   resources :agendamentomudancas
   resources :achadoperdidos
   resources :inadimplentes
-  get 'relatoriodespesa/relatorio'
-
-  get 'relatorioacesso/relatorio'
-
   resources :despesas
   resources :tipoocorrencia
   resources :ocorrencia do
@@ -25,7 +19,6 @@ Rails.application.routes.draw do
   resources :encomendas
   resources :termos
   resources :tipotermos
-  root 'static_pages#home'
 
   #get 'usuarios/index'
   resources :usuarios
@@ -51,6 +44,7 @@ Rails.application.routes.draw do
   resources :cidades
   resources :estados
   devise_for :users, :controllers => {:registrations => "users/registrations"}
+  root 'static_pages#home'
 
   match '/listarCidade', to: 'cidades#get_cities', via: 'get'
   match '/listarBairro', to: 'bairros#get_bairros', via: 'get'
@@ -72,9 +66,14 @@ Rails.application.routes.draw do
   match '/validaInadiplente', to: 'inadimplentes#valida_inadiplente', via: 'get'
   match '/pessoasautorizadas', to: 'pessoaautorizadas#pessoas_autorizadas', via: 'get'
   match '/entregaTurno', to: 'turnos#entrega_turno', via: 'get'
+  match '/emailcontato', to: 'site#envio_email_contato', via: 'get'
+  match '/buscadividasubitem', to: 'previsaoorcamentaria#busca_dividasubitem', via: 'get'
 
   get '/ocorrencia/:id', to: 'ocorrencia#baixa_ocorrencia', as: 'baicaocorrencia'
 
+  get 'relatoriodespesa/relatorio'
+  get 'relatorioacesso/relatorio'
+  get 'relmudanca/relatorio'
   get 'buscamorador' => 'moradors#busca_morador'
   get 'buscaapartamento' => 'apartamentos#busca'
   get 'relatorio/reservas'
@@ -91,5 +90,7 @@ Rails.application.routes.draw do
   get 'site/about'
   get 'site/contato'
   get 'site/servico'
+  get 'previsaoorcamentaria/index'
+  get 'previsaoorcamentaria/relatorio'
 
 end

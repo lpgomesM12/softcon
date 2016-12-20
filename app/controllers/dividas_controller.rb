@@ -136,7 +136,7 @@ class DividasController < ApplicationController
                     :flag_pago => @divida.flag_pago,
                     :desc_observacao => @divida.desc_observacao,
                     :data_pagamento => @divida.data_pagamento.blank? ? '' : @divida.data_pagamento.strftime("%d/%m/%Y")}
-      render :json => json_divida
+        render :json => json_divida
   end
 
   # GET /dividas

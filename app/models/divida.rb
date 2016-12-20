@@ -7,9 +7,18 @@ class Divida < ActiveRecord::Base
   belongs_to :exclusao, :class_name => "User", :foreign_key => "user_exclusao"
   belongs_to :cancelamento, :class_name => "User", :foreign_key => "user_cancelamento"
 
+  attr_accessor :nome_item
+
+  def nome_item
+    @nome_item
+  end
+
+  # setter
+  def nome_item=(val)
+    @nome_item = val
+  end
 
   def self.busca_dividas(condominio,flag_pago,flag_naopago,flag_despesafixa,flag_ordinaria,data_inicio,data_fim,prestador_id,notafiscal,cheque)
-
     @or = "AND"
     sql = " condominio_id = #{condominio}"
       if flag_pago == "true"

@@ -1,0 +1,206 @@
+<section class="content-header">
+    <h1>
+      <%if notice %>
+      <%end%>
+    </h1>
+
+    <div class="well" style="padding: 9px">
+        <div class="row">
+          <div class='col-sm-2'>
+             <label for="data_inicio">Referencia</label>
+              <div class="form-group">
+                  <div class='input-group date' id='datetimepicker1'>
+                      <input type='text' id="data_referencia" name="data_referencia" value="<%=@data_inicio%>" class="form-control" />
+                  </div>
+              </div>
+          </div>
+            <div class="col-lg-4">
+              <label>Conta</label>
+              <%=select_tag "contabank_id", options_from_collection_for_select(Contabank.all, "id", "nome_banco"),{:class => 'form-control'}%>
+             </div>
+          <div class="col-sm-4">
+            <br>
+            <button class="btn btn-primary" type="submit" name="imprimir" onclick="buscaDespesas()" value="html" data-target="_blank">
+               <span class="glyphicon glyphicon-search"></span> Pesquisar
+            </button>
+            <%= link_to previsaoorcamentaria_relatorio_path(format: :pdf),
+                                                       method: :get, class: "btn btn-success" do %>
+                <span class="glyphicon glyphicon-print"></span> Imprimir PDF
+            <% end %>
+           </div>
+        </div>
+    </div>
+</section>
+
+<section class="content" style="margin-top:-25px">
+  <div class="row">
+    <div class="col-md-5">
+           <div class="box">
+                    <div class="box-header">
+                         <div Align="left">
+                          Lista de Itens
+                        </div>
+                      </div><!-- /.box-header -->
+                      <div class="box-body">
+                        <div class="table-overflow table-responsive">
+                        <table id="example1" class="table table-bordered table-hover table-condensed">
+                          <thead>
+                            <tr>
+                              <th>Item</th>
+                              <th>Valor</th>
+                            </tr>
+                          </thead>
+                           <tbody id="tborcamento" >
+                             <% @dividas.each do |divida| %>
+                                 <tr>
+                                   <td><%=divida.desc_titulo%></td>
+                                   <td><%=divida.valr_divida%></td>
+                                 </tr>
+                             <%end%>
+                           </tbody>
+                        </table>
+                        </div>
+                      </div><!-- /.box-body -->
+                      <div class="box-footer">
+                          <table id="example1" class="table table-bordered table-hover table-condensed">
+                            <thead>
+                              <tr>
+                                <td>Valor total de Despesas: <span id="lbldespesa_paga"></span></td>
+                              </tr>
+                            </thead>
+                          </table>
+                      </div><!-- /.box-header -->
+            </div><!-- /.box -->
+     </div>
+     <div class="col-md-7">
+            <div class="box">
+                     <div class="box-header">
+                          <div Align="left">
+                           Lista de SubItens
+                         </div>
+                       </div><!-- /.box-header -->
+                       <div class="box-body">
+                         <div class="table-overflow table-responsive">
+                         <table id="example1" class="table table-bordered table-hover table-condensed">
+                           <thead>
+                             <tr>
+                               <th>Item</th>
+                               <th>Valor</th>
+                               <th>Qtd</th>
+                             </tr>
+                           </thead>
+                            <tbody id="tborcamento">
+                              <% @subtitulos.each do |subtitulo| %>
+                                <tr onclick="buscaDetalhamento(<%=subtitulo.subitem_id%>,<%=subtitulo.item_id%>)">
+                                  <td><%=subtitulo.item%></td>
+                                  <td><%=subtitulo.subitem%></td>
+                                  <td><%=subtitulo.qtd%></td>
+                                </tr>
+                              </a>
+                              <%end%>
+                            </tbody>
+                         </table>
+                         </div>
+                       </div><!-- /.box-body -->
+                       <div class="box-footer">
+                           <table id="example1" class="table table-bordered table-hover table-condensed">
+                             <thead>
+                               <tr>
+                                 <td>Valor total de Despesas: <span id="lbldespesa_paga"></span></td>
+                               </tr>
+                             </thead>
+                           </table>
+                       </div><!-- /.box-header -->
+             </div><!-- /.box -->
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+           <div class="box">
+                    <div class="box-header">
+                         <div Align="left">
+                          Detalhamento
+                        </div>
+                      </div><!-- /.box-header -->
+                      <div class="box-body">
+                        <div class="table-overflow table-responsive">
+                        <table id="example1" class="table table-bordered table-hover table-condensed">
+                          <thead>
+                            <tr>
+                              <th>Nome</th>
+                              <th>Historico</th>
+                              <th>Cheque</th>
+                              <th>N.Fiscal</th>
+                              <th>Vencimento</th>
+                              <th>Valor</th>
+                              <th>Pagamento</th>
+                              <th>Pagamento</th>
+                            </tr>
+                          </thead>
+                           <tbody id="tbodetalhe" >
+                           </tbody>
+                        </table>
+                        </div>
+                      </div><!-- /.box-body -->
+                      <div class="box-footer">
+                      </div><!-- /.box-header -->
+            </div><!-- /.box -->
+     </div>
+  </div>
+<section>
+
+<%#= console %>
+
+<script type="text/javascript">
+
+//Adicionando mascara data_vencimento
+jQuery(function($){
+    $("#data_referencia").mask("99/9999");
+
+    var $body = $('body');
+    $body.addClass('sidebar-collapse')
+});
+
+function teste(){
+  console.log("pronto");
+}
+
+//funcão que busca todas as despesas
+  function buscaDetalhamento(subitem_id, item_id){
+     $.ajax({
+       url: '/buscadividasubitem',
+       data : {
+         subitem_id: subitem_id,
+         item_id: item_id
+       },
+       success: function(data){
+         monta_lista_detalhe(data);
+       }
+     })
+  };
+
+function monta_lista_detalhe(data){
+    var html = "";
+    $("#tbodetalhe").empty();
+     for (var i in data) {
+       var item = data[i];
+       html += "<tr><td>"+item.nome_prestador+"</td>";
+       html += "<td>"+item.desc_observacao+"</td>";
+       html += "<td>"+item.numr_cheque+"</td>";
+       html += "<td>"+item.numr_notafiscal+"</td>";
+       html += "<td>"+item.data_vencimento+"</td>";
+       html += "<td>"+item.valr_divida+"</td>";
+       html += "<td>"+item.data_pagamento+"</td>";
+       html += "<td>"+item.valr_pagamento+"</td></tr>";
+    };
+     $("#tbodetalhe").append(html);
+   };
+
+</script>
+
+<style media="screen">
+  .table-overflow {
+      max-height:150px;
+      overflow-y:auto;
+  }
+</style>
