@@ -1,0 +1,38 @@
+.pagination  um , .pagination  extensão .Current , .pagination  extensão .gap {
+	flutuar : esquerda ;
+	estofamento : 0 14 px ;
+	line-height : 38 px ;
+	text-decoration : nenhum ;
+	background-color : white ;
+	border : 1 px  sólida  #DDD ;
+	border-left-width : 0 ;
+}
+
+.pagination {
+	border-left : 1 px  sólida  #ddd ;
+	.primeira {
+		estofamento : 0 ;
+		flutuar : nenhum ;
+		border : nenhum ;
+	}
+	.prev {
+		estofamento : 0 ;
+		flutuar : nenhum ;
+		border : nenhum ;
+	}
+	.página {
+		estofamento : 0 ;
+		flutuar : nenhum ;
+		border : nenhum ;
+	}
+	.next {
+		estofamento : 0 ;
+		flutuar : nenhum ;
+		border : nenhum ;
+	}
+	.last {
+		estofamento : 0 ;
+		flutuar : nenhum ;
+		border : nenhum ;
+	}
+}

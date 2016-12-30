@@ -4,6 +4,7 @@
       <%end%>
     </h1>
 
+<%= form_tag nil, method: 'GET' do %>
     <div class="well" style="padding: 9px">
         <div class="row">
           <div class='col-sm-2'>
@@ -30,6 +31,7 @@
            </div>
         </div>
     </div>
+  <%end%>
 </section>
 
 <section class="content" style="margin-top:-25px">
@@ -54,7 +56,7 @@
                              <% @dividas.each do |divida| %>
                                  <tr>
                                    <td><%=divida.desc_titulo%></td>
-                                   <td><%=divida.valr_divida%></td>
+                                   <td><%= number_to_currency(divida.valr_divida, unit: "", separator: ",", delimiter: "") %></td>
                                  </tr>
                              <%end%>
                            </tbody>
@@ -71,8 +73,8 @@
                           </table>
                       </div><!-- /.box-header -->
             </div><!-- /.box -->
-     </div>
-     <div class="col-md-7">
+        </div>
+        <div class="col-md-7">
             <div class="box">
                      <div class="box-header">
                           <div Align="left">
@@ -148,8 +150,6 @@
      </div>
   </div>
 <section>
-
-<%#= console %>
 
 <script type="text/javascript">
 

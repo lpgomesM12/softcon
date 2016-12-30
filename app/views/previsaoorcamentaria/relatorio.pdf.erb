@@ -7,12 +7,15 @@
      <td style="font-size: 11px" align="center"> <strong>www.softcontecnologia.com.br Sistemas para condomínios</strong></td>
    </tr>
    <tr>
+     <td><br></td>
+   </tr>
+   <tr>
      <td style="font-size: 12px" align="center"> <strong>Previsão de Orçamento Mensal <%=@condominio%></strong></td>
    </tr>
    <tr>
     <td style="font-size: 12px" align="right">
       Referência 11/2016 <br><br>
-      Qtd Unidades: 400
+      Qtd Unidades: <%=@qtd_ap_condominio%>
     </td>
    </tr>
   </table>
@@ -26,9 +29,16 @@
 
 <% @x = 0%>
 <%@hr = false%>
-
+<%@valor_total_subtitulo = 0%>
+<%@valor_total_geral = 0%>
 <% @subtitulos.each do |subtitulo| %>
   <%if @x != subtitulo.item_id && @x != 0%>
+      <table>
+         <tr>
+           <td style="font-size: 11px" align="right"><strong><%= number_to_currency(@valor_total_subtitulo, unit: "", separator: ",", delimiter: "") %></strong></td>
+         </tr>
+      </table>
+      <%@valor_total_subtitulo = 0%>
       <hr>
   <%end%>
    <table>
@@ -40,11 +50,48 @@
       </tr>
       <tr>
         <td style="font-size: 11px; padding-left:3em"><%=subtitulo.subitem%></td>
-        <td style="font-size: 11px" align="right"><%=subtitulo.valr_divida%></td>
+        <td style="font-size: 11px" align="right"><%= number_to_currency(subtitulo.valr_divida, unit: "", separator: ",", delimiter: "") %></td>
       </tr>
    </table>
-<%end%>
 
+   <%@valor_total_subtitulo = (@valor_total_subtitulo + subtitulo.valr_divida )%>
+   <%@valor_total_geral = (@valor_total_geral + subtitulo.valr_divida )%>
+<%end%>
+<table>
+   <tr>
+     <td style="font-size: 11px" align="right"><strong><%= number_to_currency(@valor_total_subtitulo, unit: "", separator: ",", delimiter: "") %></strong></td>
+   </tr>
+</table>
+<br>
+.........................................................................................................................................................
+<strong><i style="font-size: 11px">*DADOS GERAIS -(Estes valores não são somados no total de despesas.)</i></strong>
+<table>
+   <tr>
+     <td style="font-size: 11px; padding-left:3em">Despesas Ordinárias</td>
+     <td style="font-size: 11px" align="right"><%= number_to_currency(@valor_despesaordinaria, unit: "", separator: ",", delimiter: "") %></td>
+   </tr>
+   <tr>
+     <% @taxa_condominio = @valor_despesaordinaria/@qtd_ap_condominio%>
+     <td style="font-size: 11px; padding-left:3em">Taxa de condomínio. DESPESAS ORDINÁRIAS por 480 Unidades</td>
+     <td style="font-size: 11px" align="right"><%= number_to_currency(@taxa_condominio, unit: "", separator: ",", delimiter: "") %></td></td>
+   </tr>
+   <tr>
+     <%@fundo_reserva = (@taxa_condominio/100)*10 %>
+     <td style="font-size: 11px; padding-left:3em">Fundo de reserva. 10% do total da DESPESAS ORDINÁRIAS por 480 Unidades</td>
+     <td style="font-size: 11px" align="right"><%= number_to_currency(@fundo_reserva, unit: "", separator: ",", delimiter: "")%></td>
+   </tr>
+   <tr>
+     <td style="font-size: 11px; padding-left:3em">axa de Condomínio final.Total de DESPESAS ORDINÁRIAS por 480 Unidades com F.RESERVA</td>
+     <td style="font-size: 11px" align="right"><%= number_to_currency(@fundo_reserva + @taxa_condominio, unit: "", separator: ",", delimiter: "")%></td>
+   </tr>
+</table>
+<br>
+.........................................................................................................................................................
+<table>
+   <tr>
+     <td style="font-size: 11px" align="right"><strong><%= number_to_currency(@valor_total_geral, unit: "", separator: ",", delimiter: "") %></strong></td>
+   </tr>
+</table>
 <style media="screen">
 
 table {

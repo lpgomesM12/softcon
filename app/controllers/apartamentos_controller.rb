@@ -8,7 +8,7 @@ class ApartamentosController < ApplicationController
   # GET /apartamentos
   # GET /apartamentos.json
   def index
-    @apartamentos = Apartamento.where(condominio_id: current_user.condominio_id)
+    @apartamentos = Apartamento.where(condominio_id: current_user.condominio_id).page(params[:page]).per(6)
   end
 
   # GET /apartamentos/1

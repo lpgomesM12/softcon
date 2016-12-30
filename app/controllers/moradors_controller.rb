@@ -8,7 +8,7 @@ class MoradorsController < ApplicationController
   # GET /moradors
   # GET /moradors.json
   def index
-    @moradors = Morador.where(condominio_id: current_user.condominio_id)
+    @moradors = Morador.where(condominio_id: current_user.condominio_id).page(params[:page]).per(6)
   end
 
   # GET /moradors/1
