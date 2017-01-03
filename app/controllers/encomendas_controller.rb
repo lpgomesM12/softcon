@@ -18,7 +18,7 @@ class EncomendasController < ApplicationController
   # GET /encomendas
   # GET /encomendas.json
   def index
-    @encomendas = Encomenda.all
+    @encomendas = Encomenda.where(condominio_id: current_user.condominio_id)
   end
 
   # GET /encomendas/1
