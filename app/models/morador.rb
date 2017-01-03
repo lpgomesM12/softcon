@@ -1,6 +1,8 @@
 class Morador < ActiveRecord::Base
   belongs_to :apartamento
+  validates :apartamento_id, :presence => { :message => 'Escolha um apartamento' }
   belongs_to :pessoa
+
   belongs_to :inclusao, :class_name => "User", :foreign_key => "user_inclusao"
 
   accepts_nested_attributes_for :pessoa, allow_destroy: true

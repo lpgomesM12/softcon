@@ -1,18 +1,17 @@
+<div class="box-body">
 <%= form_for(@morador) do |f| %>
   <% if @morador.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@morador.errors.count, "error") %> prohibited this morador from being saved:</h2>
-
-      <ul>
-      <% @morador.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <div class="alert alert-danger alert-dismissable fade in">
+         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+         <ul>
+         <% @morador.errors.full_messages.each do |message| %>
+           <li><%= message %></li>
+         <% end %>
+         </ul>
     </div>
+  </div>
   <% end %>
-
-<div class="box-body">
-
 <%= f.fields_for :pessoa do |p| %>
 
 <div class="row">
