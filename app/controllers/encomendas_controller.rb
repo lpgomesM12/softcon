@@ -86,6 +86,6 @@ class EncomendasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def encomenda_params
-      params.require(:encomenda).permit(:msg_encomenda, :data_encomenda, :data_entrega, :condominio_id, :morador_id, :user_inclusao, :user_entrega)
+      params.require(:encomenda).permit(:msg_encomenda, :data_encomenda, :data_entrega, :condominio_id, :morador_id, :user_inclusao, :user_entrega, :condominio_id)
     end
 end

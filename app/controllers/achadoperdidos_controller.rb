@@ -19,7 +19,7 @@ class AchadoperdidosController < ApplicationController
   # GET /achadoperdidos
   # GET /achadoperdidos.json
   def index
-    @achadoperdidos = Achadoperdido.page(params[:page]).per(10)
+    @achadoperdidos = Achadoperdido.where(condominio_id: current_user.condominio_id).page(params[:page]).per(10)
   end
 
   # GET /achadoperdidos/1
@@ -87,6 +87,6 @@ class AchadoperdidosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def achadoperdido_params
-      params.require(:achadoperdido).permit(:descricao, :data_achado, :data_entrega, :observacao, :morador_id)
+      params.require(:achadoperdido).permit(:descricao, :data_achado, :data_entrega, :observacao, :morador_id, :condominio_id)
     end
 end
