@@ -50,7 +50,7 @@ class OcorrenciaController < ApplicationController
           @identificacao.desc_atividade = @ocorrencium.desc_ocorrencia
           @identificacao.desc_nome = ocorrencium_params[:identificacao_attributes][:desc_nome]
           @identificacao.desc_fone = ocorrencium_params[:identificacao_attributes][:desc_fone]
-          @idetificacao.condominio_id = current_user.condominio_id
+          @identificacao.condominio_id = current_user.condominio_id
           @identificacao.save
         else
           @ocorrencium = Ocorrencium.new(ocorrencium_params)
