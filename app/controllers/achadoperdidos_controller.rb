@@ -19,7 +19,7 @@ class AchadoperdidosController < ApplicationController
   # GET /achadoperdidos
   # GET /achadoperdidos.json
   def index
-    @achadoperdidos = Achadoperdido.page(params[:page]).per(1)
+    @achadoperdidos = Achadoperdido.page(params[:page]).per(10)
   end
 
   # GET /achadoperdidos/1
