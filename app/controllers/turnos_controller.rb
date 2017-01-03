@@ -30,7 +30,7 @@ class TurnosController < ApplicationController
   # GET /turnos
   # GET /turnos.json
   def index
-    @turnos = Turno.all
+    @turnos = Turno.all.order("created_at desc")
   end
 
   # GET /turnos/1
