@@ -14,7 +14,7 @@ class PessoaautorizadasController < ApplicationController
   # GET /pessoaautorizadas
   # GET /pessoaautorizadas.json
   def index
-    @pessoaautorizadas = Pessoaautorizada.all
+    @pessoaautorizadas = Pessoaautorizada.where(condominio_id: current_user.condominio_id)
   end
 
   # GET /pessoaautorizadas/1

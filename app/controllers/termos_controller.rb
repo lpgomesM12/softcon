@@ -4,7 +4,7 @@ class TermosController < ApplicationController
   # GET /termos
   # GET /termos.json
   def index
-    @termos = Termo.all
+    @termos = Termo.where(condominio_id: current_user.condominio_id)
   end
 
   # GET /termos/1

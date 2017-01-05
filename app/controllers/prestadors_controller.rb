@@ -9,7 +9,7 @@ class PrestadorsController < ApplicationController
   # GET /prestadors
   # GET /prestadors.json
   def index
-    @prestadors = Prestador.all
+    @prestadors = Prestador.where(condominio_id: current_user.condominio_id)
   end
 
   # GET /prestadors/1

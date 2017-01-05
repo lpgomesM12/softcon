@@ -9,7 +9,16 @@ class ReservasController < ApplicationController
      @reserva.user_autorizacao = current_user.id
 
      if @reserva.save
-        Email.welcome_email(@reserva).deliver_now
+
+       if @reserva.email_solicitante == @reserva.userinclusao.email
+          emails = [@reserva.email_solicitante,current_user.condominio.email]
+      else
+         emails = [@reserva.email_solicitante,@reserva.userinclusao.email,current_user.condominio.email]
+       end
+
+       for email in emails
+           ReservaAprovada.send_email(@reserva,email,current_user.condominio.email).deliver
+       end
         render :json => true
       else
         render :json => false

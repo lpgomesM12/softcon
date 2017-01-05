@@ -21,7 +21,7 @@ class InadimplentesController < ApplicationController
   # GET /inadimplentes
   # GET /inadimplentes.json
   def index
-    @inadimplentes = Inadimplente.all
+    @inadimplentes = Inadimplente.where(condominio_id: current_user.condominio_id)
   end
 
   # GET /inadimplentes/1

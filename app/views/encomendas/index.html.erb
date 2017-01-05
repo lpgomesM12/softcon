@@ -42,12 +42,12 @@
                      <%= link_to encomenda, class: "btn btn-default btn-sm" do %>
                        <span class="glyphicon glyphicon-list-alt text-success"></span> Exibir
                      <% end %>
-                     <%= link_to edit_encomenda_path(encomenda), class: "btn btn-default btn-sm" do %>
-                       <span class="glyphicon glyphicon-pencil text-primary"></span> Editar
-                     <% end %>
-                    <%= link_to encomenda, method: :delete, data: { confirm: 'Deseja excluir o registro?' }, class: "btn btn-default btn-sm" do %>
-                       <span class="glyphicon glyphicon-trash text-danger"></span> Excluir
-                     <% end %>
+                     <%#= link_to edit_encomenda_path(encomenda), class: "btn btn-default btn-sm" do %>
+                       <!-- <span class="glyphicon glyphicon-pencil text-primary"></span> Editar -->
+                     <%# end %>
+                    <%#= link_to encomenda, method: :delete, data: { confirm: 'Deseja excluir o registro?' }, class: "btn btn-default btn-sm" do %>
+                       <!-- <span class="glyphicon glyphicon-trash text-danger"></span> Excluir -->
+                     <%# end %>
 
                      <%if encomenda.user_entrega == nil%>
                        <button type="submit" value="Submit" class="btn btn-primary btn-sm" onclick="modalEntrega(<%=encomenda.id%>)">

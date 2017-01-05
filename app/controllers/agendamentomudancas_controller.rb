@@ -19,7 +19,7 @@ class AgendamentomudancasController < ApplicationController
   # GET /agendamentomudancas
   # GET /agendamentomudancas.json
   def index
-    @agendamentomudancas = Agendamentomudanca.all
+    @agendamentomudancas = Agendamentomudanca.where(condominio_id: current_user.condominio_id)
   end
 
   # GET /agendamentomudancas/1

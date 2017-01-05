@@ -30,7 +30,7 @@ class TurnosController < ApplicationController
   # GET /turnos
   # GET /turnos.json
   def index
-    @turnos = Turno.all.order("created_at desc")
+    @turnos = Turno.where(condominio_id: current_user.condominio_id).order("created_at desc")
   end
 
   # GET /turnos/1
@@ -95,6 +95,6 @@ class TurnosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def turno_params
-      params.require(:turno).permit(:desc_relatorio, :data_entrega, :user_id, :flag_entregue)
+      params.require(:turno).permit(:desc_relatorio, :data_entrega, :user_id, :flag_entregue, :condominio_id)
     end
 end
