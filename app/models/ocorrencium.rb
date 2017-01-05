@@ -12,7 +12,7 @@ class Ocorrencium < ActiveRecord::Base
   def self.relatorio(data_inicio,data_fim,tipo,apartamento,nome)
      sql =  " INNER JOIN identificacaos inde on ocorrencia.identificacao_id = inde.id"
      sql = sql + " WHERE"
-     sql = sql + " ocorrencia.created_at BETWEEN #{data_inicio} AND #{data_fim}"
+     sql = sql + " ocorrencia.created_at BETWEEN '#{data_inicio}' AND '#{data_fim}'"
      if tipo != "" && tipo != nil
       sql = sql + " AND tipoocorrencium_id = #{tipo}"
      end

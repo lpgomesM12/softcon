@@ -11,14 +11,18 @@ class RelatorioacessoController < ApplicationController
         @data_fim = params[:data_fim]
     end
 
+
     @tipoocorrencia = params[:tipoocorrencia_id]
     @apartamento = params[:apartamento_id]
     @condominio = current_user.condominio.nome_condominio
 
 
-     @acessos = Ocorrencium.where(tipoocorrencium_id: @tipoocorrencia,
-                                  created_at: Date.strptime(@data_inicio, "%d/%m/%Y").strftime('%Y-%m-%d')..Date.strptime(@data_fim, "%d/%m/%Y").strftime('%Y-%m-%d'),
-                                  apartamento_id: @apartamento)
+     @acessos = Ocorrencium.relatorio(Date.strptime(@data_inicio, "%d/%m/%Y").strftime('%Y-%m-%d'),
+                                      Date.strptime(@data_fim, "%d/%m/%Y").strftime('%Y-%m-%d'),
+                                      @tipoocorrencia,
+                                      @apartamento,
+                                      nil)
+
 
           respond_to do |format|
             format.html
