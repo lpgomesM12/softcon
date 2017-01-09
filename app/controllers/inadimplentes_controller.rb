@@ -3,9 +3,9 @@ class InadimplentesController < ApplicationController
 
 
   def valida_inadiplente
-    @identificacaos = Identificacao.where(apartamento_id: params[:apartamento_id])
+    @inadimplente = Inadimplente.where(apartamento_id: params[:apartamento_id])
 
-    if @identificacaos.empty?
+    if @inadimplente.empty?
       render :json => false
     else
       render :json => true
