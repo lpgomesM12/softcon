@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :categoriamurals
   resources :turnos
   resources :produtos
   resources :empresas

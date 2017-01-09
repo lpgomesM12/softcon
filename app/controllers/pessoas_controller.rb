@@ -1,7 +1,6 @@
 class PessoasController < ApplicationController
   before_action :set_pessoa, only: [:show, :edit, :update, :destroy]
 
-
   def valida_pessoa
    @pessoa = Pessoa.where(cpf: params[:cpf])
 

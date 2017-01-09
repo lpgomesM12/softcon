@@ -1,0 +1,24 @@
+<%= form_for(@categoriamural) do |f| %>
+  <% if @categoriamural.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@categoriamural.errors.count, "error") %> prohibited this categoriamural from being saved:</h2>
+
+      <ul>
+      <% @categoriamural.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :nome_categoria %><br>
+    <%= f.text_field :nome_categoria %>
+  </div>
+  <div class="field">
+    <%= f.label :condominio_id %><br>
+    <%= f.text_field :condominio_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

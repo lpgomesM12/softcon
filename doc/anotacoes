@@ -1,0 +1,46 @@
+SELECT despesas.subitem_id, ti.desc_titulo as item, titulos.desc_titulo as subitem, sum(dividas.valr_divida) as valr_divida , despesas.item_id as item_id FROM "dividas" INNER JOIN despesas ON despesas.id = despesa_id
+                  INNER JOIN titulos ON titulos.id = despesas.subitem_id
+                  INNER JOIN titulos ti on  ti.id = despesas.item_id
+                  where dividas.data_vencimento >= '01-01-2016'
+                  GROUP BY
+                   despesas.subitem_id, titulos.desc_titulo, ti.desc_titulo, despesas.item_id, despesas.condominio_id
+                   HAVING
+                    despesas.condominio_id = 1
+
+
+SELECT despesas.subitem_id, ti.desc_titulo as item, titulos.desc_titulo as subitem, count(despesas.subitem_id) as qtd, despesas.item_id as item_id FROM "dividas" INNER JOIN despesas ON despesas.id = despesa_id
+                  INNER JOIN titulos ON titulos.id = despesas.subitem_id
+                  INNER JOIN titulos ti on  ti.id = despesas.item_id GROUP BY
+                  despesas.subitem_id, titulos.desc_titulo, ti.desc_titulo, despesas.item_id
+
+
+SELECT despesas.item_id, titulos.desc_titulo, sum(dividas.valr_divida) as  valr_divida, titulos.numr_tipolancamento as  numr_tipolancamento FROM "dividas" INNER JOIN despesas ON despesas.id = despesa_id
+                  INNER JOIN titulos ON titulos.id = despesas.item_id GROUP BY
+                  despesas.item_id, titulos.numr_tipolancamento, titulos.desc_titulo HAVING numr_tipolancamento = '1'
+
+
+ SELECT despesas.subitem_id, ti.desc_titulo as item, titulos.desc_titulo as subitem, sum(dividas.valr_divida) as valr_divida , despesas.item_id as item_id FROM "dividas" INNER JOIN despesas ON despesas.id = despesa_id
+                  INNER JOIN titulos ON titulos.id = despesas.subitem_id
+                  INNER JOIN titulos ti on  ti.id = despesas.item_id GROUP BY
+                  despesas.subitem_id, titulos.desc_titulo, ti.desc_titulo, despesas.item_id
+
+
+
+SELECT despesas.item_id, titulos.desc_titulo, sum(dividas.valr_divida) as  valr_divida, titulos.numr_tipolancamento as  numr_tipolancamento FROM "dividas" INNER JOIN despesas ON despesas.id = despesa_id
+                  INNER JOIN titulos ON titulos.id = despesas.item_id WHERE (
+                  dividas.data_vencimento >= '2016-12-27') GROUP BY
+                  despesas.item_id, titulos.numr_tipolancamento, titulos.desc_titulo HAVING numr_tipolancamento = '1'
+
+
+
+
+
+
+
+
+                  <tr>
+                    <td>Calça jeans</td>
+                    <td align='center'>2</td>
+                    <td align='center'>3.00</td>
+                    <td align='right'>6.00</td>
+                  </tr>

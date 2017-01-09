@@ -1,5 +1,6 @@
 class Apartamento < ActiveRecord::Base
   belongs_to :condominio
+  belongs_to :pessoa
 
   #Validações
   validates :numr_apartamento, presence: { message: "precisa de" }

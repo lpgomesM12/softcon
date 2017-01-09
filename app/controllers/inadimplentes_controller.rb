@@ -21,7 +21,9 @@ class InadimplentesController < ApplicationController
   # GET /inadimplentes
   # GET /inadimplentes.json
   def index
-    @inadimplentes = Inadimplente.where(condominio_id: current_user.condominio_id)
+    #@inadimplentes = Inadimplente.where(condominio_id: current_user.condominio_id)
+    @inadimplentes = Inadimplente.joins("INNER JOIN apartamentos ap ON apartamento_id = ap.id where ap.condominio_id = #{current_user.condominio_id} ")
+
   end
 
   # GET /inadimplentes/1

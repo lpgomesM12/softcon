@@ -75,3 +75,6 @@ rails g scaffold produto nome_produto:string desc_produto:string
 
 TURNO
 rails g scaffold turno desc_relatorio:text data_entrega:datetime user:references flag_entregue:boolean
+
+CATEGORIAMURAL
+rails g scaffold categoriamural nome_categoria:string condominio:references

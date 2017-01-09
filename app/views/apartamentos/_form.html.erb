@@ -27,6 +27,14 @@
    </div>
   </div>
 
+  <div class="row">
+        <div class="col-lg-5">
+             <label>Proprietário</label>
+            <input type="text" class="form-control" id="nome_proprietario" name="nome_proprietario" placeholder="Pesquise pelo Morador" onfocus="javascript:$(this).autocomplete('search','');">
+             <%= f.hidden_field :pessoa_id%>
+        </div>
+  </div>
+
    <%= f.hidden_field :condominio_id, :value => current_user.condominio_id %>
 
 </div>
@@ -47,3 +55,26 @@
 </section>
 
 <% end %>
+
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+     $('#nome_proprietario').autocomplete({
+     source: '/buscamorador',
+     dataType: 'json',
+     minLength: 0,
+     change: function(event, ui) {
+     if (!ui.item) {
+       $('#nome_proprietario').val('');
+     }
+  },
+  select: function(event, ui) {
+      if (ui.item) {
+            $("#apartamento_pessoa_id").val(ui.item.pessoa_id);
+         }
+       }
+   });
+});
+
+</script>

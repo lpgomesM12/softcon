@@ -25,6 +25,10 @@
   <%= @apartamento.numr_bloco %>
 </p>
 
+<p>
+  <strong>Proprietário:</strong>
+  <%= @apartamento.pessoa.nome_pessoa rescue nil %>
+</p>
   </div><!-- /.box -->
  </form>
 </div><!-- /.box-body -->

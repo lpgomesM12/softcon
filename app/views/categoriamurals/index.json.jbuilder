@@ -1,0 +1,1 @@
+json.array! @categoriamurals, partial: 'categoriamurals/categoriamural', as: :categoriamural

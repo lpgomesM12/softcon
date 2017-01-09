@@ -15,29 +15,29 @@
 </section>
 
 <br>
-<!-- row -->
-       <div class="row">
-         <div class="col-md-12">
-           <!-- The time line -->
-        <ul class="timeline">
-         <% @murals.each do |mural| %>
+<section class="content">
 
-             <li>
-               <i class="fa fa-file-pdf-o bg-blue"></i>
-               <div class="timeline-item">
-                 <span class="time"><i class="fa fa-clock-o"></i> <%=mural.created_at.strftime("%d/%m/%Y -%R")%></span>
-                 <h3 class="timeline-header"><%= link_to mural.titulo, mural.pdf.url, :target=>"_blank"%></h3>
-                 <div class="timeline-footer">
-
-                     <p><%=mural.descricao%></p>
-
+    <% @categoriamural.each do |categoria| %>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="box box-success">
+               <div class="box-header with-border">
+                 <h3 class="box-title"><%=categoria.nome_categoria%></h3>
+                 <div class="box-tools pull-right">
+                   <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                  </div>
-               </div>
-             </li>
-             <%end%>
-             <li>
-             </li>
-           </ul>
-         </div><!-- /.col -->
-       </div><!-- /.row -->
-</section>
+               </div><!-- /.box-header -->
+               <div class="box-body no-padding">
+                 <div class="row">
+                   <div class="col-md-12 col-sm-12">
+                     <% categoria.murals.each do |mural| %>
+                          <%= link_to mural.titulo, mural.pdf.url, :target=>"_blank"%>
+                     <%end%>
+                   </div><!-- /.col -->
+                 </div><!-- /.row -->
+               </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div>
+          </div>
+      <%end%>
+  </section>

@@ -24,6 +24,7 @@
     <tr>
       <th>N° Apartamento</th>
       <th>Bloco</th>
+      <th>Proprietário</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -33,6 +34,7 @@
       <tr>
         <td><%= apartamento.numr_apartamento %></td>
         <td><%= apartamento.numr_bloco %></td>
+        <td><%= apartamento.pessoa.nome_pessoa rescue nil%></td>
         <td align='right'>
           <div class="btn-group">
               <%= link_to apartamento, class: "btn btn-default btn-sm" do %>

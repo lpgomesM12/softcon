@@ -11,9 +11,6 @@ class UsuariosController < ApplicationController
 
 
   def destroy
-    # @user.user_exclusao = current_user.id
-    # @user.flag_exclusao = true
-    # @user.email = Time.now.to_s + "@gmail.com"
     @user.destroy
     respond_to do |format|
       format.html { redirect_to usuarios_path, notice: 'Cidade was successfully destroyed.' }
@@ -22,7 +19,6 @@ class UsuariosController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_usuario
       @user = User.find(params[:id])
     end

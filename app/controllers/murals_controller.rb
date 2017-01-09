@@ -4,12 +4,16 @@ class MuralsController < ApplicationController
   # GET /murals
   # GET /murals.json
   def mural
-    if params[:q]
-      @q = params[:q]
-      @murals = Mural.where("condominio_id = #{current_user.condominio_id} and lower(titulo)like '%#{@q.downcase}%'")
-    else
-      @murals = Mural.where(condominio_id: current_user.condominio_id)
-    end
+
+    @categoriamural = Categoriamural.joins("INNER apartamentos ap ON apartamento_id = ap.id where condominio_id = ? ",current_user.condominio_id)
+
+
+    # if params[:q]
+    #   @q = params[:q]
+    #   @murals = Mural.where("condominio_id = #{current_user.condominio_id} and lower(titulo)like '%#{@q.downcase}%'")
+    # else
+    #   @murals = Mural.where(condominio_id: current_user.condominio_id)
+    # end
   end
 
   # GET /murals
@@ -80,6 +84,6 @@ class MuralsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mural_params
-      params.require(:mural).permit(:titulo, :descricao, :condominio_id, :pdf)
+      params.require(:mural).permit(:titulo, :descricao, :condominio_id, :pdf, :categoriamural_id)
     end
 end
