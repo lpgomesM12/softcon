@@ -4,7 +4,7 @@ class ContatoSite < ApplicationMailer
     @email = email
     @telefone =  telefone
     @duvida = duvida
-    mail(to: email, subject: 'Contato Site', from: 'softconcomercial@hotmail.com')
+    mail(to: 'softconcomercial@hotmail.com', subject: 'Contato Site', from: email)
   end
 
 end
