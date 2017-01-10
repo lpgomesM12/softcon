@@ -5,9 +5,9 @@ class MuralsController < ApplicationController
   # GET /murals.json
   def mural
 
-    @categoriamural = Categoriamural.joins("INNER apartamentos ap ON apartamento_id = ap.id where condominio_id = ? ",current_user.condominio_id)
+    @categoriamural = Categoriamural.where(condominio_id: current_user.condominio_id)
 
-
+    #@categoriamural = Categoriamural.all
     # if params[:q]
     #   @q = params[:q]
     #   @murals = Mural.where("condominio_id = #{current_user.condominio_id} and lower(titulo)like '%#{@q.downcase}%'")
