@@ -196,7 +196,12 @@
           duvida : $("#duvida").val()
         },
         success: function(data){
+             $("#nome").val("");
+             $("#email").val("");
+             $("#telefone").val();
+             $("#duvida").val();
 
+             Alert("Email enviado com sucesso");
         }
       })
     };

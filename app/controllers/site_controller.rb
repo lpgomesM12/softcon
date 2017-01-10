@@ -14,12 +14,13 @@ class SiteController < ApplicationController
 
   def envio_email_contato
 
-     @duvida = params[:duvida]
+
      @nome = params[:nome]
      @email = params[:email]
      @telefone = params[:telefone]
+     @duvida = params[:duvida]
 
-     ContatoSite.send_email(@duvida,@email,@nome,@telefone).deliver
+     ContatoSite.send_email(@nome,@email,@telefone,@duvida).deliver
 
      render :json => true
 
