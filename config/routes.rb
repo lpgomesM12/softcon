@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :veiculos
+  resources :pessoacondominios
+  resources :garagems
+  resources :coberturas
   resources :categoriamurals
   resources :turnos
   resources :produtos

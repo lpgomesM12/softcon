@@ -1,3 +1,5 @@
+
+#Desenvolvimento
 default: &default
   adapter: postgresql
   encoding: unicode
@@ -6,3 +8,14 @@ default: &default
 development:
   <<: *default
   database: softcon
+
+#produção
+# development:
+#   adapter: postgresql
+#   encoding: unicode
+#   database: softcon
+#   host: 162.243.171.44
+#   pool: 5
+#   username: deploy
+#   password: bcoambar
+#   port: 5432

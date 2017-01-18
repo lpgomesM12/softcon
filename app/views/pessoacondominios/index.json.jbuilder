@@ -1,0 +1,1 @@
+json.array! @pessoacondominios, partial: 'pessoacondominios/pessoacondominio', as: :pessoacondominio

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  desc_placa: MyString
+  desc_veiculo: MyString
+  pessoa_id: 
+  condominio_id: 
+
+two:
+  desc_placa: MyString
+  desc_veiculo: MyString
+  pessoa_id: 
+  condominio_id: 

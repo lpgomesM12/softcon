@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Numr garagem:</strong>
+  <%= @garagem.numr_garagem %>
+</p>
+
+<p>
+  <strong>Cobertura:</strong>
+  <%= @garagem.cobertura %>
+</p>
+
+<p>
+  <strong>Condominio:</strong>
+  <%= @garagem.condominio %>
+</p>
+
+<p>
+  <strong>Apartamento:</strong>
+  <%= @garagem.apartamento %>
+</p>
+
+<%= link_to 'Edit', edit_garagem_path(@garagem) %> |
+<%= link_to 'Back', garagems_path %>

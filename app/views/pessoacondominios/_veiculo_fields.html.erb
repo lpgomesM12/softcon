@@ -1,0 +1,21 @@
+<div class='nested-fields'>
+ <div class="row">
+
+    <div class="col-lg-3">
+       <%= f.label :Placa %>
+       <%= f.text_field :desc_placa, :class => 'form-control' %>
+    </div>
+
+    <div class="col-lg-3">
+            <label>Descrição Veiculo</label>
+            <%= f.text_field :desc_veiculo, :class => 'form-control' %>
+    </div>
+
+    <%= f.hidden_field :condominio_id, :value=> current_user.condominio_id%>
+
+    <div class="col-lg-2">
+     <label>Ação</label><br>
+     <%= link_to_remove_association "Deletar", f, :class => "btn btn-default" %>
+    </div>
+   </div>
+</div>

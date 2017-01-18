@@ -1,15 +1,21 @@
 <section class="content-header">
-    <h1>
-      <!--Mensagens aqui-->
-      <%if notice %>
-       <!-- <div class="alert alert-success alert-dismissable">
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <h4>  <i class="icon fa fa-check"></i>Mensagem</h4>
-          <%#= notice %>
-      </div> -->
-      <%end%>
-    <!--<small></small>-->
-    </h1>
+  <%= form_tag nil, method: 'GET' do %>
+    <div class="row">
+      <div class="col-lg-4">
+        Apartamento<%= select_tag "apartamento_id", options_from_collection_for_select(Apartamento.where(condominio_id: current_user.condominio_id), "id", "nome"), {:include_blank => true, :class => 'form-control'}%>
+      </div>
+      <div class="col-lg-8">
+        <br>
+        <div class="input-group">
+          <input id="q" name="q" type="text" value="<%=@q%>" class="form-control" placeholder="Pesquise pelo morador">
+          <span class="input-group-btn">
+            <button class="btn btn-success" type="submit" >Buscar</button>
+          </span>
+        </div>
+      </div>
+    </div>
+    <br />
+  <% end %>
 </section>
 
  <!-- Main content -->

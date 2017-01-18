@@ -1,0 +1,1 @@
+json.partial! "pessoacondominios/pessoacondominio", pessoacondominio: @pessoacondominio

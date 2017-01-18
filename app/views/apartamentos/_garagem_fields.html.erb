@@ -1,0 +1,19 @@
+<div class='nested-fields'>
+ <div class="row">
+    <div class="col-lg-3">
+      <label>Cobertura</label>
+      <%= f.select :cobertura_id, options_from_collection_for_select(Cobertura.where(condominio_id: current_user.condominio_id), 'id', 'nome_cobertura', (f.hidden_field :cobertura_id)), {:include_blank => true}, {:class => 'form-control' }%>
+    </div>
+
+    <%=@id%>
+
+    <div class="col-lg-3">
+       <%= f.label :Garagem %>
+       <%= f.text_field :numr_garagem, :class => 'form-control' %>
+     </div>
+    <div class="col-lg-2">
+     <label>Ação</label><br>
+     <%= link_to_remove_association "Deletar", f, :class => "btn btn-default" %>
+    </div>
+   </div>
+</div>

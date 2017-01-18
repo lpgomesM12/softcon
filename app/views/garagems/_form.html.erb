@@ -1,0 +1,33 @@
+<%= form_for(@garagem) do |f| %>
+  <% if @garagem.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@garagem.errors.count, "error") %> prohibited this garagem from being saved:</h2>
+
+      <ul>
+      <% @garagem.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :numr_garagem %><br>
+    <%= f.text_field :numr_garagem %>
+  </div>
+  <div class="field">
+    <%= f.label :cobertura_id %><br>
+    <%= f.text_field :cobertura_id %>
+  </div>
+  <div class="field">
+    <%= f.label :condominio_id %><br>
+    <%= f.text_field :condominio_id %>
+  </div>
+  <div class="field">
+    <%= f.label :apartamento_id %><br>
+    <%= f.text_field :apartamento_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

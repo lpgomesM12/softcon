@@ -19,6 +19,7 @@ class ApartamentosController < ApplicationController
   # GET /apartamentos/new
   def new
     @apartamento = Apartamento.new
+    @apartamento.garagems.build
   end
 
   # GET /apartamentos/1/edit
@@ -73,6 +74,6 @@ class ApartamentosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def apartamento_params
-      params.require(:apartamento).permit(:numr_apartamento, :numr_bloco, :condominio_id, :pessoa_id)
+      params.require(:apartamento).permit(:numr_apartamento, :numr_bloco, :condominio_id, :pessoa_id, garagems_attributes: [ :id, :numr_garagem, :cobertura_id, :condominio_id, :_destroy ] )
     end
 end

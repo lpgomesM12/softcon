@@ -1,0 +1,2 @@
+module GaragemsHelper
+end

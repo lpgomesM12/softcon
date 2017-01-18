@@ -1,0 +1,1 @@
+json.partial! "garagems/garagem", garagem: @garagem

@@ -2,6 +2,9 @@ class Apartamento < ActiveRecord::Base
   belongs_to :condominio
   belongs_to :pessoa
 
+  has_many :garagems, dependent: :destroy
+  accepts_nested_attributes_for :garagems, allow_destroy: true
+
   #Validações
   validates :numr_apartamento, presence: { message: "precisa de" }
   validates :numr_bloco, presence: true

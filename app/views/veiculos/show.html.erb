@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Desc placa:</strong>
+  <%= @veiculo.desc_placa %>
+</p>
+
+<p>
+  <strong>Desc veiculo:</strong>
+  <%= @veiculo.desc_veiculo %>
+</p>
+
+<p>
+  <strong>Pessoa:</strong>
+  <%= @veiculo.pessoa %>
+</p>
+
+<p>
+  <strong>Condominio:</strong>
+  <%= @veiculo.condominio %>
+</p>
+
+<%= link_to 'Edit', edit_veiculo_path(@veiculo) %> |
+<%= link_to 'Back', veiculos_path %>

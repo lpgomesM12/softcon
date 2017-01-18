@@ -1,0 +1,101 @@
+<div class="box-body">
+<%= form_for(@pessoacondominio) do |f| %>
+  <% if @pessoacondominio.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pessoacondominio.errors.count, "error") %> prohibited this pessoacondominio from being saved:</h2>
+
+      <ul>
+      <% @pessoacondominio.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.fields_for :pessoa do |p| %>
+
+  <div class="row">
+     <div class="col-lg-6">
+         <%= p.label :Nome_pessoa %><br>
+         <%= p.text_field :nome_pessoa, :class => 'form-control' %>
+       </div>
+  </div>
+
+  <div class="row">
+  <div class="col-lg-4">
+     <label>CPF</label><br>
+        <%= p.text_field :cpf, :maxlength => 11, :class => 'form-control' %>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-lg-6">
+      <label>Email</label><br>
+      <%= p.text_field :email_pessoa, :class => 'form-control'%>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-3">
+        <label>RG</label><br>
+        <%= p.text_field :rg, :class => 'form-control'  %>
+      </div>
+  </div>
+
+  <div class="row">
+   <div class="col-lg-3">
+       <%= p.label :Telefone %><br>
+       <%= p.text_field :desc_fone, :class => 'form-control' %>
+     </div>
+  </div>
+  <div class="row">
+   <div class="col-lg-3">
+       <label>ID Biometrico</label>
+       <%= p.text_field :numr_idbiometrico, :class => 'form-control' %>
+     </div>
+  </div>
+  <br>
+
+  <div class="row">
+    <div class="col-lg-3">
+      <h3>Cadastro de veículos</h3>
+    </div>
+  </div>
+
+  <div id="veiculos">
+    <%= p.fields_for :veiculos do |item| %>
+       <%= render 'veiculo_fields', :f => item %>
+     <% end %>
+      <div class='links'>
+      <br>
+        <%= link_to_add_association 'Novo Veículo', p, :veiculos, :class => "btn btn-default btn-xs" %>
+      </div>
+  </div>
+
+<%end%>
+ <%= f.hidden_field :condominio_id, :value=> current_user.condominio_id%>
+
+</div>
+</div><!-- /.box -->
+
+  <div class="row mar-bot40">
+    <div class="col-lg-8" >
+       <div class="btn-group">
+         <button type="submit" value="Submit" class="btn btn-primary btn-sm">
+          <span class="glyphicon glyphicon-floppy-disk"></span> Salvar
+         </button>
+         <%= link_to pessoacondominios_path, :class => "btn btn-default btn-sm" do %>
+            <span class="glyphicon glyphicon-arrow-left"></span> Voltar
+          <% end %>
+        </div>
+      </div>
+  </div>
+</section>
+
+<% end %>
+
+
+<script type="text/javascript">
+ $(".btn-xs").click();
+</script>

@@ -35,6 +35,23 @@
         </div>
   </div>
 
+ <hr>
+  <div class="row">
+    <div class="col-lg-2">
+      <h4>Dados Garagem</h4>
+    </div>
+   </div>
+  <div id="garagems">
+    <%= f.fields_for :garagems do |item| %>
+       <%= render 'garagem_fields', :f => item %>
+     <% end %>
+      <div class='links'>
+      <br>
+        <%= link_to_add_association 'Nova Vaga', f, :garagems, :class => "btn btn-default btn-xs" %>
+      </div>
+  </div>
+
+
    <%= f.hidden_field :condominio_id, :value => current_user.condominio_id %>
 
 </div>

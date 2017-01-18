@@ -78,3 +78,9 @@ rails g scaffold turno desc_relatorio:text data_entrega:datetime user:references
 
 CATEGORIAMURAL
 rails g scaffold categoriamural nome_categoria:string condominio:references
+
+PESSOACONDOMINIO
+rails g scaffold pessoacondominio condominio:references pessoa:references
+
+VEICULO
+rails g scaffold veiculo desc_placa:string desc_veiculo:string pessoa:references condominio:references
