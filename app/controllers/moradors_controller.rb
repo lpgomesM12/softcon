@@ -2,7 +2,7 @@ class MoradorsController < ApplicationController
   before_action :set_morador, only: [:show, :edit, :update, :destroy]
 
   def busca_morador
-     @moradors = Morador.search(params[:term],current_user.condominio_id)
+     @moradors = Morador.search(params[:term],current_user.condominio_id).limit(10)
   end
 
   # GET /moradors
@@ -10,7 +10,7 @@ class MoradorsController < ApplicationController
   def index
 
     if params[:q] or params[:apartamento_id]
-      @moradors = Morador.search(@q,current_user.condominio_id,params[:apartamento_id]).page(params[:page]).per(6)
+      @moradors = Morador.search(params[:q],current_user.condominio_id,params[:apartamento_id]).page(params[:page]).per(6)
     else
       @moradors = Morador.where(condominio_id: current_user.condominio_id).page(params[:page]).per(6)
    end
