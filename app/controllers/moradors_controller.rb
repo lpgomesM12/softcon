@@ -136,7 +136,7 @@ class MoradorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pessoa_params
-      params.require(:pessoa).permit(:nome_pessoa, :desc_fone, :cpf, :rg, :email_pessoa, :avatar)
+      params.require(:pessoa).permit(:nome_pessoa, :desc_fone, :cpf, :rg, :email_pessoa, :avatar, :numr_idbiometrico)
     end
 
     def morador_params
@@ -144,6 +144,6 @@ class MoradorsController < ApplicationController
     end
 
     def morador_params_netested
-      params.require(:morador).permit(:apartamento_id, :pessoa_id, :condominio_id, :user_inclusao, pessoa_attributes: [:id, :nome_pessoa, :desc_fone, :cpf, :rg, :avatar, :email_pessoa])
+      params.require(:morador).permit(:apartamento_id, :pessoa_id, :condominio_id, :user_inclusao, pessoa_attributes: [:id, :nome_pessoa, :desc_fone, :cpf, :rg, :avatar, :email_pessoa, :numr_idbiometrico])
     end
 end

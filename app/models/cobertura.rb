@@ -1,3 +1,3 @@
 class Cobertura < ActiveRecord::Base
-  belongs_to :condiminio
+  belongs_to :condominio
 end
