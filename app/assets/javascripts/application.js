@@ -37,6 +37,8 @@
 //= require plugins/iCheck/icheck.min
 //= require plugins/datatables/jquery.dataTables.min
 //= require plugins/datatables/dataTables.bootstrap.min
+//= require angular
+//= require_tree ./angular
 //= require morris
 //= require cocoon
 //= require bootstrap-datepicker.pt-BR

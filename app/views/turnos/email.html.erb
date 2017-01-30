@@ -1,0 +1,62 @@
+<div ng-controller="turnoCtrl">
+
+  <section class="content">
+        <div class="row" ng-repeat="grupo in grupos">
+          <div class="col-md-12">
+            <div class="box box-success collapsed-box">
+               <div class="box-header with-border">
+                 <h3 class="box-title">{{grupo.nome}}</h3>
+                 <div class="box-tools pull-right">
+                   <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                 </div>
+               </div><!-- /.box-header -->
+               <div class="box-body no-padding">
+                 <div class="mailbox-controls">
+                   <button class="btn btn-default btn-sm checkbox-toggle" onclick="checkTodos()" id="btnchecaTodos"><i id="btnchecaTodo" class="fa fa-square-o"></i></button>
+                 </div>
+                  <div class="table-responsive mailbox-messages">
+                    <table class="table table-hover table-striped">
+                      <tbody>
+                        <tr>
+                          <td><input type="checkbox"></td>
+                          <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
+                          <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
+                          <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...</td>
+                          <td class="mailbox-attachment"></td>
+                          <td class="mailbox-date">2 days ago</td>
+                        </tr>
+                      </tbody>
+                    </table><!-- /.table -->
+                  </div>
+             </div>
+            </div>
+
+          </div>
+        </div>
+  </section>
+</div>
+
+
+
+<script type="text/javascript">
+
+
+function checkTodos() {
+
+    var clicks = $("#btnchecaTodo").data('clicks');
+    if (clicks) {
+      //Uncheck all checkboxes
+      $(".mailbox-messages input[type='checkbox']").iCheck("uncheck");
+      $("#btnchecaTodo").removeClass("fa-check-square-o").addClass('fa-square-o');
+    } else {
+      //Check all checkboxes
+      $(".mailbox-messages input[type='checkbox']").iCheck("check");
+      $("#btnchecaTodo").removeClass("fa-square-o").addClass('fa-check-square-o');
+    }
+    $("#btnchecaTodo").data("clicks", !clicks);
+}
+
+
+
+
+</script>

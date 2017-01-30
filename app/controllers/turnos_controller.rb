@@ -2,6 +2,18 @@ class TurnosController < ApplicationController
   before_action :set_turno, only: [:show, :edit, :update, :destroy]
 
 
+def enviar_email
+  @turno = Turno.find(params[:turno])
+  @grupos = params[:grupos].split(",").map { |s| s.to_i }
+
+  @pessoas = Grupopermissaouser.where(grupopermissao_id: @grupos, condominio_id: current_user.condominio_id)
+  # @pessoas.each do |pessoa|
+  #   EmailTurno.send_email(pessoa.user.email,@turno,current_user.condominio.email).deliver
+  # end
+
+  render :json => true
+end
+
   def relatorio
 
      @turno = Turno.find(params[:id])

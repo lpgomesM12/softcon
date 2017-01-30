@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>
+      Relatório Turno.<br>
+      <br>
+      Funcionário: <%=@turno.user.pessoa.nome_pessoa%><br>
+      Relatório:<br>
+      <%=@turno.desc_relatorio.html_safe%>
+    </p>
+  </body>
+</html>

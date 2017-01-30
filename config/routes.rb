@@ -97,5 +97,6 @@ Rails.application.routes.draw do
   get 'site/servico'
   get 'previsaoorcamentaria/index'
   get 'previsaoorcamentaria/relatorio'
+  get 'enviaremail' => 'turnos#enviar_email'
 
 end
